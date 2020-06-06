@@ -1,0 +1,7 @@
+Matlab
+Vari metodi di clustering
+
+Provato, funziona con accuratezza molto alta
+Facile estrarre accuratezza
+Modello: trovati i centri (var. centers) posso usare la funzione calculate_fcm_memberships(points,new_centers,dist, m)
+per trovare la membership e poi il codice a riga 64-74 per calcolare l'appartenenza
