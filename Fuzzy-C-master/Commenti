@@ -1,0 +1,2 @@
+-Un codice specializzato su iris, adattato al nostro csv. Stampa accuratezza percentuale
+-ho una funzione fuzzy che dati i dati preprocessati (e poi applico de_randomise_data) mi dà la final_location di un punto  
