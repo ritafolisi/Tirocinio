@@ -10,4 +10,8 @@ target=le.fit_transform(data[colname])
 
 data[colname]=target
 
+cols = list(data.columns.values)
+cols.pop(cols.index(colname))
+data = data[[colname]+cols]
+
 data.to_csv('iris_std.csv')
