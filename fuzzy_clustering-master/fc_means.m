@@ -40,6 +40,7 @@ function [ centers,u_mat,labels,no_iterations,others] = fc_means( points,no_clus
             t2 = sqrt(t2);
             dist(:,j)= t2;
         end
+        
         %update memberships
         u_mat=calculate_fcm_memberships(points,new_centers,dist,m_val);
           
@@ -55,7 +56,17 @@ function [ centers,u_mat,labels,no_iterations,others] = fc_means( points,no_clus
     centers=new_centers;
     
     others(1).save_centers=save_centers(1:(save_iter-1),:,:);
-
+    
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    %Prova: serializzo modello
+    b1=hlp_serialize(u_mat);
+ 
+    fileID = fopen('esperimento_u_mat.bin','a');
+    fwrite(fileID,b1);
+    fclose(fileID);
+      
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    
     %compare with MATLAB implementation of fcm
 %     [centers,u_t]=fcm(points,no_clusters);
 %     disp(centers);
