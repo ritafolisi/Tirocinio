@@ -19,7 +19,7 @@ run_cluster_fc_means( features,labels,no_types,divisions)
 function [features,labels,no_types,divisions]=read_iris_data() 
     %read iris data set
     fprintf("Working on IRIS data set\n");
-    datafile='./DATA/iris2.csv';
+    datafile='./DATA/iris.csv';
     %read dataset into table
     data=readtable(datafile);
     %retrieve data into arrays. Documentation - access data from a table.

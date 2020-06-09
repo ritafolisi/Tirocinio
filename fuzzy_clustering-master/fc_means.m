@@ -31,7 +31,7 @@ function [ centers,u_mat,labels,no_iterations,others] = fc_means( points,no_clus
         no_iterations=no_iterations+1;
 %         disp(no_iterations);
         %calculate distances
-                %calculate distances
+                
         for j = 1 : no_clusters 
             t1=points-new_centers(j,:);
             t1=t1.^2;
@@ -59,12 +59,20 @@ function [ centers,u_mat,labels,no_iterations,others] = fc_means( points,no_clus
     
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     %Prova: serializzo modello
-    b1=hlp_serialize(u_mat);
- 
-    fileID = fopen('esperimento_u_mat.bin','a');
-    fwrite(fileID,b1);
-    fclose(fileID);
-      
+    b1=hlp_serialize(centers);
+    fileID1 = fopen('esperimento_centers.bin','w');
+    fwrite(fileID1,b1);
+    fclose(fileID1);    
+    
+    b2=hlp_serialize(m_val);
+    fileID2 = fopen('esperimento_m_val.bin','w');
+    fwrite(fileID2,b2);
+    fclose(fileID2);  
+    
+    b3=hlp_serialize(no_clusters);
+    fileID3=fopen('esperimento_no_clusters.bin','w');
+    fwrite(fileID3,b3);
+    fclose(fileID3); 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     
     %compare with MATLAB implementation of fcm
@@ -83,7 +91,7 @@ function [ centers,u_mat,labels,no_iterations,others] = fc_means( points,no_clus
             end
         end
     end
-    
+    %disp(labels);
 end
 
 function centers= calculate_centers(points,u_mat,m_val)
