@@ -1,4 +1,5 @@
 Matlab
+
 Vari metodi di clustering
 
 Provato, funziona con accuratezza molto alta
@@ -7,3 +8,9 @@ Modello: trovati i centri (var. centers) posso usare la funzione calculate_fcm_m
 per trovare la membership e poi il codice a riga 64-74 per calcolare l'appartenenza
 
 Esperimento_main contiene test modificato, che chiama la funzione run_cluster_fc_means.m (invece che run_cluster.m)
+
+Provato su iris.csv (il nostro csv standard) sia come train che come test, dà errore del 96% su entrambi; provato su un iris splittato in train(120) e test(30) dà accuratezza del circa 93%
+
+Per modifiche modificare
+- File esperimento_main (per training): modifica divisions (divisione features) e datafile(nome file training)
+- File esperimento_deserialize (per test): stesse due cose
