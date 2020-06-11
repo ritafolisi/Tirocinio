@@ -138,8 +138,8 @@ while G<=Gen && min_func_value>0
 		
     membership_assignment(TR);
 		
-    h = sprintf('Run %d Gen %d: Error= %f',run,G,min_func_value);
-    disp(h);
+   % h = sprintf('Run %d Gen %d: Error= %f',run,G,min_func_value);
+   % disp(h);
 	
 	G = G+1;
 	

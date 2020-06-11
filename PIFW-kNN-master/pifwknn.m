@@ -28,8 +28,8 @@ global b f k membership W
 
 % dataset = importdata(filename)
 
-Temp_Features = features
-Temp_Labels = labels
+Temp_Features = features;
+Temp_Labels = labels;
 
 % Normalizing Features
 max_x = max(Temp_Features,[],1);
@@ -47,11 +47,13 @@ b = max(Temp_Labels);
 f = size(Temp_Features,2);
 
 % Number of Fold
-k_fold = 10; % Edit here for adjusting the fold value for cross validation.
+k_fold = 3; % Edit here for adjusting the fold value for cross validation.
 
 % CV Partition
 cv = cvpartition(size(dataset,1), 'kfold', k_fold);
 acc = 0; answer = [];
+best_k = 0;
+best_acc = -1;
 
 for count = 1:k_fold
 	
@@ -82,19 +84,23 @@ for count = 1:k_fold
 	end
 	
 	% Calculating and printing the results for each run
-	h = sprintf('Matched: %d',matched);
-	disp(h);
-	h = sprintf('Unmatched: %d',unmatched);
-	disp(h);
+	% h = sprintf('Matched: %d',matched);
+	% disp(h);
+	% h = sprintf('Unmatched: %d',unmatched);
+	% disp(h);
 	
-	acc = matched/(matched+unmatched);
-	acc = acc*100;
-	h = sprintf('Accuracy: %.2f',acc);
-	disp(h);
+	 acc = matched/(matched+unmatched);
+	 acc = acc*100;
+     if (acc > best_acc) 
+         best_acc = acc;
+         best_k = k;
+     end
+	% h = sprintf('Accuracy: %.2f',acc);
+	% disp(h);
 	
-	h = sprintf('Value of K: %d',k);
-	disp(h);
-	disp('------------------------------');
+	% h = sprintf('Value of K: %d',k);
+	% disp(h);
+	% disp('------------------------------');
 	
 	answer = [answer;acc];
 end
@@ -103,5 +109,24 @@ end
 
 h = sprintf('Acc : %.2f (%.2f)',mean(answer),std(answer));
 disp(h)
+h = sprintf('best K : %.d (Best accuracy : %.2f)', best_k, best_acc);
+disp(h)
+
+%Prova: serializzo modello
+   b1=hlp_serialize(best_k);
+   fileID1 = fopen('esperimento_bestk.bin','w');
+   fwrite(fileID1,b1);
+   fclose(fileID1);
+
+   b2=hlp_serialize(membership);
+   fileID2 = fopen('esperimento_membership.bin','w');
+   fwrite(fileID2,b2);
+   fclose(fileID2);
+
+   b3=hlp_serialize(W);
+   fileID3=fopen('esperimento_W.bin','w');
+   fwrite(fileID3,b3);
+   fclose(fileID3);
+
 end
 
