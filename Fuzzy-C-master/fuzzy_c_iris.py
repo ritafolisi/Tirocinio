@@ -37,7 +37,7 @@ def import_data(file):
 		for j in range(0,len(current)):
 			current[j] = int(current[j])
 		data.append(current)
-	print "finished importing data"
+	print ("finished importing data")
 	return data
 
 def import_data_format_iris(file):
@@ -65,7 +65,7 @@ def import_data_format_iris(file):
 			else:
 				cluster_location.append(2)
 			data.append(current_dummy)
-	print "finished importing data"
+	print ("finished importing data")
 	return data , cluster_location
 
 def randomise_data(data):
@@ -93,7 +93,7 @@ def print_matrix(list):
 	Prints the matrix in a more reqdable way
 	"""
 	for i in range(0,len(list)):
-		print list[i]
+		print (list[i])
 
 def end_conditon(U,U_old):
 	"""
@@ -160,7 +160,7 @@ def checker_iris(final_location):
 				if final_location[i + (50*k)][j] == 1:
 					checker[j] += 1
 		right += max(checker)
-		print right
+		print (right)
 	answer =  right / 150 * 100
 	return str(answer) +  " % accuracy"
 
@@ -207,10 +207,10 @@ def fuzzy(data, cluster_number, m = 2):
 				U[i][j] = 1 / dummy
 
 		if end_conditon(U,U_old):
-			print "finished clustering"
+			print ("finished clustering")
 			break
 	U = normalise_U(U)
-	print "normalised U"
+	print ("normalised U")
 	return U
 
 ## main
@@ -232,5 +232,5 @@ if __name__ == '__main__':
 	print(final_location)
 	final_location = de_randomise_data(final_location, order)
 	#print_matrix(final_location)
-	print checker_iris(final_location)
-	print "time elapsed=", time.time() - start
+	print (checker_iris(final_location))
+	print ("time elapsed=", time.time() - start)
