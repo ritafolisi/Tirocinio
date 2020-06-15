@@ -1,20 +1,23 @@
-%read data
-[features,labels,no_types,divisions]=read_iris_data();
-% features= features(:,[3 4]);
+function [nomefile, accuratezza] = esperimento_main()
+    %read data
+    [features,labels,no_types,divisions]=read_iris_data();
+    % features= features(:,[3 4]);
 
-%normalize data
-%all values together
-% features=(features-min(features(:)))/(max(features(:))- min(features(:)));
-%normalise each feature
+    %normalize data
+    %all values together
+    % features=(features-min(features(:)))/(max(features(:))- min(features(:)));
+    %normalise each feature
 
-for i = 1 : size(features,2)
-    features(:,i)= (features(:,i)-min(features(:,i)))/(max(features(:,i))- min(features(:,i)));
+    for i = 1 : size(features,2)
+        features(:,i)= (features(:,i)-min(features(:,i)))/(max(features(:,i))- min(features(:,i)));
+    end
+
+    %feed data to this helper func
+    accuratezza = run_cluster_fc_means( features,labels,no_types,divisions);
+    
+    nomefile = "esperimento_deserialize.m";
+
 end
-
-%feed data to this helper func
-run_cluster_fc_means( features,labels,no_types,divisions)
-
-
 
 function [features,labels,no_types,divisions]=read_iris_data() 
     %read iris data set

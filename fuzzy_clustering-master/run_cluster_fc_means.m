@@ -1,4 +1,4 @@
-function run_cluster_fc_means( features,labels,no_clusters,divisions)
+function acc = run_cluster_fc_means( features,labels,no_clusters,divisions)
 %RUN_CLUSTER Runs the clustering algorithm and prints plots
     no_points=size(features,1);
     feature_dim=size(features,2);
@@ -21,7 +21,7 @@ function run_cluster_fc_means( features,labels,no_clusters,divisions)
     [ centers,u_mat,output_labels,no_iterations] = fc_means( features,no_clusters ,m_val,epsilon,MAX_ITER,init_option,params );
     disp(centers);
     disp(no_iterations);
-    estimate_error(centers,output_labels,labels,no_points,divisions);
+    acc = estimate_error(centers,output_labels,labels,no_points,divisions);
 end
 
 %N must be an odd no for this function to work properly for all types except type=4,5
@@ -89,7 +89,7 @@ function m_set=generate_fuzzifier(m1,m2,type,no_planes,N)
 end
 
 
-function estimate_error(centers,output_labels,labels,no_points,divisions)
+function acc = estimate_error(centers,output_labels,labels,no_points,divisions)
     no_clusters=size(divisions,2)-1;
 %     fprintf("clusters is ");
 %     disp(no_clusters);
@@ -114,6 +114,7 @@ function estimate_error(centers,output_labels,labels,no_points,divisions)
                 error_count=error_count+1;
             end
         end
+        acc = (no_points-error_count)* 100/no_points;
         fprintf("Error count = %d & Success Rate = %f \n",error_count,(no_points-error_count)* 100/no_points );
     else
         fprintf("Mode method of mapping fails : Likely too many errors!\n")
