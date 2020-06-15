@@ -72,7 +72,7 @@ def randomise_data(data):
 	"""
 	This function randomises the data, and also keeps record of the order of randomisation.
 	"""
-	order = range(0,len(data))
+	order = list(range(0,len(data)))
 	random.shuffle(order)
 	new_data = [[] for i in range(0,len(data))]
 	for index in range(0,len(order)):
@@ -189,6 +189,7 @@ def fuzzy(data, cluster_number, m = 2):
 				current_cluster_center.append(dummy_sum_num/dummy_sum_dum)
 			C.append(current_cluster_center)
 
+
 		#creating a distance vector, useful in calculating the U matrix.
 
 		distance_matrix =[]
@@ -213,6 +214,44 @@ def fuzzy(data, cluster_number, m = 2):
 	print ("normalised U")
 	return U
 
+def train(dataset):
+	data, cluster_location = import_data_format_iris(dataset)
+	data , order = randomise_data(data)
+
+
+	start = time.time()
+	final_location = fuzzy(data , 2 , 2)
+
+	accuracy = checker_iris(final_location)
+	accuracy = accuracy.split(" ")[0]
+	accuracy = float(accuracy)
+	return accuracy
+
+def test():
+
+	#prendi data e lavoraci
+	distance_matrix =[]
+	for i in range(0,len(data)):
+		current = []
+		for j in range(0,cluster_number):
+			current.append(distance(data[i], C[j]))
+		distance_matrix.append(current)
+
+	# update U vector
+	for j in range(0, cluster_number):
+		for i in range(0, len(data)):
+			dummy = 0.0
+			for k in range(0,cluster_number):
+				dummy += (distance_matrix[i][j]/ distance_matrix[i][k]) ** (2/(m-1))
+			U[i][j] = 1 / dummy
+
+	U = normalise_U(U)
+
+	accuracy = checker_iris(final_location)
+	accuracy = accuracy.split(" ")[0]
+	accuracy = float(accuracy)
+	return accuracy
+
 ## main
 if __name__ == '__main__':
 
@@ -232,5 +271,7 @@ if __name__ == '__main__':
 	print(final_location)
 	final_location = de_randomise_data(final_location, order)
 	#print_matrix(final_location)
-	print (checker_iris(final_location))
+	accuracy = checker_iris(final_location)
+	print (accuracy)
+
 	print ("time elapsed=", time.time() - start)
