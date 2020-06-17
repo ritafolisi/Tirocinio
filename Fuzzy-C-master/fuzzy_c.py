@@ -16,7 +16,8 @@ import sys
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import decimal
-
+import numpy as np
+import pandas as pd
 
 #used for randomising U
 global MAX
@@ -31,13 +32,23 @@ def import_data(file):
 	 The file should only the data seperated by a space.(or change the delimiter as required in split)
 	"""
 	data = []
+	cluster_location =[]
 	f = open(str(file), 'r')
+	count=0
 	for line in f:
-		current = line.split()	#enter your own delimiter like ","
-		for j in range(0,len(current)):
-			current[j] = int(current[j])
-		data.append(current)
-	print "finished importing data"
+		if(count==0):
+			count+=1
+			continue;
+
+		current = line.split(",")	#enter your own delimiter like ","
+		current_dummy = []
+		for j in range(1,len(current)):
+			current_dummy.append(float(current[j]))
+		j+=1
+		cluster_location.append(current[0])
+		data.append(current_dummy)
+
+	print ("finished importing data")
 	return data
 
 def import_data_format_iris(file):
@@ -62,14 +73,14 @@ def import_data_format_iris(file):
 		else:
 			cluster_location.append(2)
 		data.append(current_dummy)
-	print "finished importing data"
+	print ("finished importing data")
 	return data , cluster_location
 
 def randomise_data(data):
 	"""
 	This function randomises the data, and also keeps record of the order of randomisation.
 	"""
-	order = range(0,len(data))
+	order = list(range(0,len(data)))
 	random.shuffle(order)
 	new_data = [[] for i in range(0,len(data))]
 	for index in range(0,len(order)):
@@ -90,7 +101,7 @@ def print_matrix(list):
 	Prints the matrix in a more reqdable way
 	"""
 	for i in range(0,len(list)):
-		print list[i]
+		print (list[i])
 
 def end_conditon(U,U_old):
 	"""
@@ -189,27 +200,44 @@ def fuzzy(data, cluster_number, m = 2):
 				U[i][j] = 1 / dummy
 
 		if end_conditon(U,U_old):
-			print "finished clustering"
+			print ("finished clustering")
 			break
-	U = normalise_U(U)
-	print "normalised U"
+	#U = normalise_U(U)
+	print ("normalised U")
 	return U
+
 
 ## main
 if __name__ == '__main__':
 
 	# import the data
+	import numpy as np
+	from sklearn.model_selection import StratifiedKFold
+	dataset=pd.read_csv(sys.argv[1])
+	#vuole due classi!!!
+	X = dataset.iloc[:, 0:1]
+	y = dataset.iloc[:,1:]
 
-	data = import_data(str(sys.argv[1]))
-	#data, cluster_location = import_data_format_iris("iris.txt")
-	#print_matrix(data)
+	X = np.array(X)
+	y = np.array(y)
+
+	#print(X)
+	#print(Y)
+	#X = np.array([[1, 2], [3, 4], [1, 2], [3, 4]])
+	#y = np.array([0, 0, 1, 1])
+	skf = StratifiedKFold(n_splits=2)
+	for train_index, test_index in skf.split(X, y):
+		print("TRAIN:", train_index, "TEST:", test_index)
+		X_train, X_test = X[train_index], X[test_index]
+		y_train, y_test = y[train_index], y[test_index]
+
+	#data = import_data(str(sys.argv[1]))
 	#data , order = randomise_data(data)
-	#print_matrix(data)
 
-	start = time.time()
-	# now we have the data in a list called data, this is only number
-	# call the fuzzy - c means function
-	final_location = fuzzy(data , 2 , 2)
+	#start = time.time()
+	final_location = fuzzy(X , 3 , 2)
+	#print(final_location)
 	#final_location = de_randomise_data(final_location, order)
-	#print_matrix(final_location)
-	print "time elapsed=", time.time() - start
+	print_matrix(final_location)
+
+	print ("time elapsed=", time.time() - start)

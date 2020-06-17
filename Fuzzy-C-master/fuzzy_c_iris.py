@@ -267,7 +267,7 @@ if __name__ == '__main__':
 	# now we have the data in a list called data, this is only number
 	# also we have another list called the cluster location, which gives the right cluster location
 	# call the fuzzy - c means function
-	final_location = fuzzy(data , 2 , 2)
+	final_location = fuzzy(data , 3, 2)
 	print(final_location)
 	final_location = de_randomise_data(final_location, order)
 	#print_matrix(final_location)
