@@ -18,6 +18,7 @@ import matplotlib.animation as animation
 import decimal
 import numpy as np
 import pandas as pd
+from sklearn.metrics import accuracy_score, mean_squared_error
 
 #used for randomising U
 global MAX
@@ -202,10 +203,9 @@ def fuzzy(data, cluster_number, m = 2):
 		if end_conditon(U,U_old):
 			print ("finished clustering")
 			break
-	#U = normalise_U(U)
-	print ("normalised U")
+	U = normalise_U(U)
+	#print (U)
 	return U
-
 
 ## main
 if __name__ == '__main__':
@@ -214,30 +214,54 @@ if __name__ == '__main__':
 	import numpy as np
 	from sklearn.model_selection import StratifiedKFold
 	dataset=pd.read_csv(sys.argv[1])
-	#vuole due classi!!!
-	X = dataset.iloc[:, 0:1]
-	y = dataset.iloc[:,1:]
+
+	#vuole due classi
+	y = dataset.iloc[:, 0:1]
+	y = y[y["species"]!=2]
+	X = dataset.iloc[:100,1:3]
 
 	X = np.array(X)
 	y = np.array(y)
-
-	#print(X)
-	#print(Y)
-	#X = np.array([[1, 2], [3, 4], [1, 2], [3, 4]])
-	#y = np.array([0, 0, 1, 1])
-	skf = StratifiedKFold(n_splits=2)
+	#print(y)
+	skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=1)
 	for train_index, test_index in skf.split(X, y):
-		print("TRAIN:", train_index, "TEST:", test_index)
+		print("TRAIN:", train_index, "\nTEST:", test_index)
 		X_train, X_test = X[train_index], X[test_index]
 		y_train, y_test = y[train_index], y[test_index]
+		#train
+		start = time.time()
+		final_location = fuzzy(X_train , 2 , 2)
+		res=[]
+		res2=[]
+		for i in range(0, len(final_location)):
+			imax=final_location[i].index(max(final_location[i]))
+			res.append(imax)
+			res2.append((imax+1)%2)
+		#print(res)
+		#print(y_train)
+		acc = mean_squared_error(y_train, res)
+		#print(acc)
+		acc2 = mean_squared_error(y_train, res2)
+		#print(acc2)
+		print(min(acc, acc2))
+		#print_matrix(final_location)
 
-	#data = import_data(str(sys.argv[1]))
-	#data , order = randomise_data(data)
+		#test
+		start = time.time()
+		final_location = fuzzy(X_test , 2 , 2)
+		res=[]
+		res2=[]
+		for i in range(0, len(final_location)):
+			imax=final_location[i].index(max(final_location[i]))
+			res.append(imax)
+			res2.append((imax+1)%2)
+		#print(res)
+		#print(y_train)
 
-	#start = time.time()
-	final_location = fuzzy(X , 3 , 2)
-	#print(final_location)
-	#final_location = de_randomise_data(final_location, order)
-	print_matrix(final_location)
+		acc = mean_squared_error(y_test, res)
+		#print(acc)
+		acc2 = mean_squared_error(y_test, res2)
+		#print(acc2)
+		print(min(acc, acc2))
 
 	print ("time elapsed=", time.time() - start)
