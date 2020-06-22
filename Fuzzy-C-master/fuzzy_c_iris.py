@@ -259,6 +259,7 @@ if __name__ == '__main__':
 	#data = import_data_format_iris(str(sys.argv[1]))
 	#data, cluster_location = import_data_format_iris("iris.txt")
 	data, cluster_location = import_data_format_iris(str(sys.argv[1]))
+	print(cluster_location)
 	#print_matrix(data)
 	data , order = randomise_data(data)
 	#print_matrix(data)
@@ -268,7 +269,7 @@ if __name__ == '__main__':
 	# also we have another list called the cluster location, which gives the right cluster location
 	# call the fuzzy - c means function
 	final_location = fuzzy(data , 3, 2)
-	print(final_location)
+	#print(final_location)
 	final_location = de_randomise_data(final_location, order)
 	#print_matrix(final_location)
 	accuracy = checker_iris(final_location)
