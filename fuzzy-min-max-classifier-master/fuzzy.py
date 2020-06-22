@@ -3,6 +3,7 @@ import pandas as pd
 from matplotlib import pyplot as plt
 from matplotlib import animation
 import os
+from sklearn.metrics import mean_squared_error
 
 class Animator:
 	'''
@@ -46,7 +47,7 @@ class Animator:
 
 		for _class in classes:
 			if _class == 0:
-				self.rectangles.append(plt.Rectangle((0, 0), 0, 0, fill=False, color='r')) 
+				self.rectangles.append(plt.Rectangle((0, 0), 0, 0, fill=False, color='r'))
 			else:
 				self.rectangles.append(plt.Rectangle((0, 0), 0, 0, fill=False, color='b'))
 
@@ -101,14 +102,14 @@ class Animator:
 		Main function to start animation
 		'''
 
-		anim = animation.FuncAnimation(self.fig, self._animate, 
-							   init_func = self.init, 
-							   frames = self.frames, 
+		anim = animation.FuncAnimation(self.fig, self._animate,
+							   init_func = self.init,
+							   frames = self.frames,
 							   interval = 20,
 							   blit = True)
 
-		anim.save(self.filename, fps=30, 
-				  extra_args=['-vcodec', 'h264', 
+		anim.save(self.filename, fps=30,
+				  extra_args=['-vcodec', 'h264',
 							  '-pix_fmt', 'yuv420p'])
 
 		if self.verbose:
@@ -135,12 +136,12 @@ class FuzzyMMC:
 	def membership(self, pattern):
 		'''
 		Calculates membership values a pattern
-		
+
 		Returns an ndarray of membership values of all hyperboxes
 		'''
 		min_pts = self.hyperboxes[:, 0, :]
 		max_pts = self.hyperboxes[:, 1, :]
-		
+
 		a = np.maximum(0, (1 - np.maximum(0, (self.sensitivity * np.minimum(1, pattern - max_pts)))))
 		b = np.maximum(0, (1 - np.maximum(0, (self.sensitivity * np.minimum(1, min_pts - pattern)))))
 
@@ -157,7 +158,7 @@ class FuzzyMMC:
 			if self.classes[test_box] == self.classes[index]:
 				# Ignore same class hyperbox overlap
 				continue
-	
+
 			expanded_box = self.hyperboxes[index]
 			box = self.hyperboxes[test_box]
 
@@ -222,9 +223,9 @@ class FuzzyMMC:
 		Y is a one-hot encoded target variable
 		'''
 		target = Y
-		
+
 		if target not in self.classes:
-			
+
 			# Create a new hyberbox
 			if self.hyperboxes is not None:
 				self.hyperboxes = np.vstack((self.hyperboxes, np.array([[X, X]])))
@@ -238,18 +239,18 @@ class FuzzyMMC:
 				self.box_history.append(np.copy(self.hyperboxes))
 				self.train_patterns.append((X, Y))
 		else:
-			
+
 			memberships = self.membership(X)
 			memberships[np.where(self.classes != target)] = 0
 			memberships = sorted(list(enumerate(memberships)), key=lambda x: x[1], reverse=True)
-			
+
 			# Expand the most suitable hyperbox
 			count = 0
 			while True:
 				index = memberships[count][0]
 				min_new = np.minimum(self.hyperboxes[index, 0, :], X)
 				max_new = np.maximum(self.hyperboxes[index, 1, :], X)
-				
+
 				if self.exp_bound * len(np.unique(self.classes)) >= np.sum(max_new - min_new):
 					self.hyperboxes[index, 0] = min_new
 					self.hyperboxes[index, 1] = max_new
@@ -269,8 +270,8 @@ class FuzzyMMC:
 				self.train_patterns.append((X, Y))
 
 			contracted = self.overlap_contract(index)
-			
-			if self.isanimate and contracted:	
+
+			if self.isanimate and contracted:
 				self.box_history.append(np.copy(self.hyperboxes))
 				self.train_patterns.append((X, Y))
 
@@ -301,7 +302,7 @@ class FuzzyMMC:
 				max_prediction = prediction
 				pred_class = class_index
 
-		return max_prediction, self.classes[pred_class] 
+		return max_prediction, self.classes[pred_class]
 
 
 	def score(self, X, Y):
@@ -315,6 +316,15 @@ class FuzzyMMC:
 				count += 1
 
 		return count / len(Y)
+
+	def mean_squared_error(self, X, Y):
+
+		res = []
+		for x, y in zip(X, Y):
+			_, pred = self.predict(x)
+			res.append(pred)
+
+		return mean_squared_error(Y, res)
 
 
 	def animate(self, frame_rate=10, filename='', verbose=True):
@@ -367,5 +377,3 @@ if __name__ == "__main__":
 	_max = np.max(X_train, axis=0)
 	_min = np.min(X_train, axis=0)
 	X_train = (X_train - _min) / (_max - _min)
-
-
