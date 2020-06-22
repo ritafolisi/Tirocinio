@@ -143,8 +143,8 @@ def fknn_train (filename):
     dataset = pd.read_csv(filename)
 
     model = FuzzyKNN()
-    X = dataset.iloc[:, 0:-1]
-    Y = dataset.iloc[:,-1]
+    X = dataset.iloc[:, 1:]
+    Y = dataset.iloc[:,0]
 
     # Conversione dataset
     X = np.array(X)

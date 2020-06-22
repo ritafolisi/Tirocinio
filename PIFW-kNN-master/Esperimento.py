@@ -7,6 +7,6 @@ filename = sys.argv[-1]
 eng = matlab.engine.start_matlab()
 
 # Per lanciare programma pifwknn
- eng.pifwknn(filename, nargout=0)
+eng.pifwknn(filename, nargout=0)
 
 #Per lanciare serialized
