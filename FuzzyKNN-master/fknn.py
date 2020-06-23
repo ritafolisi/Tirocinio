@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, mean_squared_error
 from sklearn.base import BaseEstimator, ClassifierMixin
 
 
@@ -78,6 +78,14 @@ class FuzzyKNN(BaseEstimator, ClassifierMixin):
 			confidences = [t[1] for t in predictions]
 
 			return accuracy_score(y_pred=y_pred, y_true=y)
+
+	def mean_squared_error(self, X, Y):
+
+		predictions = self.predict(X)
+		y_pred = [t[0] for t in predictions]
+		confidences = [t[1] for t in predictions]
+
+		return mean_squared_error(Y, y_pred)
 
 
 	def _find_k_nearest_neighbors(self, df, x):
