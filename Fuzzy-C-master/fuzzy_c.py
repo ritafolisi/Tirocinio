@@ -217,12 +217,11 @@ if __name__ == '__main__':
 
 	#vuole due classi
 	y = dataset.iloc[:, 0:1]
-	y = y[y["species"]!=2]
-	X = dataset.iloc[:100,1:3]
+	X = dataset.iloc[:,2:4]
 
 	X = np.array(X)
 	y = np.array(y)
-	#print(y)
+	print(len(X))
 	skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=1)
 	for train_index, test_index in skf.split(X, y):
 		print("TRAIN:", train_index, "\nTEST:", test_index)
