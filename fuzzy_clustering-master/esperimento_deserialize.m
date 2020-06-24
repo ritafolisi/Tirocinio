@@ -20,6 +20,7 @@ function[] = esperimento_deserialize(filename)
     end
     %output_labels_rev=flip(output_labels); %%%PERCHé FLIP?! CAPISCI%%
     esp=features;
+    disp(features)
     %disp(output_labels(n, :));
     %display(labels)
     no_points=size(esp,1);
@@ -51,6 +52,8 @@ function[] = esperimento_deserialize(filename)
 
     %disp(features);
     estimate_error(new_centers, labels, output_labels,no_points,divisions);    
+    err=immse(output_labels, labels);
+    disp(err);
     %disp(labels);    
 end
 
@@ -126,7 +129,7 @@ function [features,labels,no_types,divisions]=read_iris_data(filename)
     %read dataset into table
     data=readtable(filename);
     %retrieve data into arrays. Documentation - access data from a table.
-    features=data{:,2:end-1}; %first column is id, last column is label
+    features=data{:,1:end-1}; %first column is id, last column is label
     labels_in_data= data{:,end};
     divisions=[0,10,20,30];
     [labels,no_types]=convert_labels(labels_in_data);
