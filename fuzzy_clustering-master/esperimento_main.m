@@ -26,7 +26,7 @@ function [features,labels,no_types,divisions]=read_iris_data()
     %read dataset into table
     data=readtable(datafile);
     %retrieve data into arrays. Documentation - access data from a table.
-    features=data{:,2:end-1}; %first column is id, last column is label
+    features=data{:,1:end-1}; %first column is id, last column is label
     labels_in_data= data{:,end};
     divisions=[0,40,80,120];
     %divisions=[0,50,100,150];
