@@ -18,6 +18,7 @@ import matplotlib.animation as animation
 import decimal
 import numpy as np
 import pandas as pd
+from sklearn.model_selection import StratifiedKFold
 from sklearn.metrics import accuracy_score, mean_squared_error
 
 #used for randomising U
@@ -27,10 +28,9 @@ MAX = 10000.0
 global Epsilon
 Epsilon = 0.00000001
 
-def import_data(file):
+def import_data(file, delimiter):
 	"""
 	 This function imports the data into a list form a file name passed as an argument.
-	 The file should only the data seperated by a space.(or change the delimiter as required in split)
 	"""
 	data = []
 	cluster_location =[]
@@ -41,7 +41,7 @@ def import_data(file):
 			count+=1
 			continue;
 
-		current = line.split(",")	#enter your own delimiter like ","
+		current = line.split(delimiter)
 		current_dummy = []
 		for j in range(1,len(current)):
 			current_dummy.append(float(current[j]))
@@ -51,31 +51,6 @@ def import_data(file):
 
 	print ("finished importing data")
 	return data
-
-def import_data_format_iris(file):
-	"""
-	This would format the data as required by iris
-	the link for the same is http://archive.ics.uci.edu/ml/machine-learning-databases/iris/
-	"""
-	data = []
-	cluster_location =[]
-	f = open(str(file), 'r')
-	for line in f:
-		current = line.split(",")
-		current_dummy = []
-		for j in range(0,len(current)-1):
-			current_dummy.append(float(current[j]))
-		j+=1
-		#print current[j]
-		if  current[j] == "Iris-setosa\n":
-			cluster_location.append(0)
-		elif current[j] == "Iris-versicolor\n":
-			cluster_location.append(1)
-		else:
-			cluster_location.append(2)
-		data.append(current_dummy)
-	print ("finished importing data")
-	return data , cluster_location
 
 def randomise_data(data):
 	"""
@@ -158,14 +133,15 @@ def normalise_U(U):
 	return U
 
 
-def fuzzy(data, cluster_number, m = 2):
+def fuzzy_train(data, cluster_number, m = 2):
 	"""
-	This is the main function, it would calculate the required center, and return the final normalised membership matrix U.
+	This function would calculate the required center, return the final normalised membership matrix U and the centers C.
 	It's paramaters are the : cluster number and the fuzzifier "m".
+	Used for training
 	"""
 	## initialise the U matrix:
 	U = initialise_U(data, cluster_number)
-	#print_matrix(U)
+
 	#initilise the loop
 	while (True):
 		#create a copy of it, to check the end conditions
@@ -184,7 +160,6 @@ def fuzzy(data, cluster_number, m = 2):
 			C.append(current_cluster_center)
 
 		#creating a distance vector, useful in calculating the U matrix.
-
 		distance_matrix =[]
 		for i in range(0,len(data)):
 			current = []
@@ -201,66 +176,77 @@ def fuzzy(data, cluster_number, m = 2):
 				U[i][j] = 1 / dummy
 
 		if end_conditon(U,U_old):
-			print ("finished clustering")
 			break
+
 	U = normalise_U(U)
-	#print (U)
+
+	return U, C
+
+def fuzzy_predict(data, cluster_number, C, m):
+	"""
+	This function would return the final normalised membership matrix U about the test set.
+	It's paramaters are the : cluster number, previous centroids and the fuzzifier "m".
+	"""
+
+	U = initialise_U(data, cluster_number)
+
+	#creating a distance vector, useful in calculating the U matrix.
+	distance_matrix =[]
+	for i in range(0,len(data)):
+		current = []
+		for j in range(0,cluster_number):
+			current.append(distance(data[i], C[j]))
+		distance_matrix.append(current)
+
+	# update U vector
+	for j in range(0, cluster_number):
+		for i in range(0, len(data)):
+			dummy = 0.0
+			for k in range(0,cluster_number):
+				dummy += (distance_matrix[i][j]/ distance_matrix[i][k]) ** (2/(m-1))
+			U[i][j] = 1 / dummy
+
+	U = normalise_U(U)
+
 	return U
 
 ## main
 if __name__ == '__main__':
 
 	# import the data
-	import numpy as np
-	from sklearn.model_selection import StratifiedKFold
-	dataset=pd.read_csv(sys.argv[1])
+	data=sys.argv[1]
+	feat1=sys.argv[2]
+	feat2=sys.argv[3]
+	labels=sys.argv[4]
+	print(data)
 
-	#vuole due classi
-	y = dataset.iloc[:, 0:1]
-	X = dataset.iloc[:,2:4]
+	dataset=pd.read_csv(data)
 
-	X = np.array(X)
-	y = np.array(y)
-	print(len(X))
+	# extract features and labels
+	X = dataset[[feat1, feat2]].values
+	y = dataset[labels].values
+
+	#cross validation
 	skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=1)
 	for train_index, test_index in skf.split(X, y):
-		print("TRAIN:", train_index, "\nTEST:", test_index)
+		#print("TRAIN:", train_index, "\nTEST:", test_index)
 		X_train, X_test = X[train_index], X[test_index]
 		y_train, y_test = y[train_index], y[test_index]
-		#train
-		start = time.time()
-		final_location = fuzzy(X_train , 2 , 2)
-		res=[]
-		res2=[]
-		for i in range(0, len(final_location)):
-			imax=final_location[i].index(max(final_location[i]))
-			res.append(imax)
-			res2.append((imax+1)%2)
-		#print(res)
-		#print(y_train)
-		acc = mean_squared_error(y_train, res)
-		#print(acc)
-		acc2 = mean_squared_error(y_train, res2)
-		#print(acc2)
-		print(min(acc, acc2))
-		#print_matrix(final_location)
+
+		#training
+		train_membership, centers = fuzzy_train(X_train , 2 , 2)
 
 		#test
-		start = time.time()
-		final_location = fuzzy(X_test , 2 , 2)
+		test_membership = fuzzy_predict(X_test , 2 , centers, 2)
+
+		#MSE
 		res=[]
 		res2=[]
-		for i in range(0, len(final_location)):
-			imax=final_location[i].index(max(final_location[i]))
+		for i in range(0, len(test_membership)):
+			imax=test_membership[i].index(max(test_membership[i]))
 			res.append(imax)
 			res2.append((imax+1)%2)
-		#print(res)
-		#print(y_train)
 
 		acc = mean_squared_error(y_test, res)
-		#print(acc)
 		acc2 = mean_squared_error(y_test, res2)
-		#print(acc2)
 		print(min(acc, acc2))
-
-	print ("time elapsed=", time.time() - start)
