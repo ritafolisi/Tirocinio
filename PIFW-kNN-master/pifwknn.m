@@ -113,10 +113,10 @@ h = sprintf('best K : %.d (Best accuracy : %.2f)', best_k, best_acc);
 disp(h)
 
 %Prova: serializzo modello
-   b1=hlp_serialize(best_k);
-   fileID1 = fopen('esperimento_bestk.bin','w');
-   fwrite(fileID1,b1);
-   fclose(fileID1);
+%   b1=hlp_serialize(best_k);
+%   fileID1 = fopen('esperimento_bestk.bin','w');
+%   fwrite(fileID1,b1);
+%   fclose(fileID1);
 
    b2=hlp_serialize(membership);
    fileID2 = fopen('esperimento_membership.bin','w');

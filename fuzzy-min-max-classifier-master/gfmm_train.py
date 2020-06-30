@@ -9,9 +9,8 @@ from sklearn.model_selection import StratifiedKFold
 
 
 
-def gfmm_train (filename):
+def gfmm_train_test (filename):
   df = pd.read_csv(filename)
-  df = df.sample(frac=1)
 
   X = df.iloc[:, 1:3].values
   Y = df.iloc[:,0].values
@@ -38,7 +37,7 @@ def gfmm_train (filename):
 
 def main():
     filename = sys.argv[-1]
-    model, score_array, error_array = gfmm_train (filename)
+    model, score_array, error_array = gfmm_train_test (filename)
     print(score_array)
     print(error_array)
 

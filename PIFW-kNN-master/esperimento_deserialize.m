@@ -42,25 +42,35 @@ b = max(Temp_Labels);
 % Number of Features
 f = size(Temp_Features,2);
 
-[m,n] = size(dataset) ;
-P = 0.70 ;
-idx = randperm(m)  ;
-trainMatrix = dataset(idx(1:round(P*m)),:) ; 
-testMatrix = dataset(idx(round(P*m)+1:end),:) ;
+% Number of Fold
+k_fold = 3; % Edit here for adjusting the fold value for cross validation.
 
-matched = 0; unmatched = 0;
+cv = cvpartition(size(dataset,1), 'kfold', k_fold);
+acc = 0; answer = [];
 
-for i = 1:size(testMatrix,1)
+for count = 1:k_fold
+
+    matched = 0; unmatched = 0;
+    
+    trainMatrix = dataset(training(cv,count), : );
+	testMatrix = dataset(test(cv,count), : );
+
+    % Prediction and checking of labels
+    for i = 1:size(testMatrix,1)
 		lab = fuzzy_knn(trainMatrix,testMatrix(i,:));
-		if lab == testMatrix(i,size(testMatrix,2))
+        if lab == testMatrix(i,size(testMatrix,2))
 			matched = matched + 1;
 		else
 			unmatched = unmatched+1;
-		end
-end
+        end
+    end
     
-acc = matched/(matched+unmatched);
-acc = acc*100;
+    acc = matched/(matched+unmatched);
+    acc = acc*100;
+    
+    answer = [answer;acc];
+end
 
-disp(acc)
+h = sprintf('Acc : %.2f (%.2f)',mean(answer),std(answer));
+disp(h)
 end
