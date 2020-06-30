@@ -214,7 +214,15 @@ class FuzzyMMC:
 
 		return contracted
 
-
+	def get_params(self, deep=True):
+		
+		return {"sensitivity": self.sensitivity, "exp_bound": self.exp_bound}
+    
+    
+	def set_params(self, **parameters):
+		for parameter, value in parameters.items():
+			setattr(self, parameter, value)
+		return self
 
 	def train_pattern(self, X, Y):
 		'''
