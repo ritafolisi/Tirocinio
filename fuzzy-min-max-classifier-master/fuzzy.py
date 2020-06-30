@@ -283,7 +283,7 @@ class FuzzyMMC:
 		for x, y in zip(X, Y):
 			self.train_pattern(x, y)
 
-# return membership grade and class predicted 
+# restituisce grado di membership e classe predetta
 
 	def predict(self, X):
 		'''
