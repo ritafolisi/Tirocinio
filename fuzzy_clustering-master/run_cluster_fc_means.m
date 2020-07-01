@@ -19,8 +19,7 @@ function acc = run_cluster_fc_means( features,labels,no_clusters,divisions)
     params(1).init_centers=new_centers;
 
     [ centers,u_mat,output_labels,no_iterations] = fc_means( features,no_clusters ,m_val,epsilon,MAX_ITER,init_option,params );
-    disp(centers);
-    disp(no_iterations);
+   
     acc = estimate_error(centers,output_labels,labels,no_points,divisions);
 end
 
@@ -90,27 +89,23 @@ end
 
 
 function acc = estimate_error(centers,output_labels,labels,no_points,divisions)
-    no_clusters=size(divisions,2)-1;
-%     fprintf("clusters is ");
-%     disp(no_clusters);
+    %no_clusters=size(divisions,2)-1;
+    %labels=flip(labels);
+    %disp(output_labels)
+    no_clusters=2;
     label_map=containers.Map(1,1);
-    %disp(label_map);
-%     disp (divisions);
-%     fprintf("What is size : %d\n",size(divisions,2));
+
     for j=1:size(divisions,2)-1
-%         sprintf("J is %d\n;");
         label_map(mode(output_labels((divisions(j)+1):divisions(j+1))))=j;
     end
-%     disp(label_map.keys());
-%     disp(label_map.values());
-
+    
     %calculate errors
     if size(keys(label_map),2)==no_clusters
         error_count=0;
         for i = 1:no_points 
             if label_map(output_labels(i)) ~= labels(i) 
-            %             disp([i , label_map(output_labels(i)), labels(i)]);
-            %             disp (features(i,:));
+                         disp([i , label_map(output_labels(i)), labels(i)]);
+                         %disp (features(i,:));
                 error_count=error_count+1;
             end
         end

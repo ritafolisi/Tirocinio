@@ -91,7 +91,7 @@ function [ centers,u_mat,labels,no_iterations,others] = fc_means( points,no_clus
             end
         end
     end
-    %disp(labels);
+    %disp(u_mat);
 end
 
 function centers= calculate_centers(points,u_mat,m_val)

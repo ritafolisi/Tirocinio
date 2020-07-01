@@ -1,11 +1,7 @@
 function [nomefile, accuratezza] = esperimento_main()
     %read data
     [features,labels,no_types,divisions]=read_iris_data();
-    % features= features(:,[3 4]);
 
-    %normalize data
-    %all values together
-    % features=(features-min(features(:)))/(max(features(:))- min(features(:)));
     %normalise each feature
 
     for i = 1 : size(features,2)
@@ -14,7 +10,7 @@ function [nomefile, accuratezza] = esperimento_main()
 
     %feed data to this helper func
     accuratezza = run_cluster_fc_means( features,labels,no_types,divisions);
-    
+    disp(accuratezza)
     nomefile = "esperimento_deserialize.m";
 
 end
@@ -22,15 +18,15 @@ end
 function [features,labels,no_types,divisions]=read_iris_data() 
     %read iris data set
     fprintf("Working on IRIS data set\n");
-    datafile='iris_train.csv';
+ 
     %read dataset into table
-    data=readtable(datafile);
-    %retrieve data into arrays. Documentation - access data from a table.
-    features=data{:,1:end-1}; %first column is id, last column is label
-    labels_in_data= data{:,end};
-    divisions=[0,40,80,120];
-    %divisions=[0,50,100,150];
-    [labels,no_types]=convert_labels(labels_in_data);
+    data=readtable("iris-setosa.csv");
+    
+    %retrieve data into arrays.
+    features=data{:,["sepal_length", "sepal_width"]}; 
+    labels= data{:,"species"};
+    divisions=[0, 50, 150];
+    [labels,no_types]=convert_labels(labels);
 end
 
 

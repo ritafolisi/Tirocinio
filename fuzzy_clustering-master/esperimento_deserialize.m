@@ -1,7 +1,8 @@
-function[] = esperimento_deserialize(filename)
+function[] = esperimento_deserialize(filename, col_feature1, col_feature2, col_features, divisions)
     fileID = fopen('esperimento_m_val.bin','r');
     b1 = fread(fileID);
     m_val = hlp_deserialize(b1);
+    disp(m_val)
     fclose(fileID);
 
     fileID = fopen('esperimento_centers.bin','r');
@@ -14,20 +15,22 @@ function[] = esperimento_deserialize(filename)
     no_clusters = hlp_deserialize(b3);
     fclose(fileID);
 
-    [features,output_labels,no_types,divisions]=read_iris_data(filename);
+    [features,output_labels]=read_iris_data(filename, col_feature1, col_feature2, col_features);
+    
     for i = 1 : size(features,2)
         features(:,i)= (features(:,i)-min(features(:,i)))/(max(features(:,i))- min(features(:,i)));
     end
-    %output_labels_rev=flip(output_labels); %%%PERCHé FLIP?! CAPISCI%%
-    esp=features;
-    disp(features)
-    %disp(output_labels(n, :));
-    %display(labels)
-    no_points=size(esp,1);
+    
+    %cv = cvpartition(size(features,1), 'kfold', 5);
+    %for count = 1:5
+    %    trainMatrix = features(training(cv,count), : );
+    %    testMatrix = dataset(test(cv,count), : );
+	
+    no_points=size(features,1);
     dist=zeros(no_points,no_clusters);
 
     for j = 1 : no_clusters
-        t1=esp-new_centers(j,:);
+        t1=features-new_centers(j,:);
         t1=t1.^2;
         t2= sum (t1,2);
         %sum along 2nd index, that is get n x 1 matrix
@@ -35,7 +38,7 @@ function[] = esperimento_deserialize(filename)
         dist(:,j)= t2;
     end
 
-    u_mat=calculate_fcm_memberships(esp,new_centers,dist,m_val);
+    u_mat=calculate_fcm_memberships(features,new_centers,dist,m_val);
     
     %hard partition
     labels=zeros(no_points,1);
@@ -50,15 +53,14 @@ function[] = esperimento_deserialize(filename)
         end
     end
 
-    %disp(features);
-    estimate_error(new_centers, labels, output_labels,no_points,divisions);    
-    err=immse(output_labels, labels);
-    disp(err);
+    estimate_error(new_centers, labels, output_labels, no_points, divisions);    
+    %err=immse(output_labels, labels);
+    %disp(err);
     %disp(labels);    
 end
 
 
-function estimate_error(centers,output_labels,labels,no_points,divisions)
+function estimate_error(centers,output_labels,labels,no_points, divisions)
     no_clusters=size(divisions,2)-1;
     % fprintf("clusters is ");
     % disp(no_clusters);
@@ -122,17 +124,17 @@ function u_mat = calculate_fcm_memberships(points,new_centers,dist, m)
 
 end
 
-function [features,labels,no_types,divisions]=read_iris_data(filename) 
+function [features,labels]=read_iris_data(filename, col_feature1, col_feature2, col_labels) 
     %read iris data set
     fprintf("Working on IRIS data set\n");
-    %datafile='./DATA/iris.csv';
+ 
     %read dataset into table
     data=readtable(filename);
-    %retrieve data into arrays. Documentation - access data from a table.
-    features=data{:,1:end-1}; %first column is id, last column is label
-    labels_in_data= data{:,end};
-    divisions=[0,10,20,30];
-    [labels,no_types]=convert_labels(labels_in_data);
+    
+    %retrieve data into arrays.
+    features=data{:,[col_feature1, col_feature2]}; 
+    labels= data{:,col_labels};
+    [labels,no_types]=convert_labels(labels);
 end
 
 

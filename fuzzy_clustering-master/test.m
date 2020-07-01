@@ -12,7 +12,7 @@ for i = 1 : size(features,2)
 end
 % features=features(:,[1 2]);
 % disp (features1-features);
-
+%disp(labels)
 %feed data to this helper func
 run_cluster( features,labels,no_types,divisions)
 
