@@ -6,6 +6,7 @@ import math
 import random
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import GridSearchCV
 
 
 
@@ -18,9 +19,20 @@ def gfmm_train_test (filename):
  # xTrain, xTest, yTrain, yTest = train_test_split(X,Y)
 
   model = FuzzyMMC(sensitivity=1, exp_bound=0.1, animate=False)
+  a = np.arange (0.0, 1.1, 0.1)
+  parameters = {'sensitivity': a, 'exp_bound': a }
   skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=1)
+  clf = GridSearchCV(model, parameters, cv = 5)
   value_array = []
   error_array = []
+
+  xTrain, xTest, yTrain, yTest = train_test_split(X,Y)
+  clf.fit(xTrain, yTrain)
+  best_params = clf.best_params_
+  new_exp = best_params['exp_bound']
+  new_sensit = best_params['sensitivity']
+
+  model = FuzzyMMC(sensitivity=new_sensit, exp_bound=new_exp, animate=False)
 
   for train_index, test_index in skf.split(X, Y):
        print("TRAIN:", train_index, "TEST:", test_index)
