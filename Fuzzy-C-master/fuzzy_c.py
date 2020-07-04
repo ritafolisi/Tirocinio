@@ -206,7 +206,7 @@ def fuzzy_predict(data, cluster_number, C, m):
 				dummy += (distance_matrix[i][j]/ distance_matrix[i][k]) ** (2/(m-1))
 			U[i][j] = 1 / dummy
 
-	U = normalise_U(U)
+	#U = normalise_U(U)
 
 	return U
 
@@ -218,7 +218,6 @@ if __name__ == '__main__':
 	feat1=sys.argv[2]
 	feat2=sys.argv[3]
 	labels=sys.argv[4]
-	print(data)
 
 	dataset=pd.read_csv(data)
 
@@ -239,13 +238,21 @@ if __name__ == '__main__':
 		#test
 		test_membership = fuzzy_predict(X_test , 2 , centers, 2)
 
-		#MSE
+		#MSE calcolato sulla predizione della membership
 		res=[]
 		res2=[]
 		for i in range(0, len(test_membership)):
-			imax=test_membership[i].index(max(test_membership[i]))
-			res.append(imax)
-			res2.append((imax+1)%2)
+			res.append(test_membership[i][0])
+			res2.append(test_membership[i][1])
+
+
+		#MSE, calcolato sulle label predette (scommentare normalize_U in fuzzy_predict)
+		#res=[]
+		#res2=[]
+		#for i in range(0, len(test_membership)):
+		#	imax=test_membership[i].index(max(test_membership[i]))
+		#	res.append(imax)
+		#	res2.append((imax+1)%2)
 
 		acc = mean_squared_error(y_test, res)
 		acc2 = mean_squared_error(y_test, res2)
