@@ -307,11 +307,12 @@ class FuzzyMMC:
 			mask[np.where(self.classes == _class)] = 1
 			p = memberships * mask
 			prediction, class_index = np.max(p), np.argmax(p)
+			results.append(prediction)
 			if prediction > max_prediction:
 				max_prediction = prediction
 				pred_class = class_index
 
-		return max_prediction, self.classes[pred_class]
+		return results, max_prediction, self.classes[pred_class]
 
 
 	def score(self, X, Y):
@@ -320,21 +321,30 @@ class FuzzyMMC:
 		'''
 		count = 0
 		for x, y in zip(X, Y):
-			_, pred = self.predict(x)
+			_, _, pred = self.predict(x)
 			if y == pred:
 				count += 1
 
 		return count / len(Y)
 
+	def MSE_membership(self, X, Y):
+
+		res = []
+		for x, y in zip(X, Y):
+			pred, _, _ = self.predict(x)
+			res.append(pred)
+		res = np.array(res)
+		return mean_squared_error(Y, res[:, 1])  
+        
+    
 	def mean_squared_error(self, X, Y):
 
 		res = []
 		for x, y in zip(X, Y):
-			_, pred = self.predict(x)
+			_, _, pred = self.predict(x)
 			res.append(pred)
 
-		return mean_squared_error(Y, res)
-
+		return mean_squared_error(Y, res)    
 
 	def animate(self, frame_rate=10, filename='', verbose=True):
 		'''
