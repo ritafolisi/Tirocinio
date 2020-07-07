@@ -237,7 +237,7 @@ if __name__ == '__main__':
 
 		#test
 		test_membership = fuzzy_predict(X_test , 2 , centers, 2)
-
+		#print(test_membership)
 		#MSE calcolato sulla predizione della membership
 		res=[]
 		res2=[]
@@ -256,4 +256,4 @@ if __name__ == '__main__':
 
 		acc = mean_squared_error(y_test, res)
 		acc2 = mean_squared_error(y_test, res2)
-		print(min(acc, acc2))
+		#print(min(acc, acc2))
