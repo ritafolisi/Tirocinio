@@ -43,6 +43,7 @@ class FuzzyKNN(BaseEstimator, ClassifierMixin):
 		else:
 			m = 2
 			y_pred = []
+			memb_pred = []
 
 			for x in X:
 				neighbors = self._find_k_nearest_neighbors(pd.DataFrame.copy(self.df), x)
@@ -65,19 +66,30 @@ class FuzzyKNN(BaseEstimator, ClassifierMixin):
 
 				pred = max(votes.items(), key=operator.itemgetter(1))[0]
 				y_pred.append((pred, votes))
+				print(votes)
+				memb_pred.append(votes)
 
-			return y_pred
+			return memb_pred, y_pred
 
 
 	def score(self, X, y):
 		if self.fitted_ == None:
 			raise Exception('score() called before fit()')
 		else:
-			predictions = self.predict(X)
+			_, predictions = self.predict(X)
 			y_pred = [t[0] for t in predictions]
 			confidences = [t[1] for t in predictions]
 
 			return accuracy_score(y_pred=y_pred, y_true=y)
+        
+        
+	def MSE_membership(self, X, Y):
+
+		pred = self.predict(X)
+		pred = np.array(pred)
+		
+		
+    
 
 	def mean_squared_error(self, X, Y):
 
