@@ -1,11 +1,3 @@
-###############################################################################
-##
-##	Ananya Kirti @ June 9 2015
-##	Fuzzy C means
-##
-###############################################################################
-## Ananya Kirti
-# importing all the required components, you may also use scikit for a direct implementation.
 import copy
 import math
 import random
@@ -14,6 +6,10 @@ import sys
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import decimal
+import numpy as np
+import pandas as pd
+from sklearn.model_selection import StratifiedKFold
+from sklearn.metrics import accuracy_score, mean_squared_error
 
 class FCM():
     def __init__(self, MAX=10000.0, Epsilon=0.00000001):
@@ -22,35 +18,32 @@ class FCM():
         self.C=[]
         self.U=[]
 
-    def import_data_format_iris(self,file):
+
+    def import_data(file, delimiter):
     	"""
-    	This would format the data as required by iris
-    	the link for the same is http://archive.ics.uci.edu/ml/machine-learning-databases/iris/
+    	 This function imports the data into a list form a file name passed as an argument.
     	"""
     	data = []
     	cluster_location =[]
     	f = open(str(file), 'r')
+    	count=0
     	for line in f:
-    		if(line.startswith("sepal_length")):
-    			continue
-    		else:
-    			current = line.split(",")
-    			current_dummy = []
-    			for j in range(0,len(current)-1):
-    				current_dummy.append(float(current[j]))
-    			j+=1
-    			#print current[j]
-    			if  (current[j] == "Iris-setosa\n" or current[j] == "setosa\n"):
-    				cluster_location.append(0)
-    			elif (current[j] == "Iris-versicolor\n" or current[j] == "versicolor\n"):
-    				cluster_location.append(1)
-    			else:
-    				cluster_location.append(2)
-    			data.append(current_dummy)
-    	print ("finished importing data")
-    	return data , cluster_location
+    		if(count==0):
+    			count+=1
+    			continue;
 
-    def randomise_data(self, data):
+    		current = line.split(delimiter)
+    		current_dummy = []
+    		for j in range(1,len(current)):
+    			current_dummy.append(float(current[j]))
+    		j+=1
+    		cluster_location.append(current[0])
+    		data.append(current_dummy)
+
+    	print ("finished importing data")
+    	return data
+
+    def randomise_data(data):
     	"""
     	This function randomises the data, and also keeps record of the order of randomisation.
     	"""
@@ -61,7 +54,7 @@ class FCM():
     		new_data[index] = data[order[index]]
     	return new_data, order
 
-    def de_randomise_data(self, data, order):
+    def de_randomise_data(data, order):
     	"""
     	This function would return the original order of the data, pass the order list returned in randomise_data() as an argument
     	"""
@@ -77,22 +70,22 @@ class FCM():
     	for i in range(0,len(list)):
     		print (list[i])
 
-    def end_conditon(self,U,U_old):
+    def end_conditon(self, U,U_old):
     	"""
     	This is the end conditions, it happens when the U matrix stops chaning too much with successive iterations.
     	"""
-    	global Epsilon
     	for i in range(0,len(U)):
     		for j in range(0,len(U[0])):
     			if abs(U[i][j] - U_old[i][j]) > self.Epsilon :
     				return False
     	return True
 
-    def initialise_U(self,data, cluster_number):
+    def initialise_U(self, data, cluster_number):
     	"""
     	This function would randomis U such that the rows add up to 1. it requires a global MAX.
     	"""
     	global MAX
+    	U = []
     	for i in range(0,len(data)):
     		current = []
     		rand_sum = 0.0
@@ -102,10 +95,10 @@ class FCM():
     			rand_sum += dummy
     		for j in range(0,cluster_number):
     			current[j] = current[j] / rand_sum
-    		self.U.append(current)
-    	return self.U
+    		U.append(current)
+    	return U
 
-    def distance(self,point, center):
+    def distance(self, point, center):
     	"""
     	This function calculates the distance between 2 points (taken as a list). We are refering to Eucledian Distance.
     	"""
@@ -116,68 +109,52 @@ class FCM():
     		dummy += abs(point[i] - center[i]) ** 2
     	return math.sqrt(dummy)
 
-    def normalise_U(self):
+    def normalise_U(self, U):
     	"""
     	This de-fuzzifies the U, at the end of the clustering. It would assume that the point is a member of the cluster whoes membership is maximum.
     	"""
-    	for i in range(0,len(self.U)):
-    		maximum = max(self.U[i])
-    		for j in range(0,len(self.U[0])):
-    			if self.U[i][j] != maximum:
-    				self.U[i][j] = 0
+    	for i in range(0,len(U)):
+    		maximum = max(U[i])
+    		for j in range(0,len(U[0])):
+    			if U[i][j] != maximum:
+    				U[i][j] = 0
     			else:
-    				self.U[i][j] = 1
-    	return self.U
+    				U[i][j] = 1
+    	return U
 
-    def checker_iris(self,final_location):
-    	"""
-    	This is used to find the percentage correct match with the real clustering.
-    	"""
-    	right = 0.0
-    	for k in range(0,3):
-    		checker =[0,0,0]
-    		for i in range(0,50):
-    			for j in range(0,len(final_location[0])):
-    				if final_location[i + (50*k)][j] == 1:
-    					checker[j] += 1
-    		right += max(checker)
-    		print (right)
-    	answer =  right / 150 * 100
-    	return str(answer) +  " % accuracy"
 
-    def fuzzy(self,data, cluster_number, m = 2):
+    def fuzzy_train(self, data, cluster_number, m = 2):
     	"""
-    	This is the main function, it would calculate the required center, and return the final normalised membership matrix U.
+    	This function would calculate the required center, return the final normalised membership matrix U and the centers C.
     	It's paramaters are the : cluster number and the fuzzifier "m".
+    	Used for training
     	"""
     	## initialise the U matrix:
-    	self.U = self.initialise_U(data, cluster_number)
-    	#print_matrix(U)
+    	U = self.initialise_U(data, cluster_number)
+
     	#initilise the loop
     	while (True):
     		#create a copy of it, to check the end conditions
-    		U_old = copy.deepcopy(self.U)
+    		U_old = copy.deepcopy(U)
     		# cluster center vector
-    		self.C = []
+    		C = []
     		for j in range(0,cluster_number):
     			current_cluster_center = []
     			for i in range(0,len(data[0])): #this is the number of dimensions
     				dummy_sum_num = 0.0
     				dummy_sum_dum = 0.0
     				for k in range(0,len(data)):
-    					dummy_sum_num += (self.U[k][j] ** m) * data[k][i]
-    					dummy_sum_dum += (self.U[k][j] ** m)
+    					dummy_sum_num += (U[k][j] ** m) * data[k][i]
+    					dummy_sum_dum += (U[k][j] ** m)
     				current_cluster_center.append(dummy_sum_num/dummy_sum_dum)
-    			self.C.append(current_cluster_center)
-
+    			C.append(current_cluster_center)
 
     		#creating a distance vector, useful in calculating the U matrix.
-
     		distance_matrix =[]
     		for i in range(0,len(data)):
     			current = []
     			for j in range(0,cluster_number):
-    				current.append(self.distance(data[i], self.C[j]))
+    				current.append(self.distance(data[i], C[j]))
     			distance_matrix.append(current)
 
     		# update U vector
@@ -186,53 +163,39 @@ class FCM():
     				dummy = 0.0
     				for k in range(0,cluster_number):
     					dummy += (distance_matrix[i][j]/ distance_matrix[i][k]) ** (2/(m-1))
-    				self.U[i][j] = 1 / dummy
+    				U[i][j] = 1 / dummy
 
-    		if self.end_conditon(self.U,U_old):
-    			print ("finished clustering")
+    		if self.end_conditon(U,U_old):
     			break
-    	U = self.normalise_U()
-    	print ("normalised U")
-    	return U
 
-    def train(self, dataset):
-    	data, cluster_location = self.import_data_format_iris(dataset);
-    	data , order = self.randomise_data(data)
+    	U = self.normalise_U(U)
 
-    	start = time.time()
-    	final_location = self.de_randomise_data(self.fuzzy(data, 2, 2), order)
-        #final_location = self.de_randomise_data(final_location, order)
+    	return U, C
 
-    	accuracy = self.checker_iris(final_location)
-    	accuracy = accuracy.split(" ")[0]
-    	accuracy = float(accuracy)
-    	return self, accuracy
+    def fuzzy_predict(self, data, cluster_number, C, m):
+    	"""
+    	This function would return the final normalised membership matrix U about the test set.
+    	It's paramaters are the : cluster number, previous centroids and the fuzzifier "m".
+    	"""
 
-    def test(self, dataset):
-        data, cluster_location = self.import_data_format_iris(dataset);
-        data, order = self.randomise_data(data)
-        final_location=self.de_randomise_data(self.U, order)
-        m=2
-        cluster_number=2
-    	#prendi data e lavoraci
-        distance_matrix =[]
-        for i in range(0,len(data)):
-            current = []
-            for j in range(0,cluster_number):
-                current.append(self.distance(data[i], self.C[j]))
-            distance_matrix.append(current)
+    	U = self.initialise_U(data, cluster_number)
+
+    	#creating a distance vector, useful in calculating the U matrix.
+    	distance_matrix =[]
+    	for i in range(0,len(data)):
+    		current = []
+    		for j in range(0,cluster_number):
+    			current.append(self.distance(data[i], C[j]))
+    		distance_matrix.append(current)
 
     	# update U vector
-        for j in range(0, cluster_number):
-            for i in range(0, len(data)):
-                dummy = 0.0
-                for k in range(0,cluster_number):
-                    dummy += (distance_matrix[i][j]/ distance_matrix[i][k]) ** (2/(m-1))
-                self.U[i][j] = 1 / dummy
+    	for j in range(0, cluster_number):
+    		for i in range(0, len(data)):
+    			dummy = 0.0
+    			for k in range(0,cluster_number):
+    				dummy += (distance_matrix[i][j]/ distance_matrix[i][k]) ** (2/(m-1))
+    			U[i][j] = 1 / dummy
 
-        self.U = self.normalise_U()
+    	#U = normalise_U(U)
 
-        accuracy = self.checker_iris(final_location)
-        accuracy = accuracy.split(" ")[0]
-        accuracy = float(accuracy)
-        return accuracy
+    	return U
