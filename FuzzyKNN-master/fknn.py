@@ -1,5 +1,7 @@
 import operator
 
+from math import isnan, inf
+import math
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -76,10 +78,13 @@ class FuzzyKNN(BaseEstimator, ClassifierMixin):
 		if self.fitted_ == None:
 			raise Exception('score() called before fit()')
 		else:
-			_, predictions = self.predict(X)
+			memb, predictions = self.predict(X)
 			y_pred = [t[0] for t in predictions]
-			confidences = [t[1] for t in predictions]
-
+            
+			for t in memb:
+				if (isnan(t[0]) or isnan(t[1])):
+					return -math.inf
+                
 			return accuracy_score(y_pred=y_pred, y_true=y)
         
         
@@ -93,9 +98,8 @@ class FuzzyKNN(BaseEstimator, ClassifierMixin):
 
 	def mean_squared_error(self, X, Y):
 
-		predictions = self.predict(X)
+		_, predictions = self.predict(X)
 		y_pred = [t[0] for t in predictions]
-		confidences = [t[1] for t in predictions]
 
 		return mean_squared_error(Y, y_pred)
 
