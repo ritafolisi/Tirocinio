@@ -197,5 +197,7 @@ class FCM():
     			U[i][j] = 1 / dummy
 
     	#U = normalise_U(U)
-
-    	return U
+    	res = []
+    	for i in range(0, len(U)):
+    		res.append(U[i][0])
+    	return res
