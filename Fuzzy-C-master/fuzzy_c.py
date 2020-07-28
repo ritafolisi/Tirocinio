@@ -215,9 +215,13 @@ if __name__ == '__main__':
 
 	# import the data
 	data=sys.argv[1]
-	feat1=sys.argv[2]
-	feat2=sys.argv[3]
-	labels=sys.argv[4]
+	#feat1=sys.argv[2]
+	#feat2=sys.argv[3]
+	#labels=sys.argv[4]
+
+	feat1="sepal_length"
+	feat2="sepal_width"
+	labels="species"
 
 	dataset=pd.read_csv(data)
 
@@ -256,4 +260,4 @@ if __name__ == '__main__':
 
 		acc = mean_squared_error(y_test, res)
 		acc2 = mean_squared_error(y_test, res2)
-		#print(min(acc, acc2))
+		print(min(acc, acc2))

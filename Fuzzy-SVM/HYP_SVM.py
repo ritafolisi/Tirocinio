@@ -13,17 +13,8 @@ from sklearn import svm
 import math
 import itertools
 from cvxopt import matrix
+from utils import *
 
-def linear_kernel(x1, x2):
-    return np.dot(x1, x2)
-
-def polynomial_kernel(x, y, p=3):
-    return (1 + np.dot(x, y)) ** p
-
-def gaussian_kernel(x, y, sigma):
-    x=np.asarray(x)
-    y=np.asarray(y)
-    return np.exp((-linalg.norm(x-y)**2) / (2 * (sigma ** 2)))
 
 class HYP_SVM(BaseEstimator, RegressorMixin):
 
@@ -240,5 +231,5 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
             return y_predict + self.b
 
     def predict(self, X):
-        #return np.sign(self.project(X))
-        return self.project(X)
+        return np.sign(self.project(X)) #per l'accuracy
+        #return self.project(X) per ritornare le membership
