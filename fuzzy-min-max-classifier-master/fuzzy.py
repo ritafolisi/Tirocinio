@@ -315,6 +315,15 @@ class FuzzyMMC:
 		return results, max_prediction, self.classes[pred_class]
 
 
+    
+	def estimated_membership (self, X): 
+		res = []
+		for x in X:
+			pred, _, _ = self.predict(x)
+			res.append(pred)
+		return res 
+    
+    
 	def score(self, X, Y):
 		'''
 		Scores the classifier
