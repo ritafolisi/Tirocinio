@@ -1,13 +1,3 @@
-###############################################################################
-##
-##	Ananya Kirti @ June 9 2015
-##	Fuzzy C means
-##
-###############################################################################
-## Ananya Kirti
-
-
-# importing all the required components, you may also use scikit for a direct implementation.
 import copy
 import math
 import random
@@ -215,15 +205,22 @@ if __name__ == '__main__':
 
 	# import the data
 	data=sys.argv[1]
-	feat1=sys.argv[2]
-	feat2=sys.argv[3]
-	labels=sys.argv[4]
+	#Da utilizzare se so a pripri i nomi delle colonne
+	#feat1=sys.argv[2]
+	#feat2=sys.argv[3]
+	#labels=sys.argv[4]
 
 	dataset=pd.read_csv(data)
 
 	# extract features and labels
-	X = dataset[[feat1, feat2]].values
-	y = dataset[labels].values
+	#X = dataset[[feat1, feat2]].values
+	#y = dataset[labels].values
+
+	X = dataset.iloc[:, 1:3]
+	y = dataset.iloc[:, 0]
+	X = np.asarray(X)
+	y = np.asarray(y)
+	print(X, y)
 
 	#cross validation
 	skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=1)
@@ -237,7 +234,7 @@ if __name__ == '__main__':
 
 		#test
 		test_membership = fuzzy_predict(X_test , 2 , centers, 2)
-		#print(test_membership)
+
 		#MSE calcolato sulla predizione della membership
 		res=[]
 		res2=[]
@@ -256,4 +253,4 @@ if __name__ == '__main__':
 
 		acc = mean_squared_error(y_test, res)
 		acc2 = mean_squared_error(y_test, res2)
-		#print(min(acc, acc2))
+		print(min(acc, acc2))
