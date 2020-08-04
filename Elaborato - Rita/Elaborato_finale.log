@@ -1,193 +1,189 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.2.8)  29 JUL 2020 23:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.6.29) (preloaded format=pdflatex 2020.8.4)  4 AUG 2020 17:20
 entering extended mode
 **./Elaborato_finale.tex
 (Elaborato_finale.tex
-LaTeX2e <2017-04-15>
-Babel <3.15> and hyphenation patterns for 75 language(s) loaded.
-
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\article.cl
-s"
-Document Class: article 2014/09/29 v1.4h Standard LaTeX document class
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\base\size11.clo
+LaTeX2e <2020-02-02> patch level 5
+L3 programming layer <2020-06-18>
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
 "
-File: size11.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/base\size11.clo"
+File: size11.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
 )
-\c@part=\count79
-\c@section=\count80
-\c@subsection=\count81
-\c@subsubsection=\count82
-\c@paragraph=\count83
-\c@subparagraph=\count84
-\c@figure=\count85
-\c@table=\count86
-\abovecaptionskip=\skip41
-\belowcaptionskip=\skip42
-\bibindent=\dimen102
+\c@part=\count167
+\c@section=\count168
+\c@subsection=\count169
+\c@subsubsection=\count170
+\c@paragraph=\count171
+\c@subparagraph=\count172
+\c@figure=\count173
+\c@table=\count174
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
 )
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\babel.s
-ty"
-Package: babel 2017/11/03 3.15 The Babel package
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.st
+y"
+Package: babel 2020/06/10 3.45 The Babel package
 
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\switch.
-def"
-File: switch.def 2017/11/03 3.15 Babel switching mechanism
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.de
+f"
+File: babel.def 2020/06/10 3.45 Babel common definitions
+\babel@savecnt=\count175
+\U@D=\dimen135
+\l@babelnohyphens=\language79
+
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/generic/babel\txtbabel
+.def")
+\bbl@readstream=\read2
 )
+\bbl@dirlevel=\count176
+
 *************************************
 * Local config file bblopts.cfg used
 *
 
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\arabi\bblopts.c
-fg"
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cf
+g"
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
 )
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\babel-italian\i
-talian.ldf"
-Language: italian 2015/03/26 v1.3n Italian support from the babel system
-
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\babel.d
-ef"
-File: babel.def 2017/11/03 3.15 Babel common definitions
-
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\generic\babel\switch.
-def"
-File: switch.def 2017/11/03 3.15 Babel switching mechanism
-)
-\babel@savecnt=\count87
-\U@D=\dimen103
-)
-\it@lettering=\count88
-\it@doublequoteactive=\count89
-\it@ISOcompliance=\count90
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/babel-italian\it
+alian.ldf"
+Language: italian 2020/05/21 v.1.4.04 Italian support for the babel system
+\it@lettering=\count177
+\it@doublequoteactive=\count178
+\it@ISOcompliance=\count179
 ))
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\etoolbox\etoolb
-ox.sty"
-Package: etoolbox 2018/02/06 v2.5c e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count91
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/etoolbox\etoolbo
+x.sty"
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count180
 )
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geomet
-ry.sty"
-Package: geometry 2010/09/12 v5.6 Page Geometry
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometr
+y.sty"
+Package: geometry 2020/01/02 v5.9 Page Geometry
 
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\keyval
-.sty"
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.
+sty"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks14
+\KV@toks@=\toks15
 )
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifpd
-f.sty"
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
-)
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\generic\oberdiek\ifvt
-ex.sty"
-Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
-Package ifvtex Info: VTeX not detected.
-)
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\generic\ifxetex\ifxet
-ex.sty"
-Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
-)
-\Gm@cnth=\count92
-\Gm@cntv=\count93
-\c@Gm@tempcnt=\count94
-\Gm@bindingoffset=\dimen104
-\Gm@wd@mp=\dimen105
-\Gm@odd@mp=\dimen106
-\Gm@even@mp=\dimen107
-\Gm@layoutwidth=\dimen108
-\Gm@layoutheight=\dimen109
-\Gm@layouthoffset=\dimen110
-\Gm@layoutvoffset=\dimen111
-\Gm@dimlist=\toks15
-
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\geometry\geomet
-ry.cfg"))
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\float\float.sty
-"
-Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count95
-\float@exts=\toks16
-\float@box=\box26
-\@float@everytoks=\toks17
-\@floatcapt=\box27
-)
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphi
-cx.sty"
-Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
-
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\graphi
-cs.sty"
-Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
-
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\trig.s
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.s
 ty"
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.st
+y"
+Package: iftex 2020/03/06 v1.0d TeX engine tests
+))
+\Gm@cnth=\count181
+\Gm@cntv=\count182
+\c@Gm@tempcnt=\count183
+\Gm@bindingoffset=\dimen136
+\Gm@wd@mp=\dimen137
+\Gm@odd@mp=\dimen138
+\Gm@even@mp=\dimen139
+\Gm@layoutwidth=\dimen140
+\Gm@layoutheight=\dimen141
+\Gm@layouthoffset=\dimen142
+\Gm@layoutvoffset=\dimen143
+\Gm@dimlist=\toks16
+
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometr
+y.cfg"))
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/float\float.sty"
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count184
+\float@exts=\toks17
+\float@box=\box45
+\@float@everytoks=\toks18
+\@floatcapt=\box46
+)
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphic
+x.sty"
+Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphic
+s.sty"
+Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.st
+y"
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-cfg\gr
-aphics.cfg"
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\gra
+phics.cfg"
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 99.
+Package graphics Info: Driver file: pdftex.def on input line 105.
 
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-def\pd
-ftex.def"
-File: pdftex.def 2017/06/24 v1.0g Graphics/color driver for pdftex
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdf
+tex.def"
+File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen112
-\Gin@req@width=\dimen113
+\Gin@req@height=\dimen144
+\Gin@req@width=\dimen145
 )
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\listin
-gs.sty"
-\lst@mode=\count96
-\lst@gtempboxa=\box28
-\lst@token=\toks18
-\lst@length=\count97
-\lst@currlwidth=\dimen114
-\lst@column=\count98
-\lst@pos=\count99
-\lst@lostspace=\dimen115
-\lst@width=\dimen116
-\lst@newlines=\count100
-\lst@lineno=\count101
-\lst@maxwidth=\dimen117
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/listings\listing
+s.sty"
+\lst@mode=\count185
+\lst@gtempboxa=\box47
+\lst@token=\toks19
+\lst@length=\count186
+\lst@currlwidth=\dimen146
+\lst@column=\count187
+\lst@pos=\count188
+\lst@lostspace=\dimen147
+\lst@width=\dimen148
+\lst@newlines=\count189
+\lst@lineno=\count190
+\lst@maxwidth=\dimen149
 
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\lstmis
-c.sty"
-File: lstmisc.sty 2015/06/04 1.6 (Carsten Heinz)
-\c@lstnumber=\count102
-\lst@skipnumbers=\count103
-\lst@framebox=\box29
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/listings\lstmisc
+.sty"
+File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
+\c@lstnumber=\count191
+\lst@skipnumbers=\count192
+\lst@framebox=\box48
 )
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\listings\listin
-gs.cfg"
-File: listings.cfg 2015/06/04 1.6 listings configuration
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/listings\listing
+s.cfg"
+File: listings.cfg 2020/03/24 1.8d listings configuration
 ))
-Package: listings 2015/06/04 1.6 (Carsten Heinz)
+Package: listings 2020/03/24 1.8d (Carsten Heinz)
 
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics\color.
-sty"
-Package: color 2016/07/10 v1.1e Standard LaTeX Color (DPC)
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.s
+ty"
+Package: color 2019/11/23 v1.2a Standard LaTeX Color (DPC)
 
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\graphics-cfg\co
-lor.cfg"
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\col
+or.cfg"
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 147.
 )
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\latex\url\url.sty"
-\Urlmuskip=\muskip10
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/url\url.sty"
+\Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-No file Elaborato_finale.aux.
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3back
+end-pdfmode.def"
+File: l3backend-pdfmode.def 2020-06-29 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count193
+\l__pdf_internal_box=\box49
+) (Elaborato_finale.aux)
 \openout1 = `Elaborato_finale.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
@@ -195,6 +191,7 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
 LaTeX Font Info:    ... okay on input line 23.
 LaTeX Info: Redefining \it@ocap on input line 23.
 LaTeX Info: Redefining \it@ccap on input line 23.
+
 
 File italian.ldf warning: 
 italian.ldf    With OT1 encoding guillemets are poorly faked
@@ -238,19 +235,63 @@ italian.ldf    on input line 23.
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
-("C:\Users\Patrizio\AppData\Local\Programs\MiKTeX 2.9\tex\context\base\supp-pdf
-.mkii"
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp
+-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count104
-\scratchdimen=\dimen118
-\scratchbox=\box30
-\nofMPsegments=\count105
-\nofMParguments=\count106
-\everyMPshowfont=\toks19
-\MPscratchCnt=\count107
-\MPscratchDim=\dimen119
-\MPnumerator=\count108
-\makeMPintoPDFobject=\count109
-\everyMPtoPDFconversion=\toks20
+\scratchcounter=\count194
+\scratchdimen=\dimen150
+\scratchbox=\box50
+\nofMPsegments=\count195
+\nofMParguments=\count196
+\everyMPshowfont=\toks20
+\MPscratchCnt=\count197
+\MPscratchDim=\dimen151
+\MPnumerator=\count198
+\makeMPintoPDFobject=\count199
+\everyMPtoPDFconversion=\toks21
 )
-("C:\Users\Patrizio\AppDat
+("C:\Users\rita folisi\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\eps
+topdf-base.sty"
+Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
+85.
+)
+\c@lstlisting=\count266
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 25.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 25.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 25.
+ (Elaborato_finale.toc
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 5.
+)
+\tf@toc=\write3
+\openout3 = `Elaborato_finale.toc'.
+
+ [1
+
+{C:/Users/rita folisi/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] [1] (Elab
+orato_finale.aux) ) 
+Here is how much of TeX's memory you used:
+ 4285 strings out of 480790
+ 61942 string characters out of 2894454
+ 326150 words of memory out of 3000000
+ 20274 multiletter control sequences out of 15000+200000
+ 537509 words of font info for 41 fonts, out of 3000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 30i,6n,36p,804b,217s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Users/rita folisi/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmbx10.pfb><C:/Users/rita folisi/AppData/Local/Programs/
+MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/rita folisi/AppData/
+Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/rita f
+olisi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C
+:/Users/rita folisi/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr17.pfb>
+Output written on Elaborato_finale.pdf (2 pages, 68658 bytes).
+PDF statistics:
+ 29 PDF objects out of 1000 (max. 8388607)
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

@@ -54,17 +54,19 @@ class FuzzyKNN(BaseEstimator, ClassifierMixin):
 				for c in self.classes:
 					den = 0
 					for n in range(self.k):
-						dist = np.linalg.norm(x - neighbors.iloc[n,0:self.xdim])
-						den += 1 / (dist ** (2 / (m-1)))
+						dist = np.linalg.norm(x - neighbors.iloc[n,0:self.xdim])   #calcolo norma della distanza
+						den += 1 / (dist ** (2 / (m-1)))     # sommatoria nel denominatore
 
 					neighbors_votes = []
 					for n in range(self.k):
 						dist = np.linalg.norm(x - neighbors.iloc[n,0:self.xdim])
-						num = (neighbors.iloc[n].membership[c]) / (dist ** (2 / (m-1)))
+						num = (neighbors.iloc[n].membership[c]) / (dist ** (2 / (m-1)))    # sommatoria nel numeratore
 
-						vote = num/den
-						neighbors_votes.append(vote)
-					votes[c] = np.sum(neighbors_votes)
+						vote = num/den   # calcolo grado membership del vettore al fuzzy set considerato
+						if (isnan(vote)):
+							vote = (neighbors.iloc[n].membership[c])
+						neighbors_votes.append(vote)     
+					votes[c] = np.sum(neighbors_votes)    # sommo tutti i voti dei vicini trovati
 
 				pred = max(votes.items(), key=operator.itemgetter(1))[0]
 				y_pred.append((pred, votes))
@@ -80,20 +82,16 @@ class FuzzyKNN(BaseEstimator, ClassifierMixin):
 		else:
 			memb, predictions = self.predict(X)
 			y_pred = [t[0] for t in predictions]
-            
-			for t in memb:
-				if (isnan(t[0]) or isnan(t[1])):
-					return -math.inf
                 
 			return accuracy_score(y_pred=y_pred, y_true=y)
         
         
-	def MSE_membership(self, X, Y):
-
-		pred = self.predict(X)
-		pred = np.array(pred)
-		
-		
+	def MSE_membership(self, X, y):
+		memb, _ = self.predict(X)
+		res = []
+		for t in memb:
+			res.append(t[1])
+		return mean_squared_error(y, res) 
     
 
 	def mean_squared_error(self, X, Y):

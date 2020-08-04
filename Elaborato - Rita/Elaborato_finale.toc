@@ -1,0 +1,15 @@
+\babel@toc {italian}{}
+\babel@toc {italian}{}
+\contentsline {section}{\numberline {1}Introduzione}{1}%
+\contentsline {section}{\numberline {2}Apprendimento automatico e logica fuzzy}{1}%
+\contentsline {subsection}{\numberline {2.1}Apprendimento supervisionato}{1}%
+\contentsline {subsection}{\numberline {2.2}Induzione di insiemi fuzzy}{1}%
+\contentsline {section}{\numberline {3}Diverse metodologie}{1}%
+\contentsline {subsection}{\numberline {3.1}Panoramica generale}{1}%
+\contentsline {subsection}{\numberline {3.2}Reti neurali}{1}%
+\contentsline {subsection}{\numberline {3.3}K-Nearest neighbour}{1}%
+\contentsline {section}{\numberline {4}Implementazioni ed esperimenti}{1}%
+\contentsline {subsection}{\numberline {4.1}Algoritmi basati su reti neurali}{1}%
+\contentsline {subsection}{\numberline {4.2}Algoritmi basati su k-Nearest neighbour}{1}%
+\contentsline {section}{\numberline {5}Conclusioni}{1}%
+\contentsline {section}{\numberline {6}Riferimenti bibliografici}{1}%
