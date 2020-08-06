@@ -72,8 +72,9 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
             setattr(self, parameter, value)
         return self
 
-    def m_func(self, X_train, y):
+    def m_func(self, X_train, y, decaying_func="linear"):
         n_samples, n_features = X_train.shape
+        pos = len(y[y==1])
         self.K = np.zeros((n_samples, n_samples))
         for i in range(n_samples):
             for j in range(n_samples):
@@ -136,29 +137,29 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
             self.d_hyp += self.sv_yorg[n]*(w_phi+b)
         func=np.zeros((n_samples))
         func=np.asarray(func)
-        typ=1
-        if(typ==1):
+
+        if(decaying_func=="linear"):
             for i in range(n_samples):
                 func[i]=1-(self.d_hyp[i]/(np.amax(self.d_hyp[i])+0.000001))
         beta=0.8
-        if(typ==2):
+        if(decaying_func=="exponential"):
             for i in range(n_samples):
                 func[i]=2/(1+beta*self.d_hyp[i])
-        r_max=103/4074
+        r_max=pos/n_samples
         r_min=1
-        self.m=func[0:115]*r_min
+        self.m=func[0:pos]*r_min
         #print(self.m.shape)
-        self.m=np.append(self.m,func[115:5473]*r_max)
+        self.m=np.append(self.m,func[pos:n_samples]*r_max)
         #print(self.m.shape)
 
  ##############################################################################
 
     #prendeva come argomento anche x_test, l'ho tolto, ho aggiunto K
-    def fit(self, X_train, y):
+    def fit(self, X_train, y, decaying_func="linear"):
 
-        self.m_func(X_train, y)
+        self.m_func(X_train, y, decaying_func)
         self.kernel = gaussian_kernel
-        n_samples, n_features = X_train.shape
+        n_samples, n_features = X_train.shape 
 
         # Gram matrix
 
@@ -231,5 +232,5 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
             return y_predict + self.b
 
     def predict(self, X):
-        return np.sign(self.project(X)) #per l'accuracy
-        #return self.project(X) per ritornare le membership
+        #return np.sign(self.project(X)) #per l'accuracy
+        return self.project(X) #per ritornare le membership

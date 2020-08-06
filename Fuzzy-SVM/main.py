@@ -18,11 +18,10 @@ import sys
 from HYP_SVM import *
 
 def hyp_svm(best_C, best_sigma):
-    skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=5)
+    skf = StratifiedKFold(n_splits=5, shuffle=False, random_state=5)
     for train_index, test_index in skf.split(X, y):
         X_train, X_test = X[train_index], X[test_index]
         y_train, y_test = y[train_index], y[test_index]
-        typ = 2
         best_model = HYP_SVM(C=best_C, kernel=gaussian_kernel, sigma=best_sigma)
 
         best_model.fit(X_train, y_train)
@@ -64,4 +63,4 @@ if __name__=="__main__":
     best_C = best_params['C']
     best_sigma = best_params['sigma']
     print(best_C, best_sigma)
-    #hyp_svm(best_C, best_sigma)
+    hyp_svm(best_C, best_sigma)
