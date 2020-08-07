@@ -86,7 +86,7 @@ class FuzzyKNN(BaseEstimator, ClassifierMixin):
 			return accuracy_score(y_pred=y_pred, y_true=y)
         
         
-	def MSE_membership(self, X, y):
+	def RMSE_membership(self, X, y, squared = False):
 		memb, _ = self.predict(X)
 		res = []
 		for t in memb:
