@@ -13,7 +13,7 @@ from sklearn.base import BaseEstimator, ClassifierMixin
 from sklearn.model_selection import StratifiedKFold
 from sklearn.model_selection import GridSearchCV
 
-def fknn_train (filename):
+def fknn_script (filename):
 
 	dataset = pd.read_csv(filename)
 
@@ -22,23 +22,21 @@ def fknn_train (filename):
 
 
     # Inizializzazione variabili
-	X = dataset.iloc[:, 1:3]
-	Y = dataset.iloc[:, 0]
-	X = np.array(X)
-	Y = np.array(Y)
+	X = dataset.iloc[:, 1:3].values
+	Y = dataset.iloc[:, 0].values
 
-	a = np.arange (1, 11, 2)
+	a = np.arange (1, 21, 2)
 	parameters = {"k" : a}
 	clf = GridSearchCV(model, parameters, cv = 5)
 
 	value_array = []
 	error_array = []
 
+
     # Tuning parametri
 	xTrain, xTest, yTrain, yTest = train_test_split(X,Y)
 	clf.fit(xTrain, yTrain)
-	best_params = clf.best_params_
-	model.k = best_params['k']
+	model = clf.best_estimator_
 
     # Cross validation
 	for train_index, test_index in skf.split(X,Y):
@@ -50,15 +48,15 @@ def fknn_train (filename):
 		error = model.mean_squared_error(xTest, yTest)
 		value_array.append(value)
 		error_array.append(error)
-
-	return model, value_array, error_array
+               
+	RMSE_memb = model.RMSE_membership(xTest, yTest)
+	return model, RMSE_memb, value_array, error_array
 
 
 def main():
-    #filename = sys.argv[-1]
-    filename = "iris-setosa.csv"
-    model, score, error = fknn_train (filename)
-    print(score)
+    filename = sys.argv[-1]
+    model, RMSE_memb, score, error = fknn_script (filename)
+    print(RMSE_memb)
 
 if __name__ == "__main__":
     main()

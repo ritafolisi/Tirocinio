@@ -70,7 +70,7 @@ class FuzzyKNN(BaseEstimator, ClassifierMixin):
 
 				pred = max(votes.items(), key=operator.itemgetter(1))[0]
 				y_pred.append((pred, votes))
-				print(votes)
+				#print(votes)
 				memb_pred.append(votes)
 
 			return memb_pred, y_pred
