@@ -1,4 +1,4 @@
-function lab = fuzzy_knn(train,test)
+function lab = predict(train,test)
 % Function for getting labels using Fuzzy kNN
 
 global k b membership
@@ -23,6 +23,11 @@ for i = 1:b
 end
 
 % Getting label from maximum vote of membership
-[~, lab] = max(test_fuzziness);
+[memb, lab] = max(test_fuzziness);
+h = sprintf('memb: %f', memb);
+disp(h)
+
+h = sprintf('lab: %d', lab);
+disp(h)
 
 end

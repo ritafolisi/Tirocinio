@@ -20,9 +20,13 @@ global b f k membership W
     % leggo file csv 
     T = readtable(filename);
 
-    % seleziono features e labels
-    features = T{:,1:end-1};
-    labels = T{:,end};
+    % seleziono features e labels per iris normale
+    %features = T{:,1:end-1};
+    %labels = T{:,end};
+
+    % seleziono features e labels per iris setosa/viriginica etc
+    features = T{:,2:3};
+    labels = T{:,1};
     
     Temp_Features = features;
     Temp_Labels = labels;
@@ -48,25 +52,14 @@ k_fold = 3; % Edit here for adjusting the fold value for cross validation.
 cv = cvpartition(size(dataset,1), 'kfold', k_fold);
 acc = 0; answer = [];
 
-for count = 1:k_fold
-
-    matched = 0; unmatched = 0;
+for count = 1:k_fold    % questa crossvalidation sarebbe da togliere, 
+                        % considerato che questa sarà la parte della
+                        % predict e calcolo dello score
     
     trainMatrix = dataset(training(cv,count), : );
 	testMatrix = dataset(test(cv,count), : );
 
-    % Prediction and checking of labels
-    for i = 1:size(testMatrix,1)
-		lab = fuzzy_knn(trainMatrix,testMatrix(i,:));
-        if lab == testMatrix(i,size(testMatrix,2))
-			matched = matched + 1;
-		else
-			unmatched = unmatched+1;
-        end
-    end
-    
-    acc = matched/(matched+unmatched);
-    acc = acc*100;
+    acc = score (trainMatrix, testMatrix);
     
     answer = [answer;acc];
 end

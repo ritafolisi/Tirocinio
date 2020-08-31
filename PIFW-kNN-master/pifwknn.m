@@ -3,9 +3,13 @@ function pifwknn (filename)
     % leggo file csv 
 T = readtable(filename);
 
-    % seleziono features e labels
-features = T{:,1:end-1};
-labels = T{:,end};
+    % seleziono features e labels per iris normale   DA CANCELLARE POI!!
+%features = T{:,1:end-1};
+%labels = T{:,end};
+
+    % seleziono features e labels per iris setosa/viriginica etc
+features = T{:,2:3};
+labels = T{:,1};
 
 global b f k membership W 
 
@@ -75,7 +79,7 @@ for count = 1:k_fold
 	
 	% Prediction and checking of labels
 	for i = 1:size(testMatrix,1)
-		lab = fuzzy_knn(trainMatrix,testMatrix(i,:));
+		lab = predict(trainMatrix,testMatrix(i,:));
 		if lab == testMatrix(i,size(testMatrix,2))
 			matched = matched + 1;
 		else
@@ -113,6 +117,7 @@ h = sprintf('best K : %.d (Best accuracy : %.2f)', best_k, best_acc);
 disp(h)
 
 %Prova: serializzo modello
+
 %   b1=hlp_serialize(best_k);
 %   fileID1 = fopen('esperimento_bestk.bin','w');
 %   fwrite(fileID1,b1);

@@ -1,0 +1,23 @@
+Per ora restituisce: media accuratezza con crossvalidation + std accuratezza con crossvalidation tra parentesi 
+
+Cose da sistemare: 
+- label 1 e 2, perché matlab non inizia da 0. Oppure sistemare tutto il codice, ma non saprei da dove partire. 
+- Come faccio a fare la crossvalidation?? La faccio su matlab o da python?
+- Fare rmse per membership (prima risolvere il problema!) 
+
+Problema: dà diversi valori NaN dell'eventuale membership (vd file fuzzy_knn, si trova in test_fuzziness credo). 
+In Iris standard qualche valore NaN, negli altri la maggior parte sono NaN. 
+
+
+Iris standard: 95.33 (3.06)
+
+
+Iris setosa: 70.00 (6.93)
+
+
+Iris virginica: 68.00 (6.00)
+
+
+Iris versicolor: 67.33 (4.16)
+
+
