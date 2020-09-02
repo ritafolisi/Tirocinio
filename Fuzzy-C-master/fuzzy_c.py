@@ -220,10 +220,13 @@ if __name__ == '__main__':
 	y = dataset.iloc[:, 0]
 	X = np.asarray(X)
 	y = np.asarray(y)
-	print(X, y)
+	#print(X, y)
+
+	N_SPLITS = 5;
+	err = []
 
 	#cross validation
-	skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=1)
+	skf = StratifiedKFold(n_splits=N_SPLITS, shuffle=True, random_state=1)
 	for train_index, test_index in skf.split(X, y):
 		#print("TRAIN:", train_index, "\nTEST:", test_index)
 		X_train, X_test = X[train_index], X[test_index]
@@ -251,6 +254,8 @@ if __name__ == '__main__':
 		#	res.append(imax)
 		#	res2.append((imax+1)%2)
 
-		acc = mean_squared_error(y_test, res)
-		acc2 = mean_squared_error(y_test, res2)
-		print(min(acc, acc2))
+		mse = mean_squared_error(y_test, res)
+		mse2 = mean_squared_error(y_test, res2)
+		err.append(min(mse, mse2))
+
+	print("Errore:", np.mean(err))
