@@ -254,8 +254,8 @@ if __name__ == '__main__':
 		#	res.append(imax)
 		#	res2.append((imax+1)%2)
 
-		mse = mean_squared_error(y_test, res)
-		mse2 = mean_squared_error(y_test, res2)
+		mse = mean_squared_error(y_test, res, squared=False)
+		mse2 = mean_squared_error(y_test, res2, squared=False)
 		err.append(min(mse, mse2))
 
 	print("Errore:", np.mean(err))
