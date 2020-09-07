@@ -1,0 +1,19 @@
+07-Sep-20 19:56:27 - Questo esperimento lavora sul dataset: iris-setosa.csv
+07-Sep-20 20:01:31 - [1.0, 0.9666666666666667, 1.0, 1.0, 1.0] = array delle accuratezze
+07-Sep-20 20:01:31 - [0.18427499817436097, 0.18257418583505536, 0.038028892124964, 0.0, 0.0] = array delle RMSE_membership 
+
+07-Sep-20 20:24:30 - Questo esperimento lavora sul dataset: iris-virginica.csv
+07-Sep-20 20:24:30 - NumExpr defaulting to 4 threads.
+07-Sep-20 20:29:42 - [0.7333333333333333, 0.6666666666666666, 0.8666666666666667, 0.7, 0.7666666666666667] = array delle accuratezze
+07-Sep-20 20:29:42 - [0.37432960436039614, 0.5549804801372147, 0.405496067702174, 0.464847493035851, 0.41806419296347147] = array delle RMSE_membership 
+
+07-Sep-20 21:51:33 - Questo esperimento lavora sul dataset: iris-virginica.csv
+07-Sep-20 21:51:34 - NumExpr defaulting to 4 threads.
+07-Sep-20 21:57:50 - [0.7333333333333333, 0.6666666666666666, 0.8666666666666667, 0.7, 0.7666666666666667] = array delle accuratezze
+07-Sep-20 21:57:50 - [0.37432960436039614, 0.5549804801372147, 0.405496067702174, 0.464847493035851, 0.41806419296347147] = array delle RMSE_membership 
+
+07-Sep-20 21:59:32 - Questo esperimento lavora sul dataset: iris-versicolor.csv
+07-Sep-20 21:59:32 - NumExpr defaulting to 4 threads.
+07-Sep-20 22:05:50 - [0.7666666666666667, 0.7333333333333333, 0.8666666666666667, 0.7, 0.7333333333333333] = array delle accuratezze
+07-Sep-20 22:05:50 - [0.42575857129170647, 0.481566220161096, 0.3792028008377976, 0.5538127253381252, 0.3823759107701265] = array delle RMSE_membership 
+
