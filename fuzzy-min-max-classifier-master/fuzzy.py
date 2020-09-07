@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from math import sqrt
 from matplotlib import pyplot as plt
 from matplotlib import animation
 import os
@@ -215,10 +216,10 @@ class FuzzyMMC:
 		return contracted
 
 	def get_params(self, deep=True):
-		
+
 		return {"sensitivity": self.sensitivity, "exp_bound": self.exp_bound}
-    
-    
+
+
 	def set_params(self, **parameters):
 		for parameter, value in parameters.items():
 			setattr(self, parameter, value)
@@ -315,15 +316,15 @@ class FuzzyMMC:
 		return results, max_prediction, self.classes[pred_class]
 
 
-    
-	def estimated_membership (self, X): 
+
+	def estimated_membership (self, X):
 		res = []
 		for x in X:
 			pred, _, _ = self.predict(x)
 			res.append(pred)
-		return res 
-    
-    
+		return res
+
+
 	def score(self, X, Y):
 		'''
 		Scores the classifier
@@ -343,9 +344,17 @@ class FuzzyMMC:
 			pred, _, _ = self.predict(x)
 			res.append(pred)
 		res = np.array(res)
-		return mean_squared_error(Y, res[:, 1])  
-        
-    
+		return mean_squared_error(Y, res[:, 1])
+
+	def RMSE_membership(self, X, Y):
+		res = []
+		for x, y in zip(X, Y):
+			pred, _, _ = self.predict(x)
+			res.append(pred)
+		res = np.array(res)
+		return  sqrt(mean_squared_error(Y, res[:, 1]))
+
+
 	def mean_squared_error(self, X, Y):
 
 		res = []
@@ -353,7 +362,7 @@ class FuzzyMMC:
 			_, _, pred = self.predict(x)
 			res.append(pred)
 
-		return mean_squared_error(Y, res)    
+		return mean_squared_error(Y, res)
 
 	def animate(self, frame_rate=10, filename='', verbose=True):
 		'''

@@ -35,7 +35,7 @@ def gfmm_train_test(filename):
         best_model = clf.best_estimator_
         best_model.fit(X_train, y_train)
         acc.append(best_model.score(X_validation, y_validation))
-        val = best_model.MSE_membership(X_validation, y_validation)
+        val = best_model.RMSE_membership(X_validation, y_validation)
         err.append(val)
     return best_model, acc, err
 
@@ -47,7 +47,7 @@ def main():
     logging.info('Questo esperimento lavora sul dataset: %s', filename)
     model, score_array, error_array = gfmm_train_test (filename)
     logging.info(f'{score_array} = array delle accuratezze')
-    logging.info(f'{error_array} = array delle MSE_membership \n')
+    logging.info(f'{error_array} = array delle RMSE_membership \n')
     print(score_array)
     print(error_array)
 
