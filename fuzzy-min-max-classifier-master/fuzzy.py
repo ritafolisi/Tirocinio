@@ -123,6 +123,7 @@ class FuzzyMMC:
 		'''
 		Constructor for FuzzyMMC class
 		'''
+		self.fitted_ = False
 		self.sensitivity = sensitivity
 		self.hyperboxes = None
 		self.isanimate = animate
@@ -291,6 +292,8 @@ class FuzzyMMC:
 		'''
 		for x, y in zip(X, Y):
 			self.train_pattern(x, y)
+		self.fitted_ = True
+
 
 # restituisce grado di membership e classe predetta
 
@@ -298,6 +301,8 @@ class FuzzyMMC:
 		'''
 		Predict the class of the pattern X
 		'''
+		if self.fitted_ == None:
+			raise Exception('predict() called before fit()')
 		classes = np.unique(self.classes)
 		results = []
 		memberships = self.membership(X)
