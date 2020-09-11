@@ -1,10 +1,8 @@
 import unittest
-from fknn import *
+from fuzzy import *
 import pandas as pd
 import numpy as np
-import warnings
 from sklearn.model_selection import train_test_split
-
 
 
 class TestGfmmMethods(unittest.TestCase):
@@ -13,7 +11,7 @@ class TestGfmmMethods(unittest.TestCase):
         self.df = pd.read_csv("iris-setosa.csv")
         self.X = self.df.iloc[:, 1:3].values
         self.y = self.df.iloc[:,0].values
-        self.model = FuzzyKNN()
+        self.model = FuzzyMMC(sensitivity=1, exp_bound=0.1, animate=False)
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y)
 
 
@@ -22,25 +20,22 @@ class TestGfmmMethods(unittest.TestCase):
         self.assertTrue(self.model.fitted_)
 
     def test_isScoreValid(self):        # Controlla che l'accuratezza sia un valore valido
-        warnings.filterwarnings("ignore")
         self.model.fit(self.X_train, self.y_train)
         acc = self.model.score(self.X_test, self.y_test)
         self.assertGreaterEqual(acc, 0)
         self.assertLessEqual(acc, 1)
 
-    def test_isLabelValid (self):   # Controlla che le label predette siano o 0 o 1
-        warnings.filterwarnings("ignore")
-        self.model.fit(self.X_train, self.y_train)
-        _, pred = self.model.predict(self.X_train[0:1])
-        self.assertRegex(str(pred[0] [0]), '[0-1]')
-
-
     def test_errorThreshold(self):       # Controlla che l'errore RMSE delle membership sia minore di una certa soglia
-        warnings.filterwarnings("ignore")
-        threshold = 0.3
+        threshold = 0.7
         self.model.fit(self.X_train, self.y_train)
         err = self.model.RMSE_membership(self.X_test, self.y_test)
+        print(err)
         self.assertLessEqual(err, threshold)
+
+    def test_isLabelValid (self):       # Controlla che le label predette siano o 0 o 1
+        self.model.fit(self.X_train, self.y_train)
+        _, _, lab = self.model.predict(self.X_test[0])
+        self.assertRegex(str(lab), '[0-1]')
 
 if __name__ == '__main__':
     unittest.main()

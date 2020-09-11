@@ -9,6 +9,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import logging
+import warnings
 
 
 
@@ -20,9 +21,6 @@ def fknn_script (filename):
 	X = df.iloc[:, 1:3].values
 	y = df.iloc[:,0].values
 
-	# Shuffle dataset
-	seed = 10
-	X, y = shuffle(X, y, random_state=seed)
 
 	a = np.arange (1, 21, 2)
 	parameters = {"k" : a}
@@ -30,10 +28,9 @@ def fknn_script (filename):
 	err = []
 	acc = []
 
-	# Tuning parametri e cross validation
-	skf = StratifiedKFold(n_splits=N_SPLIT, shuffle=False, random_state=5)
+	# Tuning parametri e cross validation (shuffle incluso in skf)
+	skf = StratifiedKFold(n_splits=N_SPLIT, shuffle=True, random_state=5)
 	for train_index, validation_index in skf.split(X, y):
-		print(train_index)
 		X_train, X_validation = X[train_index], X[validation_index]
 		y_train, y_validation = y[train_index], y[validation_index]
 
@@ -49,6 +46,7 @@ def fknn_script (filename):
 
 
 def main():
+	warnings.filterwarnings("ignore")
 	logging.basicConfig(filename = 'esperimenti.log', format='%(asctime)s - %(message)s', datefmt='%d-%b-%y %H:%M:%S', level=logging.INFO)
 	filename = sys.argv[-1]
 	logging.info('Questo esperimento lavora sul dataset: %s', filename)

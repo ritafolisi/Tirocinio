@@ -1,0 +1,24 @@
+07-Sep-20 17:35:44 - Questo esperimento lavora sul dataset: iris-setosa.csv
+07-Sep-20 17:37:08 - [1.0, 0.9666666666666667, 1.0, 1.0, 1.0] = array delle accuratezze
+07-Sep-20 17:37:08 - [0.635226875, 0.6334599999999999, 0.6357210416666665, 0.6347424999999998, 0.633445625] = array delle MSE_membership 
+
+07-Sep-20 17:41:04 - Questo esperimento lavora sul dataset: iris-versicolor.csv
+07-Sep-20 17:42:36 - [0.7333333333333333, 0.7666666666666667, 0.8, 0.7333333333333333, 0.7666666666666667] = array delle accuratezze
+07-Sep-20 17:42:36 - [0.648486960137523, 0.6421478534661443, 0.6409967289434353, 0.5802098217026391, 0.6478831641260783] = array delle MSE_membership 
+
+07-Sep-20 17:47:04 - Questo esperimento lavora sul dataset: iris-virginica.csv
+07-Sep-20 17:48:31 - [0.8333333333333334, 0.6666666666666666, 0.9666666666666667, 0.6666666666666666, 0.7666666666666667] = array delle accuratezze
+07-Sep-20 17:48:31 - [0.6379555193513423, 0.5318472541321257, 0.5298158529638597, 0.5223810704115495, 0.5599540587499074] = array delle MSE_membership 
+
+07-Sep-20 18:46:35 - Questo esperimento lavora sul dataset: iris-setosa.csv
+07-Sep-20 18:51:13 - Questo esperimento lavora sul dataset: iris-setosa.csv
+07-Sep-20 18:53:03 - Questo esperimento lavora sul dataset: iris-setosa.csv
+07-Sep-20 18:56:12 - Questo esperimento lavora sul dataset: iris-setosa.csv
+07-Sep-20 18:57:55 - [1.0, 0.9666666666666667, 1.0, 1.0, 1.0] = array delle accuratezze
+07-Sep-20 18:57:55 - [0.635226875, 0.6334599999999999, 0.6357210416666665, 0.6347424999999998, 0.633445625] = array delle MSE_membership 
+
+07-Sep-20 18:59:21 - Questo esperimento lavora sul dataset: iris-setosa.csv
+07-Sep-20 19:01:05 - Questo esperimento lavora sul dataset: iris-setosa.csv
+07-Sep-20 19:02:49 - [1.0, 0.9666666666666667, 1.0, 1.0, 1.0] = array delle accuratezze
+07-Sep-20 19:02:49 - [0.7970112138483373, 0.7959020040180825, 0.7973211659467385, 0.7967072862726936, 0.7958929733324701] = array delle RMSE_membership 
+
