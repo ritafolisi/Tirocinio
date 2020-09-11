@@ -38,6 +38,7 @@ def fcm_script(data):
 
 		#test
 		test_membership = model.fuzzy_predict(X_test , 2 , centers, 2)
+		print(test_membership)
 
 		error.append(model.RMSE_membership(test_membership, y_test))
 		score.append(model.accuracy(test_membership, y_test))
