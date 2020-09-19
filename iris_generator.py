@@ -1,7 +1,7 @@
 
 import pandas as pd
 
-df = pd.read_csv ("iris.csv")
+df = pd.read_csv ("Dataset/iris.csv")
 
 colname = "species"
 cols = list(df.columns.values)

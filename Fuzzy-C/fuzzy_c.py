@@ -15,7 +15,7 @@ def fcm_script(data):
 	#X = dataset[[feat1, feat2]].values
 	#y = dataset[labels].values
 
-	X = dataset.iloc[:, 1:3]
+	X = dataset.iloc[:, 0:2]
 	y = dataset.iloc[:, 0]
 	X = np.asarray(X)
 	y = np.asarray(y)
@@ -57,8 +57,8 @@ def main():
 	model, score, error = fcm_script(data)
 	logging.info(f'{score} = array delle accuratezze')
 	logging.info(f'{error} = array delle RMSE_membership \n')
-	print(score)
-	print (error)
+	print(np.mean(score))
+	print (np.mean(error))
 
 ## main
 if __name__ == '__main__':
