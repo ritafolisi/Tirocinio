@@ -46,21 +46,22 @@ if __name__=="__main__":
 
     C_vals = [1e-2, 1e-1, 1, 1e+1, 1e+2, 1e+3, 1e+4]
     sigma = [9e-2, 9e-1, 9, 9e+1, 9e+2, 9e+3, 9e+4]
-    #kernels = ["linear_kernel", "polynomial_kernel", "gaussian_kernel"]
     parameters = {'C': C_vals, 'sigma': sigma}
+    err = []
+    #metto shuffle a False, è richiesto nella classe di indicare la suddivisione nel training set di dati positivi e negativi
+    skf = StratifiedKFold(n_splits=5, shuffle=False)
+    for train_index, validation_index in skf.split(X, y):
+        X_train, X_validation = X[train_index], X[validation_index]
+        y_train, y_validation = y[train_index], y[validation_index]
 
-    model = HYP_SVM(C=100, kernel=gaussian_kernel, sigma=0.9)
-
-    xTrain, xTest, yTrain, yTest = train_test_split(X, y)
-
-    clf = GridSearchCV(model, parameters, cv=5)
-
-    grid_result = clf.fit(X=xTrain, y=yTrain)
-
-    clf.score(xTest, yTest)
-
-    best_params = clf.best_params_
-    best_C = best_params['C']
-    best_sigma = best_params['sigma']
-    print(best_C, best_sigma)
-    hyp_svm(best_C, best_sigma)
+        model = HYP_SVM(C=100, kernel=gaussian_kernel, sigma=0.9)
+        clf = GridSearchCV(model, parameters, cv=5)
+        grid_result = clf.fit(X=X_train, y=y_train)
+        best_params = clf.best_params_
+        best_C = best_params['C']
+        best_sigma = best_params['sigma']
+        best_model = HYP_SVM(C=best_C, kernel=gaussian_kernel, sigma=best_sigma)
+        print("\nBest model", best_C, best_sigma)
+        best_model.fit(X_train, y_train)
+        err.append(best_model.score(X_validation, y_validation))
+    print(err)
