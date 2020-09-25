@@ -1,0 +1,35 @@
+
+\begin{titlepage}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{MINERVA}
+\vspace{0.3 cm}
+\end{figure}
+
+\begin{center}
+{\LARGE Corso di Laurea triennale in Informatica}
+\end{center}
+
+\begin{center}
+\vspace{3 cm}
+{\Large \textsc{Titolo tesi} }
+\end{center}
+\par
+\vspace{2 cm}
+
+\begin{flushleft}
+Relatore:\\ Prof. Anna Maria ZANABONI\\
+
+\noindent Correlatore:\\ Prof. Dario MALCHIODI
+\end{flushleft}
+\vspace{0.3 cm}
+\begin{flushright}
+Tesi di Laurea di:\\ Alessia Lombarda\\ Matricola: 908879
+\end{flushright}
+
+\vfill
+\begin{center}
+{\large Anno Accademico 2020/2021}
+\end{center}
+\end{titlepage}
