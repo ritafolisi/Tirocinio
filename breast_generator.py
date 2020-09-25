@@ -33,4 +33,6 @@ df.replace(to_replace='left_low', value=2, inplace=True)
 df.replace(to_replace='right_up', value=3, inplace=True)
 df.replace(to_replace='right_low', value=4, inplace=True)
 
+df.dropna()
+
 df.to_csv('Dataset/breast-std.csv', index=False)
