@@ -11,7 +11,7 @@ cols.pop(cols.index(colname))
 df = df[[colname]+cols]
 
 # Sostituisco gli intervalli con il valore medio
-colnames = ['age', 'tumor-size', 'inv-falsedes']
+colnames = ['age', 'tumor-size', 'inv-nodes']
 for colname in colnames:
     conta=0
     for i in df[colname]:
@@ -20,7 +20,7 @@ for colname in colnames:
         conta +=1
 
 
-colnames = ['class', 'mefalsepause', 'falsede-caps', 'breast', 'irradiat',  ]
+colnames = ['class', 'menopause', 'node-caps', 'breast', 'irradiat',  ]
 for colname in colnames:
     le = preprocessing.LabelEncoder()
     target=le.fit_transform(df[colname])

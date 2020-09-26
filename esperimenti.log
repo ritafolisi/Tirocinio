@@ -9,3 +9,37 @@ GFMM con dataset pieno di NaN
 25-Sep-20 18:41:52 - [0.6964285714285714, 0.7037037037037037, 0.7037037037037037, 0.7037037037037037, 0.7037037037037037] = array delle accuratezze
 25-Sep-20 18:41:52 - [0.8345229603962802, 0.8388704928078611, 0.8388704928078611, 0.8388704928078611, 0.8388704928078611] = array delle RMSE_membership 
 
+25-Sep-20 19:44:12 - Questo esperimento lavora con il metodo: fknn
+25-Sep-20 19:44:15 - Questo esperimento lavora sul dataset: Dataset/breast-std.csv
+25-Sep-20 19:44:15 - NumExpr defaulting to 4 threads.
+25-Sep-20 19:56:22 - [0.6964285714285714, 0.7037037037037037, 0.7037037037037037, 0.7037037037037037, 0.7037037037037037] = array delle accuratezze
+25-Sep-20 19:56:22 - [6.175954335637249, 4.191183885248089, 4.469658341065014, 4.637658573419529, 2.703286066171236] = array delle RMSE_membership 
+
+25-Sep-20 19:56:22 - 
+Prossimo esperimento
+
+25-Sep-20 19:56:22 - Questo esperimento lavora con il metodo: gfmm
+25-Sep-20 19:56:25 - Questo esperimento lavora sul dataset: Dataset/breast-std.csv
+25-Sep-20 19:57:49 - [0.6964285714285714, 0.7037037037037037, 0.7037037037037037, 0.7037037037037037, 0.7037037037037037] = array delle accuratezze
+25-Sep-20 19:57:49 - [0.8345229603962802, 0.8388704928078611, 0.8388704928078611, 0.8388704928078611, 0.8388704928078611] = array delle RMSE_membership 
+
+25-Sep-20 19:57:49 - 
+Prossimo esperimento
+
+25-Sep-20 21:33:29 - Questo esperimento lavora con il metodo: fknn
+25-Sep-20 21:33:33 - Questo esperimento lavora sul dataset: Dataset/breast-std.csv
+25-Sep-20 21:33:34 - NumExpr defaulting to 4 threads.
+25-Sep-20 21:44:20 - [0.6964285714285714, 0.7037037037037037, 0.7037037037037037, 0.7037037037037037, 0.7037037037037037] = array delle accuratezze
+25-Sep-20 21:44:20 - [6.175954335637249, 4.191183885248089, 4.469658341065014, 4.637658573419529, 2.703286066171236] = array delle RMSE_membership 
+
+25-Sep-20 21:44:20 - 
+Prossimo esperimento
+
+25-Sep-20 21:44:20 - Questo esperimento lavora con il metodo: gfmm
+25-Sep-20 21:44:22 - Questo esperimento lavora sul dataset: Dataset/breast-std.csv
+25-Sep-20 21:45:44 - [0.6964285714285714, 0.7037037037037037, 0.7037037037037037, 0.7037037037037037, 0.7037037037037037] = array delle accuratezze
+25-Sep-20 21:45:44 - [0.8345229603962802, 0.8388704928078611, 0.8388704928078611, 0.8388704928078611, 0.8388704928078611] = array delle RMSE_membership 
+
+25-Sep-20 21:45:44 - 
+Prossimo esperimento
+
