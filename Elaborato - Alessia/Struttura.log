@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.9.17)  30 SEP 2020 14:46
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.9.17)  30 SEP 2020 14:49
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -703,10 +703,23 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[24] [25] [26] [27 <./images/setosa.png> <./images/setosacurve.png> <./images/v
-ersicolor.png> <./images/versicolorcurve.png> <./images/virginica.png> <./image
-s/virginicacurve.png>] [28 <./images/setosahm.png> <./images/versicolorhm.png> 
-<./images/virginicahm.png>] (./Struttura.bbl [29
+[24]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[25] [26] [27 <./images/setosa.png> <./images/setosacurve.png> <./images/versic
+olor.png> <./images/versicolorcurve.png> <./images/virginica.png> <./images/vir
+ginicacurve.png>] [28 <./images/setosahm.png> <./images/versicolorhm.png> <./im
+ages/virginicahm.png>] (./Struttura.bbl [29
 
 ]
 Underfull \hbox (badness 1292) in paragraph at lines 36--40
@@ -747,7 +760,7 @@ usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Struttura.pdf (36 pages, 818283 bytes).
+Output written on Struttura.pdf (36 pages, 818260 bytes).
 PDF statistics:
  227 PDF objects out of 1000 (max. 8388607)
  131 compressed objects within 2 object streams
