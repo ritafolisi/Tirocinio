@@ -10,6 +10,12 @@ cols = list(df.columns.values)
 cols.pop(cols.index(colname))
 df = df[[colname]+cols]
 
+df = df.dropna()
+df.to_csv('Dataset/breast-std.csv', index=False)
+
+df = pd.read_csv ("Dataset/breast-std.csv")
+
+
 # Sostituisco gli intervalli con il valore medio
 colnames = ['age', 'tumor-size', 'inv-nodes']
 for colname in colnames:
@@ -32,7 +38,5 @@ df.replace(to_replace='central', value=1, inplace=True)
 df.replace(to_replace='left_low', value=2, inplace=True)
 df.replace(to_replace='right_up', value=3, inplace=True)
 df.replace(to_replace='right_low', value=4, inplace=True)
-
-df.dropna()
 
 df.to_csv('Dataset/breast-std.csv', index=False)
