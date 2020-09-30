@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.9.17)  30 SEP 2020 11:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.9.17)  30 SEP 2020 14:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -648,50 +648,50 @@ File: ./images/setosa.png Graphic file (type png)
 <use ./images/setosa.png>
 Package pdftex.def Info: ./images/setosa.png  used on input line 456.
 (pdftex.def)             Requested size: 155.24895pt x 149.19795pt.
-<./images/setosacurve.png, id=127, 319.1925pt x 310.15875pt>
+<./images/setosacurve.png, id=127, 505.89pt x 505.89pt>
 File: ./images/setosacurve.png Graphic file (type png)
 <use ./images/setosacurve.png>
 Package pdftex.def Info: ./images/setosacurve.png  used on input line 458.
-(pdftex.def)             Requested size: 155.24895pt x 150.85274pt.
+(pdftex.def)             Requested size: 155.24895pt x 155.24954pt.
 <./images/versicolor.png, id=128, 438.63875pt x 417.56pt>
 File: ./images/versicolor.png Graphic file (type png)
 <use ./images/versicolor.png>
 Package pdftex.def Info: ./images/versicolor.png  used on input line 460.
 (pdftex.def)             Requested size: 155.24895pt x 147.792pt.
-<./images/versicolorcurve.png, id=129, 334.24875pt x 310.91156pt>
+<./images/versicolorcurve.png, id=129, 505.89pt x 505.89pt>
 File: ./images/versicolorcurve.png Graphic file (type png)
 <use ./images/versicolorcurve.png>
 Package pdftex.def Info: ./images/versicolorcurve.png  used on input line 462.
-(pdftex.def)             Requested size: 155.24895pt x 144.41107pt.
+(pdftex.def)             Requested size: 155.24895pt x 155.24954pt.
 <./images/virginica.png, id=130, 450.68375pt x 428.60126pt>
 File: ./images/virginica.png Graphic file (type png)
 <use ./images/virginica.png>
 Package pdftex.def Info: ./images/virginica.png  used on input line 464.
 (pdftex.def)             Requested size: 155.24895pt x 147.64523pt.
-<./images/virginicacurve.png, id=131, 325.215pt x 307.90031pt>
+<./images/virginicacurve.png, id=131, 505.89pt x 505.89pt>
 File: ./images/virginicacurve.png Graphic file (type png)
 <use ./images/virginicacurve.png>
 Package pdftex.def Info: ./images/virginicacurve.png  used on input line 466.
-(pdftex.def)             Requested size: 155.24895pt x 146.98708pt.
+(pdftex.def)             Requested size: 155.24895pt x 155.24954pt.
 
 
-LaTeX Warning: Float too large for page by 28.78993pt on input line 469.
+LaTeX Warning: Float too large for page by 33.18674pt on input line 469.
 
-<./images/setosahm.png, id=132, 420.57124pt x 411.5375pt>
+<./images/setosahm.png, id=132, 505.89pt x 505.89pt>
 File: ./images/setosahm.png Graphic file (type png)
 <use ./images/setosahm.png>
 Package pdftex.def Info: ./images/setosahm.png  used on input line 472.
-(pdftex.def)             Requested size: 106.94916pt x 104.64867pt.
-<./images/versicolorhm.png, id=133, 439.6425pt x 414.54875pt>
+(pdftex.def)             Requested size: 106.94916pt x 106.9502pt.
+<./images/versicolorhm.png, id=133, 505.89pt x 505.89pt>
 File: ./images/versicolorhm.png Graphic file (type png)
 <use ./images/versicolorhm.png>
 Package pdftex.def Info: ./images/versicolorhm.png  used on input line 474.
-(pdftex.def)             Requested size: 106.94916pt x 100.84105pt.
-<./images/virginicahm.png, id=134, 420.57124pt x 416.55624pt>
+(pdftex.def)             Requested size: 106.94916pt x 106.9502pt.
+<./images/virginicahm.png, id=134, 505.89pt x 505.89pt>
 File: ./images/virginicahm.png Graphic file (type png)
 <use ./images/virginicahm.png>
 Package pdftex.def Info: ./images/virginicahm.png  used on input line 476.
-(pdftex.def)             Requested size: 106.94916pt x 105.92487pt.
+(pdftex.def)             Requested size: 106.94916pt x 106.9502pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 472--477
 
@@ -747,9 +747,9 @@ usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/tex
 live/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on Struttura.pdf (36 pages, 812590 bytes).
+Output written on Struttura.pdf (36 pages, 818283 bytes).
 PDF statistics:
- 224 PDF objects out of 1000 (max. 8388607)
+ 227 PDF objects out of 1000 (max. 8388607)
  131 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  131 words of extra memory for PDF output out of 10000 (max. 10000000)
