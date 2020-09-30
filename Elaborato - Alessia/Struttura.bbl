@@ -1,0 +1,278 @@
+\begin{thebibliography}{10}
+
+\bibitem{bib:ml}
+Nils~J. Nilsson.
+\newblock {\em Introduction to Machine Learning: an early draft of a proposed
+  textbook}.
+\newblock Robotics Laboratory, Department of Computer Science, Stanford, CA
+  94305, November 3 1998.
+
+\bibitem{bib:bias}
+T.~G. Dietterich and E.~B. Kong.
+\newblock Machine learning bias, statistical bias, and statistical variance of
+  decision tree algorithms.
+\newblock Technical report, Department of Computer Science, Oregon State
+  University, 1995.
+
+\bibitem{bib:cv}
+M.~Mohri, A.~Rostamizadeh, and A.~Talwalkar.
+\newblock {\em Foundation of Machine Learning}.
+\newblock The MIT Press, 2012.
+
+\bibitem{bib:zadeh}
+J.~A. Goguen.
+\newblock L. a. zadeh. fuzzy sets. information and control, vol. 8 (1965), pp.
+  338–353. - l. a. zadeh. similarity relations and fuzzy orderings.
+  information sciences, vol. 3 (1971), pp. 177–200.
+\newblock {\em Journal of Symbolic Logic}, 38(4):656–657, 1973.
+
+\bibitem{bib:fuzzy}
+Guanrong Chen and Trung~Tat Pham.
+\newblock {\em Introduction to Fuzzy Sets, Fuzzy Logic and Fuzzy Control
+  Systems}.
+\newblock CRC Press, 2001.
+
+\bibitem{bib:fuzzy2}
+Tzung-Pei Hong and Shyue-Liang Wang.
+\newblock {\em Determining Appropriate Membership Functions to Simplify Fuzzy
+  Induction}.
+\newblock 2020.
+
+\bibitem{bib:dubois}
+D.Dubois and H.Prade.
+\newblock The three semantics of fuzzy sets.
+\newblock {\em Fuzzy Sets and Systems 90}, pages 141--150, 1997.
+
+\bibitem{bib:rita}
+Rita Folisi.
+\newblock Confronto tra approcci basati su nearest neighbour e reti neurali
+  nell'induzione di insiemi fuzzy, 2020.
+
+\bibitem{bib:rassegna}
+S.~Medasani, J.~Kim, and R.~Krishnapuram.
+\newblock An overview of membership function generation techniques for pattern
+  recognition.
+\newblock {\em Int. J. Approx. Reason.}, 19:391--417, 1998.
+
+\bibitem{bib:economy}
+S.~Safari and A.~R. Erfani.
+\newblock A new method for fuzzification of nested dummy variables by fuzzy
+  clustering membership functions and its application in financial economy.
+\newblock {\em Iranian Journal of Fuzzy Systems}, 17(1):13--27, 2020.
+
+\bibitem{bib:psychology}
+Einollah Pasha and Adel Fatemi.
+\newblock Intuitionistic fuzzy sets clustering (ifsc) with an application in
+  psychology.
+\newblock {\em Journal of Mathematics and Applications}, 28, 01 2006.
+
+\bibitem{bib:medicine}
+Yamid Hernández~Julio, Helmer Muñoz~Hernández, Wilson Bernal, Javier
+  Guzmán, Romel González~Díaz, and Patrícia Ferraz.
+\newblock Fuzzy knowledge discovery and decision-making through clustering and
+  dynamic tables. application to medicine.
+\newblock 02 2019.
+
+\bibitem{bib:medicine2}
+Thomas Villmann and Conny Albani.
+\newblock Clustering of categoric data in medicine — application of
+  evolutionary algorithms.
+\newblock volume 2206, pages 619--627, 09 2001.
+
+\bibitem{bib:biology}
+Doris Damian, Matej Oresic, Elwin Verheij, Jacqueline Meulman, Jerome Friedman,
+  Aram Adourian, Nicole Morel, Age Smilde, and Jan van~der Greef.
+\newblock Applications of a new subspace clustering algorithm (cosa) in medical
+  systems biology.
+\newblock {\em Metabolomics}, 3:69--77, 03 2007.
+
+\bibitem{bib:biology2}
+Mehmet G\"{o}nen and Adam~A Margolin.
+\newblock Localized data fusion for kernel k-means clustering with application
+  to cancer biology.
+\newblock In Z.~Ghahramani, M.~Welling, C.~Cortes, N.~D. Lawrence, and K.~Q.
+  Weinberger, editors, {\em Advances in Neural Information Processing Systems
+  27}, pages 1305--1313. Curran Associates, Inc., 2014.
+
+\bibitem{bib:fcm}
+J.~Bezdek, R.~Ehrlich, and W.~E. Full.
+\newblock Fcm: The fuzzy c-means clustering algorithm.
+\newblock {\em Computers e Geosciences}, 10:191--203, 1984.
+
+\bibitem{bib:rsfkm}
+Jinglin Xu, J.~Han, Kai Xiong, and F.~Nie.
+\newblock Robust and sparse fuzzy k-means clustering.
+\newblock In {\em IJCAI}, 2016.
+
+\bibitem{bib:gifpfcm}
+Lin Zhu, Fu-Lai Chung, and Shitong Wang.
+\newblock Generalized fuzzy c-means clustering algorithm with improved fuzzy
+  partitions.
+\newblock {\em Trans. Sys. Man Cyber. Part B}, 39(3):578–591, June 2009.
+
+\bibitem{bib:afkm}
+Mark~Junjie Li, Michael Ng, Yiu-ming Cheung, and Joshua Huang.
+\newblock Agglomerative fuzzy k-means clustering algorithm with selection of
+  number of clusters.
+\newblock {\em Knowledge and Data Engineering, IEEE Transactions on}, 20:1519
+  -- 1534, 12 2008.
+
+\bibitem{bib:kfcm}
+Dao-Qiang Zhang and Song-Can Chen.
+\newblock Kernel-based fuzzy and possibilistic c-means clustering.
+\newblock 2003.
+
+\bibitem{bib:svc}
+Asa Ben-Hur, David Horn, Hava~T. Siegelmann, and Vladimir Vapnik.
+\newblock Support vector clustering.
+\newblock {\em J. Mach. Learn. Res.}, 2:125–137, March 2002.
+
+\bibitem{bib:msvc}
+Dario Malchiodi and Witold Pedrycz.
+\newblock Learning membership functions for fuzzy sets through modified support
+  vector clustering", editor="masulli, francesco and pasi, gabriella and yager,
+  ronald.
+\newblock In {\em Fuzzy Logic and Applications. 10th International Workshop,
+  WILF 2013, Genoa, Italy, November 19–22, 2013. Proceedings.}, page 52–59.
+  Springer International Publishing, Switzerland",series="Lecture Notes on
+  Artificial Intelligence, 2013.
+
+\bibitem{bib:fkmfis}
+S.S. Jamsandekar and R.R. Mudholkar.
+\newblock Fuzzy classification system by self generated membership function
+  using clustering technique.
+\newblock {\em BIJIT - BVICAM's International Journak of Information
+  Technology}, 2013.
+
+\bibitem{bib:bcpfcm}
+Jeetashree Aparajeeta, Pradipta~Kumar Nanda, and Niva Das.
+\newblock Modified possibilistic fuzzy c-means algorithms for segmentation of
+  magnetic resonance image.
+\newblock {\em Appl. Soft Comput.}, 41(C):104–119, April 2016.
+
+\bibitem{bib:refcmfs}
+Jinglin Xu, Junwei Han, Feiping Nie, and Xuelong Li.
+\newblock Robust and efficient fuzzy c-means clustering constrained on flexible
+  sparsity, 08 2019.
+
+\bibitem{bib:csfcm}
+S.K.Adhikari, J.K.Sing, D.K.Basub, and M.Nasipuri.
+\newblock Conditional spatial fuzzy c-means clustering algorithm for
+  segmentation of mri images.
+\newblock {\em Applied Soft Computing}, 34:758--769, September 2015.
+
+\bibitem{bib:icffcm}
+X.~Bai, Yuxuan Zhang, H.~Liu, and Yingfan Wang.
+\newblock Intuitionistic center-free fcm clustering for mr brain image
+  segmentation.
+\newblock {\em IEEE Journal of Biomedical and Health Informatics},
+  23:2039--2051, 2019.
+
+\bibitem{bib:dofcm}
+Prabhjot Kaur, I.~Lamba, and Anjana Gosain.
+\newblock Dofcm: A robust clustering technique based upon density.
+\newblock {\em International Journal of Engineering and Technology},
+  3:297--303, 01 2011.
+
+\bibitem{bib:ssi}
+Dario Malchiodi and Anna~Maria Zanaboni.
+\newblock Data-driven induction of shadowed sets based on grade of fuzziness.
+\newblock In Robert Fullér, Silvio Giove, and Francesco Masulli, editors, {\em
+  Fuzzy Logic and Applications — 12th International Workshop, WILF 2018
+  Genoa, Italy, September 6–7, 2018 — Revised Selected Papers}, Lecture
+  Notes in Artificial Intelligence 11291, page 17—28, Cham, 2019. Springer
+  Nature Switzerland AG.
+
+\bibitem{bib:fksc}
+Muhan Guo, Rui Zhang, Feiping Nie, and Xuelong Li.
+\newblock Embedding fuzzy k-means with nonnegative spectral clustering via
+  incorporating side information.
+\newblock CIKM '18, page 1567–1570, New York, NY, USA, 2018. Association for
+  Computing Machinery.
+
+\bibitem{bib:sscpc}
+Rui Zhang, Feiping Nie, and Xuelong Li.
+\newblock Self-weighted spectral clustering with parameter-free constraint.
+\newblock {\em Neurocomputing}, 241, 02 2017.
+
+\bibitem{bib:pfcm}
+R.~Krishnapuram and J.~Keller.
+\newblock A possibilistic approach to clustering.
+\newblock {\em IEEE Trans. Fuzzy Syst.}, 1:98--110, 1993.
+
+\bibitem{bib:svmfr}
+İsmail Babaoğlu, Oğuz Fındık, and Mehmet Bayrak.
+\newblock Effects of principle component analysis on assessment of coronary
+  artery diseases using support vector machine.
+\newblock {\em Expert Systems with Applications}, 37:2182--2185, 03 2010.
+
+\bibitem{bib:svmfr2}
+Yongmin Li, Shaogang Gong, and Jamie Sherrah.
+\newblock Support vector machine based multi-view face detection and
+  recognition yongmin li.
+\newblock 06 2004.
+
+\bibitem{bib:svmmed}
+İsmail Babaoğlu, Oğuz Fındık, and Mehmet Bayrak.
+\newblock Effects of principle component analysis on assessment of coronary
+  artery diseases using support vector machine.
+\newblock {\em Expert Systems with Applications}, 37:2182--2185, 03 2010.
+
+\bibitem{bib:svmmed2}
+Babak Asl, Kamal Setarehdan, and Maryam Mohebbi.
+\newblock Support vector machine-based arrhythmia classification using reduced
+  features of heart rate variability signal.
+\newblock {\em Artificial intelligence in medicine}, 44:51--64, 07 2008.
+
+\bibitem{bib:fsvm}
+Wan Tang.
+\newblock Fuzzy svm with a new fuzzy membership function to solve the two-class
+  problems.
+\newblock {\em Neural Processing Letters}, 34:209--219, 12 2011.
+
+\bibitem{bib:fsvm2}
+Xiufeng Jiang, Zhang Yi, and Jian Lv.
+\newblock Fuzzy svm with a new fuzzy membership function.
+\newblock {\em Neural Computing and Applications}, 15:268--276, 06 2006.
+
+\bibitem{bib:firefly}
+O.~Almasi and M.~Rouhani.
+\newblock A new fuzzy membership assignment and model selection approach based
+  on dynamic class centers for fuzzy svm family using the firefly algorithm.
+\newblock {\em Turkish Journal of Electrical Engineering and Computer
+  Sciences}, 24:1797--1814, 2016.
+
+\bibitem{bib:multi}
+Shigeo Abe and Takuya Inoue.
+\newblock Fuzzy support vector machines for multiclass problems.
+\newblock pages 113--118, 01 2002.
+
+\bibitem{bib:apso}
+Omid Almasi, Hamed Gooqeri, Behnam Asl, and Wan Tang.
+\newblock A new fuzzy membership assignment approach for fuzzy svm based on
+  adaptive pso in classification problems.
+\newblock {\em Journal of Mathematics and Computer Science}, 14:171--182, 02
+  2015.
+
+\bibitem{bib:wcs}
+Wenjuan An and Mangui Liang.
+\newblock Fuzzy support vector machine based on within-class scatter for
+  classification problems with outliers or noises.
+\newblock {\em Neurocomputing}, 110:101–110, 06 2013.
+
+\bibitem{bib:cil}
+Rukshan Batuwita and Vasile Palade.
+\newblock Fsvm-cil: Fuzzy support vector machines for class imbalance learning.
+\newblock {\em IEEE Transactions on Fuzzy Systems}, 18(3):558--571, 6 2010.
+
+\bibitem{bib:flst}
+Javad~Salimi Sartakhti, Homayun Afrabandpey, and Nasser Ghadiri.
+\newblock Fuzzy least squares twin support vector machines, 2015.
+
+\bibitem{bib:cdt}
+Bin-Bin Gao, Jianjun Wang, Yao Wang, and Chan-Yun Yang.
+\newblock Coordinate descent fuzzy twin support vector machine for
+  classification.
+\newblock pages 7--12, 12 2015.
+
+\end{thebibliography}

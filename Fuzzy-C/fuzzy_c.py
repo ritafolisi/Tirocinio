@@ -15,7 +15,7 @@ def fcm_script(data):
 	#X = dataset[[feat1, feat2]].values
 	#y = dataset[labels].values
 
-	X = dataset.iloc[:, 0:2]
+	X = dataset.iloc[:, 1:]
 	y = dataset.iloc[:, 0]
 	X = np.asarray(X)
 	y = np.asarray(y)
@@ -23,6 +23,7 @@ def fcm_script(data):
 	model = FCM()
 
 	N_SPLITS = 5;
+	N_CLUSTER = 3;
 	error=[]
 	score=[]
 
@@ -34,15 +35,20 @@ def fcm_script(data):
 		y_train, y_test = y[train_index], y[test_index]
 
 		#training
-		train_membership, centers = model.fuzzy_train(X_train , 2 , 2)
+		train_membership, centers = model.fuzzy_train(X_train , N_CLUSTER , 2)
 
 		#test
-		test_membership = model.fuzzy_predict(X_test , 2 , centers, 2)
-		print(test_membership)
+		test_membership = model.fuzzy_predict(X_test , N_CLUSTER , centers, 2)
 
-		error.append(model.RMSE_membership(test_membership, y_test))
+		if(N_CLUSTER==2):
+			error.append(model.RMSE_membership(test_membership, y_test))
+
+		else:
+			error.append(model.RMSE(test_membership, y_test))
+
+
 		score.append(model.accuracy(test_membership, y_test))
-		#score=77
+
 	return model, score, error
 
 

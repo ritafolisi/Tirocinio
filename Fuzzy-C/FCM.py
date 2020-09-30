@@ -236,3 +236,24 @@ class FCM():
                 acc2+=1
 
         return max(acc, acc2)/len(y_test)
+
+
+    def RMSE(self, test_membership, y_test):
+        res=[]
+        res2=[]
+        res3=[]
+        mse=0
+        mse2=0
+        mse3=0
+
+        for i in range(0, len(test_membership)):
+            imax=test_membership[i].index(max(test_membership[i]))
+            res.append(imax)
+            res2.append((imax+1)%3)
+            res3.append((imax+2)%3)
+
+        mse = mean_squared_error(y_test, res, squared=False)
+        mse2 = mean_squared_error(y_test, res2, squared=False)
+        mse3 = mean_squared_error(y_test, res3, squared=False)
+
+        return min(mse, mse2, mse3)
