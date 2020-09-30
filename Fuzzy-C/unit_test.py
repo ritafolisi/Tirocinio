@@ -10,7 +10,7 @@ class TestFCM(unittest.TestCase):
 
     def setUp(self):
         self.df = pd.read_csv("iris-setosa.csv")
-        self.X = self.df.iloc[:, 1:3].values
+        self.X = self.df.iloc[:, 1:5].values
         self.y = self.df.iloc[:,0].values
         self.model = FCM()
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y)

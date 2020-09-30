@@ -16,7 +16,7 @@ def main ():
     code = arg3.split(",")
     dict_code = {'fknn' :  {'path' : 'FuzzyKNN', 'name' : 'fknn_script.py'},
     'svm' : {'path' : 'Fuzzy-SVM', 'name' : 'main.py'},
-    'fcm' : {'path' : 'Fuzzy-C-master', 'name' : 'fuzzy_c.py'},
+    'fcm' : {'path' : 'Fuzzy-C', 'name' : 'fuzzy_c.py'},
     'gfmm' : {'path' : 'GFMM', 'name' : 'gfmm_script.py'}}
 
     for i in code:

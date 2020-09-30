@@ -29,10 +29,11 @@
 	Some text...
 	\tableofcontents
 	\mainmatter
+	%\pagestyle{plain}
 	%\pagenumbering{arabic}
 	\chapter*{Introduzione}
 		{} \addcontentsline{toc}{chapter}{Introduzione}
-	\chapter{Apprendimento supervisionato e induzione di insiemi fuzzy}
+	\chapter[Apprendimento supervisionato]{Apprendimento supervisionato e induzione di insiemi fuzzy}
 		\section{Apprendimento supervisionato}
 		L'apprendimento automatico è una branca dell'intelligenza artificiale che studia algoritmi che utilizzano l'esperienza per migliorare la propria performance o per fare predizioni più accurate. In questo caso l'esperienza viene rappresentata attraverso una collezione di dati resi disponibili all'analisi(si può definire ogni elemento dell'insieme di dati come \textit{esempio}). Questi dati possono essere aumentati con delle \textit{etichette} (dette anche \textit{label}) impostate manualmente oppure venire estratti direttamente dall'ambiente: gli algoritmi avranno l'obiettivo di effettuare predizioni su dati non noti, sulla base della conoscenza acquisita.
 		L'apprendimento automatico si applica a svariati campi quali il riconoscimento vocale, la guida autonoma di veicoli, i motori di ricerca o la ricerca scientifica in campo medico. Alcune delle classi principali di problemi che si possono affrontare con delle tecniche di apprendimento automatico sono:
@@ -83,7 +84,7 @@
 		La scelta dello stimatore dipende dalla classe a cui appartiene il problema considerato: si utilizza infatti l'accuratezza nei problemi di classificazione, in cui data una label predetta possiamo dire con certezza se questa sia corretta oppure se è diversa da quella attesa; l'MSE è invece tipico dei problemi di regressione (anche se può comunque essere usato per la classificazione), in quanto considera quanto il valore reale predetto e quello atteso si discostano tra loro.
 		
 		Per migliorare la performance dell'algoritmo è necessario evitare che questo si specializzi eccessivamente sui dati (\textit{overfitting}). A causa della ridotta dimensione del training set disponibile, si è soliti usare una tecnica nota come \textit{n-fold cross validation}, usata sia per la model selection (la selezione dei parametri liberi dell'algoritmo), sia per la fase di valutazione della generalizzazione. Se infatti il dataset disponibile ha una dimensione ridotta, la divisione in training e test set ridurrebbe ulteriormente i dati disponibili per l'apprendimento: questo si può evitare utilizzando la cross validation, che considera nell'intero processo tutti i dati per la fase di training ma permette al contempo una fase di valutazione rigorosa, dstinguendo ogni volta dati di training e di test.\newline
-		Approfondiamo inizialmente l'uso della k-fold cross validation per la fase di model selection~\cite{bib:cv}: la model selection serve per la definizione dei cosiddetti \textit{iperparametri} o \textit{parametri liberi}, ovvero parametri iniziali necessari su cui il processo di apprendimento si basa. Questi parametri sono distinti da quelli che l'algoritmo determina nel processo di apprendimento; tipici esempi sono il kernel e il parametro gamma per le Support Vector Machines.\newline
+		Approfondiamo inizialmente l'uso della k-fold cross validation per la fase di model selection~\cite{bib:cv}: la model selection serve per la definizione dei cosiddetti \textit{iperparametri} o \textit{parametri liberi}, ovvero parametri iniziali necessari su cui il processo di apprendimento si basa. Questi parametri sono distinti da quelli che l'algoritmo determina nel processo di apprendimento; tipici esempi sono il kernel e il parametro gamma per le Support Vector Machine.\newline
 		Detto $\theta$ il vettore dei parametri liberi dell'algoritmo, ipotizziamo per semplicità che ci sia un solo parametro libero, da scegliere all'interno di un insieme di possibili valori. Per un fissato valore di $\theta$ si partiziona in modo causale un training $S$ di $m$ elementi con etichette associate in $n$ sottogruppi (\textit{fold}). L'$i$-esimo fold $S_i$ sarà quindi un campione $((x_{1}, y_{1}),...,(x_{m_i},y_{m_i}))$ di cardinalità $m_i$. Poi, per ogni $i\in\{1, ..., k\}$ l'algoritmo viene addestrato su un \textit{validation set} costituito da tutti i fold tranne l'i-esimo, per generare l'ipotesi $h_i$, e la performance di $h_i$ viene valutata sull'i-esimo fold. Il valore del parametro $\theta$ è scelto sulla base dell'errore medio di $h_i$, chiamato \textit{cross-validation error}, denotato da $\widehat{R}_{CV}(\theta)$ e definito da
 		\[
 		\widehat{R}_{CV}(\theta)={1\over k}\sum_{i=1}^n {1\over m_i}\sum_{(x,y)\in S_i} L(h_i(x),y)
@@ -164,45 +165,51 @@
 	
 		Il FIS quindi, e in particolare il fuzzifier converte l'input da crisp a fuzzy, aggiornando la Knowledge Base formata da Database e Rule base; l'input viene poi passato all'Inference Engine, che determina il match con le regole if-then (e aggiorna le regole stesse sulla base dell'input), ovvero associa input fuzzy ad output fuzzy, che viene poi ritrasformato in output crisp dal defuzzifier.
 
-		I concetti della teoria degli insiemi fuzzy applicati all'apprendimento automatico hanno portato alla nascita del \textit{fuzzy machine learning}, che ha permesso l'estensione di tecniche di apprendimento non fuzzy a corrispondenti tecniche fuzzy: si può parlare di fuzzy clustering, fuzzy support vector machines, fuzzy k-nearest neighbour e così via. Queste tecniche sono utilizzate principalmente in tre ambiti: quelli di classificazione e data analysis, i problemi di decision-making e il ragionamento approssimato; questi problemi mostrano le tre semantiche attribuibili al grado di membership, ovvero la similarità, la preferenza e la possibilità.\newline
+		I concetti della teoria degli insiemi fuzzy applicati all'apprendimento automatico hanno portato alla nascita del \textit{fuzzy machine learning}, che ha permesso l'estensione di tecniche di apprendimento non fuzzy a corrispondenti tecniche fuzzy: si può parlare di fuzzy clustering, fuzzy support vector machine, fuzzy k-nearest neighbour e così via. Queste tecniche sono utilizzate principalmente in tre ambiti: quelli di classificazione e data analysis, i problemi di decision-making e il ragionamento approssimato; questi problemi mostrano le tre semantiche attribuibili al grado di membership, ovvero la similarità, la preferenza e la possibilità.\newline
 		Per quanto riguarda la prima categoria, che approfondiremo in seguito, il grado di membership $\mu(u)$ di un elemento $u$  indica la relazione tra oggetti di un universo, in termini di similarità, dissimilarità o in funzione della distanza; questa semantica è specialmente utilizzata per problemi di classificazione, clustering e regressione. Per quanto riguarda invece la preferenza, dato un insieme di oggetti e una funzione di membership quest'ultima rappresenta quanto si favorisce un determinato oggetto rispetto agli altri; interpretando la funzione di membership come grado di incertezza, infine, si intende il valore della funzione di membership $\mu$ come il grado di possibilità che un oggetto $x$ abbia valore $u$~\cite{bib:dubois}.
 		
 		Nel campo dell'apprendimento automatico, quindi, le tecniche di induzione di funzioni di appartenenza producono modelli che trasformano variabili di input in gradi di appartenenza ad un insieme fuzzy. Si possono distinguere a questo proposito tecniche induttive o deduttive: l'uso di metodi deduttivi implica la definizione di funzioni di appartenenza da parte di esperti, ovvero sulla percezione umana (tecniche \textit{data-driven}). Le tecniche induttive, invece, prevedono la generazione delle funzioni di appartenenza sulla base dei dati (tecniche \textit{data-driven}). Si approfondiranno in seguito queste ultime, più affidabili in quanto slegate dalle diverse interpretazioni che esperti possono dare agli stessi attributi o variabili.
 	
-		\chapter{Tecniche per induzione della funzione di membership}
-		Ottenere la funzione di membership a partire dai dati di training è uno dei problemi fondamentali legati all'applicazione della teoria dei fuzzy set, in cui le funzioni di membership vengono utilizzate per mappare l'imprecisione dell'informazione in input. Non ci sono però regole o linee guida che possano essere usate per scegliere l'appropriata tecnica di generazione, e il problema è reso più complesso dalla mancanza di accordo sulla definizione e interpretazione delle funzioni di membership. Le diverse tecniche di induzione spaziano da tecniche basate sulla percezione, ovvero sul giudizio umano o di esperti, a tecniche euristiche, che usano forme di funzioni di membership predefinite, tecniche basate su istogrammi (che utilizzano appunto istogrammi per considerare la distribuzione delle features di input), trasformazione di distribuzioni di probabilità in distribuzioni di possibilità, tecniche basate su fuzzy nearest neighbour o su reti neurali (come approfondito in ~\cite{bib:rita}), su clustering o support vector machines (che approfondiremo meglio in seguito); l'intera rassegna è presentata in~\cite{bib:rassegna}.
+		\chapter[Induzione della funzione di membership]{Tecniche per l'induzione della funzione di membership}
+		Determinare la funzione di membership a partire dai dati di training è uno dei problemi fondamentali legati all'applicazione della teoria dei fuzzy set. Non esistono però regole o linee guida che possano essere usate per scegliere l'appropriata tecnica di generazione, e il problema è reso più complesso dalla mancanza di accordo sulla definizione e interpretazione delle funzioni di membership: uno stesso concetto può infatti essere definito e quindi interpretato in modi diversi, portando alla determinazione di funzioni di appartenenza diverse tra loro. I diversi metodi presenti in letteratura spaziano da tecniche basate sulla percezione, cioè sul giudizio umano o di esperti, a tecniche euristiche, che usano forme di funzioni di membership predefinite, tecniche basate su istogrammi (che utilizzano appunto istogrammi per considerare la distribuzione delle features di input), trasformazione di distribuzioni di probabilità in distribuzioni di possibilità, tecniche basate su fuzzy nearest neighbour o su reti neurali (come approfondito in ~\cite{bib:rita}), su clustering o support vector machine (che approfondiremo meglio in seguito); l'intera rassegna è presentata in~\cite{bib:rassegna}.
 		
 		\section{Clustering}
-		Gli algoritmi classici di clustering hanno come fine il raggruppamento e la selezione di elementi omogenei in un insieme di dati. Dati in input $n$ oggetti, l'algoritmo restituisce in output un clustering $\mathcal{C}=\{c_1, ..., c_k\}$ degli oggetti, ovvero una partizione dell'insieme degli elementi $V$. Due elementi sono detti omogenei o disomogenei in relazione ad una funzione di similarità o dissimilarità $\sigma: V\times V\rightarrow \mathbb{R}$, detta \textit{metrica}, che assegna un valore ad ogni possibile coppia di punti: un esempio banale può essere costituito da una funzione che assegna il valore $1$ ad elementi omogenei e il valore $-1$ ad elementi disomogenei. Si possono utilizzare svariati tipi di funzioni: un esempio comune è la norma (distanza euclidea, una funzione di dissimilarità), che dati due punti $u$ e $v$ è definita come:
+		Gli algoritmi classici di clustering hanno come fine il raggruppamento di elementi omogenei in un insieme di dati. Dati in input $n$ oggetti, un algoritmo di clustering restituisce in output un raggruppamento (detto \textit{clustering}) $\mathcal{C}=\{c_1, ..., c_k\}$ degli oggetti appartenenti a un insieme universo $V$, ovvero una partizione di $V$. Due elementi sono detti omogenei o disomogenei in relazione a una funzione di similarità o dissimilarità $\sigma: V\times V\mapsto \mathbb{R}$, detta \textit{metrica}, che assegna un valore a ogni possibile coppia di punti: un esempio banale può essere costituito da una funzione che assegna il valore $1$ a elementi omogenei e il valore $-1$ a elementi disomogenei. Si possono utilizzare svariati tipi di funzioni: un esempio comune è la norma euclidea, che è una funzione di dissimilarità e si può utilizzare quando le descrizioni degli oggetti $u$ e $v$ sono punti in $\mathbb R^d$ per qualche $d$. Dati quindi due punti $u$ e $v$, la norma euclidea è definita come:
 		\[
-			\sigma(u, v) = \norma{u - v}\text{.}
+			\sigma(u, v) = \norma{u - v}\text{.}\text{;}
 		\]
+		la funzione $\sigma$ assumerà valori elevati in caso di elementi molto dissimili tra loro e viceversa valori più bassi se $u$ e $v$ sono simili.
 		
 		\subsection{Breve classificazione}
-			Dati $v$ e $\sigma$, posso operare due diversi tipi di clustering: il clustering \textit{partition based}, che utilizza una distanza da un punto rappresentativo del cluster (ad esempio il \textit{centroide}) per determinare l'appartenenza di un elemento ad un gruppo, avendo prefissato il numero di gruppi della partizione risultato, oppure clustering \textit{gerarchico}, in cui viene costruita una gerarchia di partizioni visualizzabile mediante una rappresentazione ad albero (dendrogramma), in cui sono rappresentati i passi di accorpamento/divisione dei gruppi stessi.\\
-			Le tecniche di clustering si possono inoltre suddividere sulla base del modo in cui operano in \textit{metodi aggregativi} (o \textit{bottom-up}) e \textit{metodi divisivi} (o \textit{top-down}). La prima classe comprende i metodi che considerano inizialmente tutti gli elementi come cluster a sé, e in cui poi l'algoritmo provvede ad unire i cluster più vicini. L'algoritmo continua questo processo fino ad ottenere un numero prefissato di cluster, oppure fino a che la distanza minima tra i cluster non supera un certo valore, o ancora in relazione ad un determinato criterio statistico prefissato.
-			I metodi divisivi, invece, prevedono che all'inizio tutti gli elementi siano in un unico cluster: l'algoritmo, poi, inizia a dividere il cluster in tanti sottoinsiemi di dimensioni inferiori, cercando di ottenere gruppi sempre più omogenei. L'algoritmo procede fino a che non viene soddisfatta una regola di arresto, che è generalmente legata al raggiungimento di un numero prefissato di cluster.\\
-			\`E possibile inoltre operare un'ulteriore classificazione delle tecniche di clustering: si distingue il clustering di tipo \textit{esclusivo} o \textit{hard clustering}, in cui ogni elemento può essere assegnato ad uno e ad un solo gruppo (di conseguenza i cluster saranno a due a due disgiunti) e il clustering \textit{non-esclusivo}, noto anche con il nome di \textit{soft clustering} o \textit{fuzzy clustering}.
+			Dati un elemento $v$ e una metrica $\sigma$, si possono operare due diversi tipi di clustering: il clustering \textit{partition based}, che utilizza una distanza da un punto rappresentativo del cluster (ad esempio il \textit{centroide}) per determinare l'appartenenza di $v$ a quel cluster, avendo prefissato il numero di cluster della partizione risultato, oppure clustering \textit{gerarchico}, in cui viene costruita una gerarchia di partizioni visualizzabile mediante una rappresentazione ad albero (dendrogramma, come in Figura~\ref{fig:dendrogramma}), in cui sono rappresentati i passi di accorpamento/divisione dei gruppi stessi.\\
+			\begin{figure}[h]
+				\centering
+				{\includegraphics[width=.80\textwidth]{dendrogramma.png}} \quad
+				\caption{Dendrogramma che mostra il diverso consumo di carburante nei modelli di automobili considerati}
+				\label{fig:dendrogramma}
+			\end{figure}
+			Le tecniche di clustering si possono inoltre suddividere sulla base del modo in cui operano: si distinguono \textit{metodi aggregativi} (o \textit{bottom-up}) e \textit{metodi divisivi} (o \textit{top-down}). La prima classe comprende i metodi che considerano inizialmente tutti gli elementi come cluster a sé, e in cui poi l'algoritmo provvede a unire i cluster più vicini. L'algoritmo continua questo processo fino a ottenere un numero prefissato di cluster, oppure fino a che la distanza minima tra i cluster non supera un certo valore, o ancora in relazione a un determinato criterio di arresto prefissato.
+			I metodi divisivi, invece, prevedono che all'inizio tutti gli elementi siano in un unico cluster: l'algoritmo, poi, inizia a dividere il cluster in tanti sottoinsiemi di dimensioni inferiori, cercando di ottenere gruppi sempre più omogenei. L'algoritmo procede fino a che non viene soddisfatto un generico criterio di arresto, come per i metodi aggregativi, o ad esempio fino al raggiungimento di un numero prefissato di cluster.\\
+			\`E possibile inoltre operare un'ulteriore classificazione delle tecniche di clustering: si distingue il clustering di tipo \textit{esclusivo} o \textit{hard clustering}, in cui ogni elemento può essere assegnato a uno e un solo gruppo (di conseguenza i cluster saranno a due a due disgiunti) e il clustering \textit{non-esclusivo}, noto anche con il nome di \textit{soft clustering} o \textit{fuzzy clustering}.
+			
+			La maggior parte dei metodi di fuzzy clustering esistenti fa riferimento al \textit{Fuzzy C-Means}, la variante fuzzy del classico \textit{k-means}. L'algoritmo k-means, proposto nel 1967 da MacQueen, è uno degli algoritmi di apprendimento base utilizzato per risolvere problemi di clustering; lo scopo è quello di classificare un dataset di cardinalità $n$ in un certo numero $k$ di cluster $P_1,P_2,...,P_k$, definito a priori.
+			Si definiscono inizialmente $k$ \textit{centroidi}, uno per ogni cluster, a rappresentare i centri inziali dei $k$ cluster. Questi centroidi devono essere scelti in modo accurato, e preferibilmente inizialmente distanti gli uni dagli altri: la posizione dei centroidi iniziali influisce infatti sul risultato del clustering. Successivamente, si assegna ogni punto nel dataset al centroide a esso più vicino (utilizzando come funzione di similarità la norma); a questo punto si ricalcolano i $k$ nuovi centroidi, ottenuti come baricentro dei punti in un dato cluster. Si ripetono queste due operazioni di riassegnazione dei punti e correzione dei centroidi finché non si hanno più cambiamenti significativi, ovvero finché il clustering è stabile. Lo scopo di questo algoritmo è infatti quello di minimizzare una funzione obiettivo $J$, espressa come
+			\[
+			J = \sum_{j=1}^{k}\sum_{x_i\in P_j}^{n}\norma{x_i^{(j)}-c_j}^2\text{,}
+			\]
+			ovvero la somma dei quadrati delle distanze di ogni punto dal centro dei diversi cluster, dove $x_i^{(j)}$ è l'$i$-esimo elemento appartenente al $j$-esimo cluster e $c_j$ è il centroide del $j$-esimo cluster. 
+			L'algoritmo k-means termina sempre, ma non trova necessariamente il clustering ottimo (quello che corrisponde al minimo globale della funzione obiettivo): il problema infatti è NP-hard, e l'algoritmo è molto sensibile alla posizione dei cluster iniziali. Per ridurre questo effetto è necessario ripetere più volte l'esecuzione dell'algoritmo.\\
 
 	\subsection{Fuzzy clustering}
-		I problemi di clustering possono avere applicazioni in svariati campi, come l'economia, psicologia, medicina, biologia; ne è fatto in particolare un vasto utilizzo nel campo della bioinformatica, in cui il fuzzy clustering è preferito a quello classico, nel campo del marketing, in cui ad esempio gli utenti possono essere suddivisi in cluster fuzzy sulla base di bisogni, preferenze e profili o ancora nell'image analysis, in cui è usato in particolare per la segmentazione al fine di svolgere pattern recognition, object detection, e analisi di immagini mediche.
-		Nel fuzzy clustering infatti, in opposizione alle tecniche classiche di clustering come il \textit{k-means}, gli elementi di input possono appartenere a più di una partizione, con un certo valore di membership. La membership non rappresenta però una probabilità: la somma dei valori di membership assegnati ad un elemento in relazione a classi opposte non deve perciò dare 1; la membership sarà più bassa se il punto si colloca sul limite esterno del cluster, e viceversa maggiore se l'elemento è vicino al centro del cluster.
+		I problemi di clustering possono avere applicazioni in svariati campi, come l'economia~\cite{bib:economy}, psicologia~\cite{bib:psychology}, medicina~\cite{bib:medicine, bib:medicine2}, biologia~\cite{bib:biology,bib:biology2}; ne è fatto in particolare un vasto utilizzo nel campo della bioinformatica, in cui il fuzzy clustering è preferito a quello classico, nel campo del marketing, in cui a esempio gli utenti possono essere suddivisi in cluster fuzzy sulla base di bisogni, preferenze e profili o ancora nell'analisi di immagini, in cui è usato in particolare per la segmentazione al fine di svolgere pattern recognition e object detection.
+		Nel fuzzy clustering infatti, in opposizione alle tecniche classiche di clustering come il \textit{k-means}, gli elementi di input possono appartenere a più di una partizione, con un certo valore di membership. La membership non rappresenta però una probabilità: la somma dei valori di membership assegnati a un elemento in relazione a classi opposte non deve perciò dare 1; la membership sarà più bassa se il punto si colloca sul limite esterno del cluster, e viceversa maggiore se l'elemento è vicino al centro del cluster.
 		
-		La maggior parte dei metodi di fuzzy clustering esistenti fa riferimento come base al \textit{Fuzzy C-Means}, la variante fuzzy del classico k-means. L'algoritmo \textit{k-means}, proposto nel 1967 da MacQueen, è uno degli algoritmi di apprendimento base utilizzato per risolvere problemi di clustering; lo scopo è quello di classificare un dataset di cardinalità $n$ in un certo numero di cluster $k$, definito a priori.
-		Si definiscono inizialmente $k$ \textit{centroidi}, uno per ogni cluster, a rappresentare i centri inziali del cluster stesso. Questi centroidi devono essere scelti in modo accurato, e preferibilmente inizialmente distanti gli uni dagli altri: la posizione dei centroidi iniziali influisce infatti sul risultato del clustering. Successivamente, si assegna ogni punto nel dataset al centroide ad esso più vicino (utilizzo come funzione di similarità la norma); a questo punto si ricalcolano i $k$ nuovi centroidi, ottenuti come baricentro dei punti in un dato cluster. Si ripetono queste due operazioni di riassegnazione dei punti e correzione dei centroidi finchè non si hanno più cambiamenti significativi, ovvero finchè il clustering è stabile. Lo scopo di questo algoritmo è infatti quello di minimizzare una funzione obiettivo $J$, espressa come
-		\[
-			J = \sum_{j=1}^{k}\sum_{i=1}^{n}\norma{x_i^{(j)}-c_j}^2\text{,}
-		\]
-		ovvero la somma dei quadrati delle distanze di ogni punto dal centro del cluster a cui appartiene. 
-		L'algoritmo k-means termina sempre, ma non trova necessariamente il clustering ottimo (quello che minimizza la funzione obiettivo): il problema infatti è np-hard, e l'algoritmo è molto sensibile alla posizione dei cluster iniziali. Per ridurre questo effetto è necessario ripetere più volte l'esecuzione dell'algoritmo.\\
-		
-		Il \textit{Fuzzy C-Means} parte quindi da questa base e generalizza l'algoritmo in senso fuzzy: in questo algoritmo, gli oggetti che si collocano sul confine di un dato cluster non sono forzati ad appartenere ad un solo cluster, ma possono invece appartenere a diversi insiemi con una membership parziale compresa tra 0 e 1, garantendo una prestazione migliore specialmente in presenza di rumore nei dati o outliers~\cite{bib:kmvsfcm}. 
-		Gli elementi saranno quindi assegnati ad ogni cluster con diversi valori di appartenenza: punti più vicini al centro del cluster avranno membership maggiore, e viceversa punti lontani avranno membership minore.\\
-		Fissato un dato numero di cluster $c$, dove $2\leq c \le n$,  e selezionato un valore per il parametro $m$ (che controlla la fuzziness e approfondiremo in seguito), è necessario quindi inizializzare la partition matrix $U$. La matrice $U=[u_{ik}]$ è una matrice $c\times N$ di numeri reali, dove $u_i$  è la funzione caratteristica dell'insieme che mappa i valori di membership degli $y_k$ nel sottoinsieme fuzzy di $Y$, dove $0\leq u_{ic}\leq 1$
-		e $y_k$ è il k-esimo feature vector, e
+		Il \textit{Fuzzy C-Means}, metodo alla base base del fuzzy clustering, si basa come spiegato in precedenza sul k-means e generalizza l'algoritmo in senso fuzzy: gli oggetti che si collocano sul confine di un dato cluster non sono forzati ad appartenere a un solo cluster, ma possono invece appartenere a diversi insiemi con una membership compresa tra 0 e 1, garantendo una prestazione migliore specialmente in presenza di rumore nei dati o di outlier~\cite{bib:kmvfcm}. 
+		Gli elementi saranno quindi assegnati a ogni cluster con diversi valori di appartenenza: punti più vicini al centro del cluster avranno membership maggiore, e viceversa punti lontani avranno membership minore.\\
+		Fissato un dato numero di cluster $c$, dove $2\leq c \le n$,  e selezionato un valore per il parametro $m$ (che controlla la \textit{fuzziness}, concetto che verrà approfondito in seguito), è necessario quindi inizializzare la \textit{partition matrix} $U$. La matrice $U=[u_{ik}]$ è una matrice $c\times N$ di numeri reali ($N$ è il numero di osservazioni in $\mathbb R^n$), e $u_{ik}=u_i(x_k)$. $u_{i}$ è la funzione caratteristica dell'insieme e mappa i valori di membership degli $x_k$ nel sottoinsieme fuzzy di $X$ ($0\leq u_{ic}\leq 1$), $x_k$ è il k-esimo feature vector, e
 	
 		\[
-		\sum_{j=1}^{N}u_{ik} > 0\text{ } \forall i\\
+		u_{ik} > 0\text{ } \forall i\text{,}\\
 		\]
 		\[
 		\sum_{j=1}^{N}u_{ik} = 1 \text{ }\forall k\text{.}
@@ -210,35 +217,36 @@
 		
 		Si possono scegliere varie funzioni come metriche per misurare la similarità; la più nota è l'uso dei \textit{minimi quadrati generalizzati} (o Generalized Least Squares, GLS), definita come
 		\[
-			J_m(U, v)=\sum_{k=1}^{N}\sum_{i=1}^{c}u_{ik}^m\norma{y_k-v_i}^2_A\text{,}
+			J_m(U, v)=\sum_{k=1}^{N}\sum_{i=1}^{c}u_{ik}^m\norma{x_k-v_i}^2_A\text{,}
 		\]
 		dove:
 		\begin{itemize}
-			\item $Y = {y_1, y_2, ..., y_N} \subset \mathbb{R}^n$ è l'insieme dei dati, 
+			\item $X = {x_1, x_2, ..., x_N} \subset \mathbb{R}^n$ è l'insieme dei dati, 
 			\item $2 \leq c < n$ è il numero di cluster desiderati,
 			\item $1 \leq m <\infty$ è il parametro che esprime la fuzziness,
 			\item $U$ è la partizione fuzzy di $Y$,
-			\item $v = (v_1, v_2, ..., v_c)$ è il vettore dei centri,
+			\item $v = (v_1, v_2, ..., v_c)$ è il vettore dei centroidi,
 			\item $v_i = (v_{i1}, v_{i2}, ..., v_{in})$ è il centro del cluster $i$,
+			\item $A$ è una matrice positiva di pesi $n\times n$ (e $n$ è la dimensione dello spazio delle features),
 			\item $\norma{\textit{ }}_A$ è la norma indotta su $\mathbb{R}^n$,
-			\item $A$ è una matrice positiva di pesi $n\times n$,
+			
 		\end{itemize}
-		e la distanza quadratica tra $y_k$ e $v_i$ nella formula è calcolata come
+		e la distanza quadratica tra $x_k$ e $v_i$ nella formula è calcolata come
 		\[
-			d^2_{ik} = \norma{y_k-v_i}^2_A = (y_k-v_i)^TA(y_k-v_i)\text{.}
+			d^2_{ik} = \norma{x_k-v_i}^2_A = (x_k-v_i)^TA(x_k-v_i)\text{.}
 		\] 	
-		Ogni errore quadratico è poi pesato con $(u_{ik})^m$, l'm-esima potenza della membership degli elementi $y_k$ nel cluster $i$.\\
-		Sono necessarie a questo punto delle considerazioni sui parametri $m$ ed $A$. Si può infatti notare che per $m\rightarrow 1$ il clustering diventa più netto e con $m=1$ si ottiene un hard clustering. Solitamente si utilizzano $m \in\{1,2,...,30\}$, anche se per la maggior parte dei dati un valore di m compreso tra 1.5 e 3.0 dà buoni risultati. \\
+		Ogni errore quadratico è poi pesato con $(u_{ik})^m$, l'$m$-esima potenza della membership degli elementi $x_k$ nel cluster $i$.\\
+		Sono necessarie a questo punto delle considerazioni sui parametri $m$ ed $A$. Si può infatti notare che per $m\rightarrow 1$ il clustering diventa più netto e con $m=1$ si ottiene un \textit{hard clustering}, ovvero una partizione dell'insieme universo in cui la funzione di membership di ogni sottoinsieme può assumere soltanto valore 0 o 1. Solitamente si utilizza $m \in\{2,...,30\}$, anche se per la maggior parte dei dati un valore di $m$ compreso tra 1.5 e 3.0 dà buoni risultati. \\
 		Per quanto riguarda invece la matrice $A$, questa controlla la forma che i cluster di $Y$ assumeranno; si possono usare a questo proposito diversi tipi di norme.
 		
 		Un clustering fuzzy ottimale è dunque definito da una coppia $(U, v)$ che minimizza $J_m$; possiamo descrivere quindi l'algoritmo FCM come segue.
-		Definita con $r=0,1, ...$ ogni interazione dell'algoritmo, e fissati $c$, $m$, $A$ e $\norma{k}_A$, si definisce la matrice iniziale $U^{(0)}$. Successivamente è necessario calcolare ad ogni passo il vettore dei $c$ centri, e poi una membership matrix aggiornata $U^{(k+1)}$. Si itera l'esecuzione dell'algoritmo finchè l'errore commesso nell'assegnamento delle membership (ovvero la norma calcolata sulla differenza tra la matrice delle membership calcolata al tempo k e k+1) non scende sotto una soglia $\epsilon$~\cite{bib:fcm}.
+		Definita con $r=0,1, ...$ ogni iterazione dell'algoritmo, e fissati $c$, $m$, $A$ e $\norma{k}_A$, si definisce la matrice iniziale $U^{(0)}$. Successivamente è necessario calcolare a ogni passo il vettore dei $c$ centri, e poi una membership matrix aggiornata $U^{(t+1)}$. Si itera l'esecuzione dell'algoritmo finché l'errore commesso nell'assegnamento delle membership (ovvero la norma calcolata sulla differenza tra la matrice delle membership calcolata al tempo t e t+1) non scende sotto una soglia $\epsilon$~\cite{bib:fcm}.
 		
-		Il Fuzzy C-Means si può quindi considerare l'algoritmo alla base del fuzzy clustering; a partire da questo si sono poi sviluppate una serie di varianti che trattano diverse forme di funzioni di appartenenza, che pongono un'attenzione particolare al rumore e agli outliers come RSFKM~\cite{bib:rsfkm} e GEPFCM~\cite{bib:gifpfcm}, algoritmi che risolvono il problema di stabilire a priori il numero di cluster e la sensibilità di FCM alla posizione dei centroidi iniziali, come in~\cite{bib:afkm} o ancora che utilizzano come funzioni di similarità tecniche diverse dalla distanza euclidea, come in KFCM~\cite{bib:kfcm}.
+		Il Fuzzy C-Means si può quindi considerare l'algoritmo alla base del fuzzy clustering; a partire da questo si sono poi sviluppate una serie di varianti che trattano diverse forme di funzioni di appartenenza, che pongono un'attenzione particolare al rumore e agli outlier come RSFKM~\cite{bib:rsfkm} e GEPFCM~\cite{bib:gifpfcm}, algoritmi che risolvono il problema di stabilire a priori il numero di cluster e la sensibilità di FCM alla posizione dei centroidi iniziali, come in~\cite{bib:afkm} o ancora che utilizzano come funzioni di similarità tecniche diverse dalla distanza euclidea, come in KFCM~\cite{bib:kfcm}.
 		\\
-		Oltre a questa categoria di algoritmi si distinguono algoritmi di fuzzy support vector clustering, una tecnica ibrida tra clustering e uso di support vector machines (come in~\cite{bib:svc,bib:msvc}).
+		Oltre a questa categoria di algoritmi si distinguono algoritmi di fuzzy support vector clustering, una tecnica ibrida tra clustering e uso di support vector machine (come in~\cite{bib:svc,bib:msvc}).
 		\\
-		Una rassegna completa dei vari tipi di algoritmi è disponibile in Tabella \ref{tab:clustering}
+		Una rassegna completa dei vari tipi di algoritmi è disponibile in Tabella \ref{tab:clustering}.
 		\begin{table}[h!]
 			\caption{Rassegna di metodi per fuzzy clustering}
 			\begin{center}\begin{tabular}{ |c|c|c|c| } 
@@ -250,7 +258,8 @@
 					& Agglomerative FCM & 2008 & \cite{bib:afkm}\\
 					& FKM con FIS & 2013 & \cite{bib:fkmfis}\\ 
 					& GIFP-FCM & 2009 & \cite{bib:gifpfcm}\\
-					& BCPFCM, BCPNFCM e BCSP NFCM & 2016 & \cite{bib:bcpfcm}\\
+					& BCPFCM, BCPNFCM & 2016 & \cite{bib:bcpfcm}\\
+					& BCSP NFCM & 2016 & \cite{bib:bcpfcm}\\
 					& REFCMFS & 2019 & \cite{bib:refcmfs}\\ 
 					& CSFCM & 2015 & \cite{bib:csfcm}\\
 					& ICFFCM & 2019 &\cite{bib:icffcm}\\
@@ -273,14 +282,10 @@
 			\label{tab:clustering}	
 		\end{table}
 	
-	\section{Support Vector Machines}
-	Le \textit{Support Vector Machines}, sviluppate da Vapnik nel 1995, sono una tecnica di apprendimento supervisionato utilizzato soprattutto per problemi di classificazione, regressione e detection di outliers; esse sono utilizzate per un vasto numero di applicazioni, dal riconoscimento facciale al processing di dati biologici per diagnosi mediche.
+	\section{Support Vector Machine}
+	Le \textit{Support Vector Machine} (SVM), sviluppate da Vapnik nel 1995, sono una tecnica di apprendimento supervisionato utilizzato soprattutto per problemi di classificazione, regressione e individuazione di outlier; esse sono utilizzate per un ampio spettro di applicazioni, dal riconoscimento facciale \cite{bib:svmfr, bib:svmfr2} all'elaborazione di dati biologici per diagnosi mediche (come in ~\cite{bib:svmmed,bib:svmmed2}).
 	
-	Le SVM hanno come obiettivo quello di identificare un iperpiano ``ottimo" come soluzione del problema di apprendimento, ovvero un iperpiano che distingua diverse classi di elementi dell'insieme dei dati di input e che massimizzi il \textit{margine}, ovvero la massima distanza tra i punti delle classi più vicini all'iperpiano e l'iperpiano stesso. In uno spazio bidimensionale, un iperpiano è quindi una retta che divide il piano in due semizpazi. La formulazione più semplice delle SVM è quella lineare, in cui l'iperpiano giace sullo spazio dei dati di input $x$. Lo spazio d'ipotesi sarà quindi in questo caso un sottoinsieme dell'insieme che contiene tutti gli iperpriani della forma 
-	\[
-	f(x) = w\cdot x+b\text{.}
-	\]
-	Se i dati non sono linearmente separabili (come in Figura \ref{fig:hyp}a), però, potrebbe accadere che questo iperpiano non sia identificabile: la soluzione è quella di aggiungere un'ulteriore dimensione ottenuta come combinazione delle precedenti (trasformazione indotta da un kernel, Figura \ref{fig:hyp}b), in modo da ottenere un ulteriore spazio a più dimensioni, detto \textit{spazio delle features}, e identificare nel nuovo spazio un iperpiano ottimo (Figura \ref{fig:hyp}c).\\
+	Le SVM hanno come obiettivo quello di identificare un iperpiano ``ottimo" come soluzione del problema di apprendimento, cioè un iperpiano che separi due classi di elementi dell'insieme dei dati di input. L'iperpriano migliore è quello che massimizza il \textit{margine}, definito come la distanza tra i punti più vicini all'iperpiano e l'iperpiano stesso; anche punti lontani dal margine possono essere coinvolti nella determinazione dell'iperpiano. Se si considera uno spazio bidimensionale, ad esempio, un iperpiano è una retta che divide il piano in due semispazi. Per ottenere una migliore separazione tra le classi, i dati sono inizialmente trasformati in uno spazio a più dimensioni: da uno $spazio delle features di input$, che ha tante dimensioni quante quelle delle features si passa ad uno $spazio delle features$, a più dimensioni. I dati vengono quindi proiettati in uno spazio di dimensioni maggiori rispetto a quello di partenza, nel quale i dati siano linearmente separabili. In questo nuovo spazio (indotto da un \textit{kernel}), si cercherà l'iperpiano ottimale, come mostrato in Figura \ref{fig:hyp}. Nella ricerca dell'iperpiano ottimo è accettabile la classificazione errata di alcuni punti; la misura della tolleranza alla misclassificazione verrà approfondita in seguito.
 		\begin{figure}[h]
 		\centering
 		\subfloat[\emph{}]
@@ -291,24 +296,23 @@
 		{\includegraphics[width=.48\textwidth]{svm3dhyp.png}} \quad
 		\subfloat[\emph{}]
 		{\includegraphics[width=.48\textwidth]{svm3dto2d.png}} \quad
-		\caption{Passaggio allo spazio delle features in caso di dati non linearmente separabili}
+		\caption{Passaggio dallo spazio dallo spazio delle feature di input allo spazio delle feature: spazio delle feature di input (a), utilizzo di un kernel per la trasformazione in uno spazio a più dimensioni (b), determinazione dell'iperpiano ottimo (c), trasformazione inversa per ritornare ad uno spazio con un numero di dimensioni pari a quelle delle feature di input(d)}
 		\label{fig:hyp}
 	\end{figure}	
-	L'uso delle SVM prevede inoltre una fase di tuning dei parametri, che in questo caso sono il \textit{kernel}, il \textit{parametro di regolarizzazione} e \textit{gamma}. Per quanto riguarda il \textit{kernel}, questo stabilisce il tipo di trasformazione che lo spazio iniziale subisce: si distinguono ad esempio kernel lineari, polinomiali ed esponenziali (questi ultimi due calcolano l'iperpiano separatore in uno spazio a più dimensioni). Il \textit{parametro di regolarizzazione}, invece, esprime quanto è importante che ogni punto venga classificato in modo corretto: per valori grandi, l'algoritmo sceglierà un iperpiano con un margine minore, affinché tutti i punti vengano assegnati alla classe corretta; viceversa per valori bassi del parametro l'iperpiano avrà margine maggiore, ma alcuni punti saranno classificati in modo non corretto, come si può vedere in \ref{fig:svm}.
-	
+	L'uso delle SVM prevede inoltre la determinazione a priori di alcuni parametri, che in questo caso sono il \textit{kernel}, il \textit{parametro di regolarizzazione} e \textit{gamma}. Per quanto riguarda il \textit{kernel}, questo stabilisce il tipo di trasformazione che lo spazio iniziale subisce: si distinguono ad esempio kernel lineari, polinomiali, gaussiani ed esponenziali. Il \textit{parametro di regolarizzazione} $C$, invece, esprime quanto è importante che ogni punto venga classificato in modo corretto: per valori grandi, l'algoritmo sceglierà un iperpiano con un margine minore, affinché tutti i punti vengano assegnati alla classe corretta; viceversa per valori bassi del parametro l'iperpiano avrà margine maggiore, ma alcuni punti saranno classificati in modo non corretto, come si può vedere in Figura \ref{fig:svm}.
 	\begin{figure}[h]
 		\centering
 		\subfloat[\emph{}]
 		{\includegraphics[width=.45\textwidth]{svm.png}} \quad
 		\subfloat[\emph{}]
 		{\includegraphics[width=.45\textwidth]{svm2.png}} \\
-		\caption{Sulla destra: valori bassi del parametro di regolarizzazione; sulla sinistra valori più elevati}
+		\caption{Sulla destra: valori bassi del parametro di regolarizzazione; sulla sinistra valori più elevati del parametro}
 		\label{fig:svm}
 	\end{figure}
 	Il parametro \textit{gamma}, infine, indica quanto lontano dall'iperpiano arriva l'influenza del singolo punto, dove valori bassi del parametro indicano che punti lontani dal possibile iperpiano influenzano la scelta dell'iperpiano stesso, e viceversa.	
 	
-	\section{Fuzzy Support Vector Machines}
-	Le \textit{Fuzzy Support Vector Machines} estendono il concetto di SVM, generalizzandolo e applicandolo alla logica fuzzy. Nelle FSVM, infatti, l'importanza di ogni elemento del training set alla determinazione della superficie separatrice è differente: ad ogni punto è infatti assegnato un grado di membership fuzzy, che denota il contributo fornito dal punto all'apprendimento dell'iperpiano separatore. Se ad esempio un punto viene identificato come outlier, ad esso verrà assegnato un valore di membership basso, in modo che il suo contributo all'errore complessivo sia poco rilevante. Supponiamo che i dati di training siano definiti da $S = \{(x_i, y_i, s_i)| i=1,2,...,l\}$, dove ogni $x_i \in \mathbb{R}^d$ è un elemento del training set, $y_i \in \{+1, -1\}$ è la label ad esso associata e $s_i(i=1,2,...,l)$ è una membership fuzzy $r \leq s_i \leq 1$ ($r$ è una costante dal valore molto basso ma maggiore di zero). Definiamo $Q=\{x_i|(x_i, y_i, s_i)\in S\}$; possiamo partizionare in $Q$ due sottoinsiemi: la classe $C^+$, ovvero la classe dei punti a cui è associata label $y_i=+1$, e quella $Q^-$, che conterrà gli $x_i$ tali che $y_i=-1$. Il problema di classificazione può quindi essere descritto come segue:
+	\section{Fuzzy Support Vector Machine}
+	Le \textit{Fuzzy Support Vector Machine} estendono il concetto di SVM, generalizzandolo e applicandolo alla logica fuzzy. Nelle FSVM, infatti, l'importanza di ogni elemento del training set alla determinazione della superficie separatrice è differente: a ogni elemento è infatti assegnato un grado di membership fuzzy, che denota il contributo fornito da quell'elemento all'apprendimento dell'iperpiano separatore. Se ad esempio un punto viene identificato come outlier, a esso verrà assegnato un valore di membership basso, in modo che il suo contributo all'errore complessivo sia poco rilevante. Supponiamo che i dati di training siano definiti da $S = \{(x_i, y_i, s_i)| i=1,2,...,l\}$, dove ogni $x_i \in \mathbb{R}^d$ è un elemento del training set, $y_i \in \{+1, -1\}$ è la label a esso associata e $s_i(i=1,2,...,l)$ è una membership fuzzy $r \leq s_i \leq 1$ ($r$ è una costante dal valore molto basso ma maggiore di zero). Definiamo $Q=\{x_i|(x_i, y_i, s_i)\in S\}$; possiamo partizionare in $Q$ due sottoinsiemi: la classe $C^+$, ovvero la classe dei punti a cui è associata label $y_i=+1$, e quella $Q^-$, che conterrà gli $x_i$ tali che $y_i=-1$. Il problema di classificazione può quindi essere descritto come segue:
 		\[
 		min \frac{1}{2} \norma{w}^2+C\sum_{i=1}^{l}s_i\xi_i
 		\]
@@ -319,32 +323,11 @@
 		\text{e } \xi_i \geq 0\text{,}		
 		\]
 	
-	dove $C$ è un valore che definisce il costo della violazione del vincolo, $\xi_i$ è una misura dell'errore nella FSVM e quindi il termine $si\xi_i$ è una misura pesata dell'errore~\cite{bib:fsvm,bib:fsvm2}.\\
+	dove $C$ è il parametro di regolarizzazione (che definisce il costo della violazione del vincolo), $\xi_i$ è una misura dell'errore nella FSVM e quindi il termine $\xi_i$ è una misura pesata dell'errore~\cite{bib:fsvm,bib:fsvm2}.\\
 	
-	A partire dal metodo base delle FSVM si sono sviluppate varianti che mirano ad ottimizzarlo e adattarsi alle diverse situazioni: sono state introdotte ad esempio nuove funzioni di membership, algoritmi di ottimizzazione come in~\cite{bib:firefly}, che sfrutta l'algoritmo Firefly. Altri algoritmi si sono invece specializzati in problemi multiclasse~\cite{bib:multi}, o ancora sono stati ottimizzati per dataset con rumore nei dati o outliers, come in ~\cite{bib:apso,bib:wcs}. Una rassegna più esaustiva è mostrata in Tabella \ref{tab:svm}.
-	
-	Consiederiamo in particolare le Fuzzy Support Vector Machines per il \textit{Class Imbalance Learning}~\cite{bib:cil}: questo algoritmo si specializza su apprendimento in caso di dataset con rappresentanze differenti delle due classi in considerazione, in cui cioè si hanno molti meno esempi appartenenti a una classe rispetto a quelli appartenenti ad un'altra. In questo caso, con algoritmi tradizionali può accadere che l'apprendimento dia risultati molto accurati sulla predizione della classe maggiormente rappresentata, ma che commetta molti errori sull'altra classe (consideriamo ad esempio quella positiva come classe di minoranza, come nella maggior parte dei dataset reali).\newline
-	Tra i metodi CIL, ovvero quelli che si occupano di questo tipo di probelma, si possono distinguere metodi interni ed esterni: i \textit{metodi esterni} fanno un preprocessing dei dati in modo da bilanciarli, ad esempio eliminando in modo casuale degli elementi della classe più rappresentata finchè un determinato rapporto tra il numero degli elementi in ogni classe viene raggiunto; un altro metodo esterno consiste invece nella duplicazione degli esempi appartenenti alla classe meno rappresentata, sempre al fine di bilanciare meglio le classi tra loro. I \textit{metodi interni}, invece, modificano l'algoritmo di apprendimeto in modo da renderlo meno sensibile allo sbilanciamento tra classi.\newline 
-	L'algoritmo FSVM-CIL si pone l'obiettivo di risolvere sia il problema dello sbilanciamento tra classi sia quello della presenza di outlier e rumore nei dati. Come in ogni metodo di fuzzy SVM, i valori di membership (o \textit{pesi}) assegnati agli esempi di training sono differenziati in modo da riflttere la loro diversa importanza. Possiamo quindi assegnare valori di membership più elevati in corrispondenza di elementi della classe meno rappresentata, e viceversa valori di membership più bassi a esempi della classe più rappresentata. Il valore di membership assegnato dipende inoltre dall'importanza intra-classe dei diversi elementi del training set, in modo che l'effetto del rumore e degli outlier sia minore.\newline
-	Sia $m_i^+$ il valore della membership di un esempio $x_i^+$ appartente alla classe positiva (la meno rappresentata), e $m_i^-$ il valore di membership di un dato $x_i^-$ nella classe negativa. Definiamo queste funzioni di membership come:
-		\[
-			m_i^+ = f(x_i^+)r^+
-		\]
-		\[	
-			m_i^- = f(x_i^-)r^-\text{,}
-		\]
-	dove $f(x_i)$ genera un valore compreso tra $0$ e $1$, che riflette l'importanza di $x_i$ nella sua classe di appartenenza, e $r^+$ e $r^-$ riflettono lo sbilanciamento tra classi, tale che $r^+>r^-$.	Di conseguenza, un esempio nella classe positiva potrà avere un valore di membership $m_i^+ \in [0,r^+]$, mentre un esempio nella classe negativa avrà una membership $m_i^- \in [0,r^-]$. Per riflettere lo sbilanciamentro tra classi, definiamo $r^+=1$ e $r^-=r$, dove $r$ è il rapporto tra il numero di esempi nella classe positiva e il numero di quelli nella classe negativa. In questo modo, un elemento nella classe positiva potrà assumere un valore di membership compreso tra $0$ e $1$, mentre un esempio appartenente alla classe negativa potrà assumere valori di $m_i^- \in [0,r]$, dove $r<1$.
-	Fra i tre metodi espressi in ~\cite{bib:cil} (funzione di membership basata sulla distanza dal centro della rispettiva classe, basata sulla distanza dall'iperpiano predetto, basato sulla distanza dall'attuale iperpiano), nell'algoritmo che successivamente si analizzerà è stato utilizzato quello che calcola la funzione di membership sulla base della distanza $d_i^{sph}$ dall'iperpiano stimato. In questo caso, con $d_i^{sph}$ si intende la distanza di $x_i$ dal centro della ``regione sferica'', che può essere definita come un'ipersfera che copre la regione in cui si sovrappongono le due classi, per cui quindi l'iperpiano probabilmente passerà. Si possono utilizzare due differenti \textit{funzioni di decadimento} per definire la funzione $f(x_i)$, una funzione lineare e una esponenziale:
-	\[
-		f_{lin}	^{sph}(x_i) = 1 - \frac{d_i^{sph}}{max(d_i^{sph})+\Delta} 
-	\]
-	\[
-		f_{exp}	^{sph}(x_i) = 1 - \frac{2}{1+exp(\beta d_i^{sph})}\text{,}
-	\]
-	dove $d_i^{sph}=\norma{x_i-\bar{x}}^{\frac{1}{2}}$, e $\bar{x}$ è il centro della regione sferica, stimato dal centro dell'intero dataset negativo e positivo, con un'appropriata selezione di $\beta$ e $\Delta$. Nel capitolo successivo si spiegherà in dettaglio il funzionamento di questo metodo e si mostreranno degli esperimenti eseguiti su vari dataset.	
-		
-		\begin{table}[h!]
-		\caption{Rassegna di metodi per fuzzy support vector machines}
+	A partire dal metodo base delle FSVM si sono sviluppate varianti che mirano a ottimizzarlo e adattarsi a diverse situazioni: sono state introdotte ad esempio nuove funzioni di membership oppure algoritmi di ottimizzazione come in~\cite{bib:firefly}, che sfrutta l'algoritmo Firefly. Altri algoritmi si sono invece specializzati in problemi multiclasse~\cite{bib:multi}, o ancora sono stati ottimizzati per dataset con rumore nei dati o outliers, come in ~\cite{bib:apso,bib:wcs}. Una rassegna più esaustiva è mostrata in Tabella \ref{tab:svm}.
+	\begin{table}[h]
+		\caption{Rassegna di metodi per fuzzy support vector machine}
 		\begin{center}\begin{tabular}{ |c|c|c| } 
 				\hline
 				Nome metodo & Anno di pubblicazione & Articolo\\
@@ -369,10 +352,220 @@
 		\end{center}
 		\label{tab:svm}	
 	\end{table}
+
+	Consiederiamo in particolare le Fuzzy Support Vector Machine per il \textit{Class Imbalance Learning} (CIL~\cite{bib:cil}): questo algoritmo si specializza su apprendimento in caso di dataset nei quali una delle due classi è rappresentata con maggiore frequenza rispetto all'altra. In questo caso, con algoritmi tradizionali può accadere che l'apprendimento dia risultati molto accurati sulla predizione della classe maggiormente rappresentata, ma che commetta molti errori sull'altra classe (si consideri successivamente la classe positiva come classe rappresentata con minore frequenza, come nella maggior parte dei dataset reali).\newline
+	Tra i metodi CIL, ovvero quelli che si occupano di questo tipo di probelma, si possono distinguere metodi interni ed esterni: i \textit{metodi esterni} effettuano un preprocessing dei dati in modo da bilanciarli, ad esempio eliminando in modo casuale alcuni elementi della classe più rappresentata finchè un determinato rapporto tra il numero degli elementi in ogni classe viene raggiunto; un altro metodo esterno consiste invece nella duplicazione degli esempi appartenenti alla classe meno rappresentata, sempre al fine di bilanciare meglio le classi tra loro. I \textit{metodi interni}, invece, modificano l'algoritmo di apprendimento in modo da renderlo meno sensibile allo sbilanciamento tra classi.\newline 
+	L'algoritmo FSVM-CIL si pone l'obiettivo di risolvere sia il problema dello sbilanciamento tra classi sia quello della presenza di outlier e rumore nei dati. Come in ogni metodo di fuzzy SVM, i valori di membership (o \textit{pesi}) assegnati agli esempi di training sono differenziati in modo da riflttere la loro diversa importanza. Possiamo quindi assegnare valori di membership più elevati in corrispondenza di elementi della classe meno rappresentata, e viceversa valori di membership più bassi a esempi della classe più rappresentata. Il valore di membership assegnato dipende inoltre dall'importanza intra-classe dei diversi elementi del training set, in modo che l'effetto del rumore e degli outlier sia minore.\newline
+	Sia $m_i^+$ il valore della membership di un esempio $x_i^+$ appartente alla classe positiva (la meno rappresentata), e $m_i^-$ il valore di membership di un dato $x_i^-$ nella classe negativa. Definiamo queste funzioni di membership come:
+		\[
+			m_i^+ = f(x_i^+)r^+\text{,}
+		\]
+		\[	
+			m_i^- = f(x_i^-)r^-\text{,}
+		\]
+	dove $f(x_i)$ genera un valore compreso tra $0$ e $1$, che riflette l'importanza di $x_i$ nella sua classe di appartenenza, e $r^+$ e $r^-$ riflettono lo sbilanciamento tra classi, tale che $r^+>r^-$.	Di conseguenza, un esempio nella classe positiva potrà avere un valore di membership $m_i^+ \in [0,r^+]$, mentre un esempio nella classe negativa avrà una membership $m_i^- \in [0,r^-]$. Per riflettere lo sbilanciamentro tra classi, definiamo $r^+=1$ e $r^-=r$, dove $r$ è il rapporto tra il numero di esempi nella classe positiva e il numero di quelli nella classe negativa. In questo modo, un elemento nella classe positiva potrà assumere un valore di membership compreso tra $0$ e $1$, mentre un esempio appartenente alla classe negativa potrà assumere valori di $m_i^- \in [0,r]$, dove $r<1$.
+	Fra i tre metodi espressi in ~\cite{bib:cil} (funzione di membership basata sulla distanza dal centro della rispettiva classe, basata sulla distanza dall'iperpiano predetto, basato sulla distanza dall'iperpiano effettivo), nell'algoritmo che verrà analizzato nel Capitolo 3 si analizzerà è stato utilizzato quello che calcola la funzione di membership sulla base della distanza $d_i^{sph}$ dall'iperpiano stimato. In questo caso, con $d_i^{sph}$ si intende la distanza di $x_i$ dal centro della ``regione sferica'', che può essere definita come un'ipersfera che copre la regione in cui si sovrappongono le due classi, per cui quindi l'iperpiano probabilmente passerà. Si possono utilizzare due differenti \textit{funzioni di decadimento} per definire la funzione $f(x_i)$, una funzione lineare e una esponenziale:
+	\[
+		f_{lin}	^{sph}(x_i) = 1 - \frac{d_i^{sph}}{max(d_i^{sph})+\Delta} 
+	\]
+	\[
+		f_{exp}	^{sph}(x_i) = 1 - \frac{2}{1+exp(\beta d_i^{sph})}\text{,}
+	\]
+	dove $d_i^{sph}=\norma{x_i-\bar{x}}^{\frac{1}{2}}$, e $\bar{x}$ è il centro della regione sferica, stimato dal centro dell'intero dataset negativo e positivo; $\beta$ e $\Delta$ sono due costanti definite a priori. Nel capitolo successivo si spiegherà in dettaglio il funzionamento di questo metodo e si mostreranno degli esperimenti eseguiti su vari dataset.	
+
 	\chapter{Implementazione ed esperimenti}
-	\section{Algoritmi basati su Clustering}
-	\section{Algoritmi basati su Support Vector Machines}
+	\section{Dataset}
+	I dataset utilizzati durante il lavoro di tirocinio sono l'\textit{Iris Dataset}\footnote{https://archive.ics.uci.edu/ml/datasets/iris} e il \textit{Breast Cancer Dataset}\footnote{https://github.com/datasets/breast-cancer}.\\
+	Il dataset Iris è stato introdotto da Ronald Fisher nel 1936, e consiste in 150 istanze di Iris misurate da Edgar Anderson e classificate secondo tre specie: \textit{Iris setosa}, \textit{Iris virginica} e \textit{Iris versicolor}. Ogni elemento del dataset è definito da quattro features, la lunghezza e la larghezza del sepalo e la lunghezza e la larghezza del del petalo (misurate in centimetri) e da una label che indica la classe di appartenenza di quell'elemento; ogni classe è rappresentata da 50 istanze nel dataset. Nel dataset Iris la classe \textit{iris setosa} è linearmente separabile dalle altre, che non lo sono invece tra loro. Si può osservare un estratto del dataset in Tabella~\ref{tab:iris}
+	
+	\begin{table}
+		\caption{Estratto del dataset Iris}
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|}
+					\hline
+					species &  sepal\_length &  sepal\_width &  petal\_length &  petal\_width \\
+					\hline
+					iris-setosa &           5.1 &          3.5 &           1.4 &          0.2 \\
+					iris-setosa &           4.9 &          3.0 &           1.4 &          0.2 \\
+					iris-versicolor &           6.4 &		3.2 &			4.5 &			1.5 \\
+					iris-versicolor &           6.9 &          3.1 &        4.9 &          1.5 \\
+					iris-virginica &           6.5 &          3.0 &           5.2 &          2.0 \\
+					iris-virginica &           6.2 &          3.4 &           5.4 &          2.3 \\
+					\hline
+			\end{tabular}
+		\end{center}
+		\label{tab:iris}
+	\end{table}
+
+	Il dataset Breast Cancer, invece, è stato creato da M.Zwitter e M.Soklic dell'Institute of Oncology University Medical Center Ljubljana, Yugoslavia, sulla base di dati raccolti da pazienti reali. In questo dataset si contano 286 istanze e 10 features per ogni elemento; sono definite due classi che definiscono se l'istanza corrisponde a un evento ricorrente (\textit{recurrence-events}) oppure no (\textit{no-recurrence-events}). I 10 attributi definiscono invece:
+	\begin{itemize}
+		\item{la fascia d'età del paziente,}
+		\item{\textit{menopause}, che indica se il paziente sia o no in menopausa al momento della diagnosi,}
+		\item{il diametro maggiore (in mm) del tumore,}
+		\item{il numero di linfonodi contenenti metastasi del tumore,}
+		\item{la presenza o meno di metastasi a linfonodi,}
+		\item{il grado di gravità del tumore,}
+		\item{la collocazione del tumore e il quadrante interessato,}
+		\item{l'utilizzo di radioterapia nella cura del tumore.}
+	\end{itemize}	
+	Nel dataset sono presenti dei valori mancanti; la distribuzione delle istanze sulle classi è molto differente da quella del dataset Iris: si contano 201 istanze di \textit{no-recurrence events} e 85 istanze di \textit{recurrence-events}. Un estratto del dataset è mostrato in Tabella~\ref{tab:breast}
+	
+	\begin{table}
+		\caption{Estratto del dataset Breast Cancer (per brevità sono stati tralasciati alcuni attributi)}
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+				\hline
+					age &  menopause &  tumor-size &  deg-malig &  breast &  class\\
+				\hline
+					40-49 &   premeno &      15-19 &          3 &  right &     recurrence-events\\ 
+					50-59 &      ge40 &      15-19 &          1 &  right &     no-recurrence-events\\ 
+					50-59 &      ge40 &      35-39 &          2 &   left &     recurrence-events\\ 
+					40-49 &   premeno &      35-39 &          3 &  right &     no-recurrence-events\\
+					40-49 &   premeno &      30-34 &          2 &   left &     recurrence-events\\
+				\hline	
+			\end{tabular}
+		\end{center}
+		\label{tab:breast}
+	\end{table}
+	
+	Prima di essere utilizzati, entrambi i dataset hanno subito una fase di preprocessing: le feature descritte da valori categorici sono infatti state sostituite da feature a valori numerici (con l'utilizzo di appositi metodi di \textit{sklearn}), così come le classi espresse dalle etichette associate ai dati; nel caso del dataset Breast Cancer le feature espresse da un range di valori sono state sostituite con il punto medio dell'intervallo considerato. Sono state inoltre eliminate le istanze del dataset contenenti valori mancanti.\\
+	Il dataset Iris, invece, è stato inizialmente considerato come composto da due classi: una classe caratterizzata da label 1 (rappresentante di volta in volta ognuna delle tre classi possibili) e una associata alla label 0, contenente tutti gli elementi delle altre due classi non considerate. In questo modo si sono ottenuti tre diversi dataset a partire da iris, ognuno contenente due sole classi: considerando ad esempio la classe \textit{iris-setosa}, uno dei tre dataset avrà come istanze positive quelle appartenenti a questa classe e come istanze negative tutte le altre (ovvero quelle appartenenti a \textit{versicolor} e \textit{virginica}).  L'etichetta che rappresenta la classe di ogni elemento è stata inoltre posizionata come prima colonna del dataset, in modo da uniformare il modo in cui i vari dataset vengono presentati ai vari algoritmi considerati.
+	 
+	Nel repository pubblico annesso al lavoro di tirocinio\footnote{https://github.com/ritafolisi/Tirocinio} si possono trovare:
+	\begin{itemize}
+		\item una cartella \textit{Dataset}, contenente i dataset utilizzati nelle varie versioni dovute alle modifiche effettuate su questi al fine del trattamento,
+		\item una cartella per ogni algoritmo analizzato, contenente il codice dell'algoritmo stesso ed eventuali funzioni utili,
+		\item gli script \textit{Preprocessing.py}, \textit{iris\_generator.py} e \textit{iris\_generator.py}, utilizzati per il preprocessing dei dati nei dataset,
+		\item vari file per la visualizzazione dei risultati, uno per ogni metodo considerato,
+		\item un file di logging, che contiene tutti gli esperimenti svolti,
+		\item il file \textit{final\_script.py}, utilizzato per far eseguire automaticamente più algoritmi passandogli in input uno stesso dataset. 
+	\end{itemize}
+	
+
+	\section{Algoritmo basato su Fuzzy Clustering}
+	Nel lavoro di tirocinio è stato analizzato l'algoritmo \textit{Fuzzy-C-Means}, da codice reperito in rete\footnote{https://github.com/AnanyaKirti/Fuzzy-C.git}. Il codice considerato presentava numerose criticità, legate sia a un'eccessiva specificità del codice sui dati considerati come input sia all'assenza di una classe che racchiudesse le varie funzioni. La fase preliminare di modifica del codice, quindi, è consistita nella realizzazione di un'adattatore, ovvero l'aggiunta di una parte di codice che permettesse di passare in input a tutti i metodi considerati dataset nello stesso formato (si sono considerati file \textit{.csv} in cui l'etichetta fosse posta nella prima colonna del dataset). \`E stato poi necessario creare una classe (disponibile in \textit{FCM.py}) che contenesse tutte le funzioni per il trattamento dell'input, per la fase di training e test, e tutte le funzioni utili in queste fasi; è stato anche necessario creare un costruttore che inizializzasse i parametri definiti a priori, cioè il parametro di arresto $\epsilon$ e un massimo globale, e introdurre degli attributi di classe che permettessero di salvare un modello addestrato per poi usarlo per effettuare predizioni. Si è reso inoltre necessario suddividere la funzione responsabile del training e test sul dataset in due diverse funzioni che svolgessero in modo isolato i due compiti, per poter utilizzare le due funzioni in modo distinto nella crossvalidation.\\
+	Come valori di output si sono considerati l'accuratezza e l'RMSE sulle membership; per ottenere quest'ultimo è stata necessaria un'ulteriore modifica del codice iniziale, che invece prevedeva il calcolo dell'accuratezza sulle predizioni e inglobava in una funzione il passaggio dalle membership predette a una classificazione netta.\\ 
+	Per aumentare l'accuratezza del modello è stata poi introdotta nello script responsabile del funzionamento del FCM (\textit{fuzzy\_c.py}) la cross validation (su 5 fold, con seme casuale 1): a ogni iterazione vengono memorizzati l'accuratezza e l'RMSE sulle membership; si avranno come risultati finali una media dei dati raccolti per ognuna delle due metriche.
+	L'algoritmo analizzato utilizza nella fase di training dati di input senza etichetta: la label viene utilizzata solamente per controllare la bontà della predizione effettuata; ciò può talvolta influire sulle prestazioni dell'algoritmo, come approfondito nel paragrafo 3.4.
+	
+	Per controllare il buon funzionamento del codice scritto sono stati svolti unit test, che controllano l'ammissibilità dei valori restituiti per le metriche scelte, e che l'errore non superi una soglia. Il logging di tutte le operazioni ha permesso un controllo sui vari output degli esperimenti; gli esperimenti sono stati svolti più volte, utilizzando due o quattro feature (per quanto riguarda iris), i vari dataset a due classsi generati a partire da Iris e l'intero dataset Breast Cancer.
+	Per una migliore visualizzazione dei risultati, è stata realizzata una rappresentazione grafica con heatmap (Figura \ref{fig:hm}) e curve di livello, come in Figura \ref{fig:vis}. 
+	\begin{figure}[h]
+		\centering
+		\subfloat[\emph{}]
+		{\includegraphics[width=.45\textwidth]{setosa.png}}\quad 
+		\subfloat[\emph{}]
+		{\includegraphics[width=.45\textwidth]{setosacurve.png}}\\
+		\subfloat[\emph{}]
+		{\includegraphics[width=.45\textwidth]{versicolor.png}}\quad 
+		\subfloat[\emph{}]
+		{\includegraphics[width=.45\textwidth]{versicolorcurve.png}}\\
+		\subfloat[\emph{}]
+		{\includegraphics[width=.45\textwidth]{virginica.png}}\quad 
+		\subfloat[\emph{}]
+		{\includegraphics[width=.45\textwidth]{virginicacurve.png}}\\
+		\caption{Il dataset iris (si consiederano le prime due features), modificato in modo da avere due classi che indichino di volta in volta se un'istanza appartiene a setosa oppure no (a), versicolor oppure no (c), virginica oppure no (e), e le curve di livello risultanti dalle predizioni effettuate dall'algoritmo, a cui vengono passati i tre dataset (b, d, f)}
+		\label{fig:vis}
+	\end{figure}
+	\begin{figure}[h]
+		\subfloat[\emph{}]
+		{\includegraphics[width=.31\textwidth]{setosahm.png}}\quad 
+		\subfloat[\emph{}]
+		{\includegraphics[width=.31\textwidth]{versicolorhm.png}}\quad
+		\subfloat[\emph{}]
+		{\includegraphics[width=.31\textwidth]{virginicahm.png}}\\
+		\caption{Heatmap corrispondenti ai tre dataset che considerano di volta in volta soltanto l'appartenenza o meno a una data classe (setosa, versicolor, virginica)}
+		\label{fig:hm}
+	\end{figure}
+	\section{Algoritmo basato su Fuzzy Support Vector Machine}
+	Tra gli algoritmi basati su Fuzzy Support Vector Machine è stato analizzato il Fuzzy SVM per Class Imbalance Learning; il codice è stato reperito in rete\footnote{https://github.com/adizz2407/Fuzzy-SVM}. L'algoritmo, implementato con l'uso di \textit{Jupyter Notebook}, non permetteva un'esecuzione automatizzata: questo primo problema è stato gestito con l'introduzione del file \textit{HYP\_SVM}, contenente la classe in cui le funzioni necessarie all'algoritmo sono definite e da uno script, necessario per eseguire l'algoritmo stesso. Anche nel caso del codice trovato per SVM-CIL, inoltre, si è notata un'eccessiva specializzazione sui dati che l'algoritmo era progettato per utilizzare: nel codice si sono identificati valori costanti non specificati, così come nomi di variabili non autoesplicativi; è stata quindi necessaria una modifica al fine di rendere il codice utilizzabile con qualsiasi dataset e di migliorarne la leggibilità. Come per il metodo descritto nel paragrafo 3.2, si è reso inoltre necessario utilizzare una cross validation, al fine di migliorare l'apprendimento dell'algoritmo. Un'altra fase cruciale è stata quella della selezione degli iperparametri $C$ e $sigma$, svolta utilizzando il metodo \textit{GridSearchCV} di \textit{sklearn}. Per $C$ la selezione avviene tra i valori $[1^{-2}, 1^{-1}, 1, 1^{+1}, 1^{+2}, 1^{+3}, 1^{+4}]$, mentre per $sigma$ tra $[9^{-2}, 9^{-1}, 9, 9^{+1}, 9^{+2}, 9^{+3}, 9^{+4}]$; si è utilizzato un kernel gaussiano. Per poter utilizzare \textit{GridSearchCV}, è stato necessario introdurre nuovi metodi richiesti (cioè \textit{score}, \textit{get\_params} e \textit{set\_params}). La fase di model selection costituisce quindi una cross validation annidata in un'altra più esterna, che invece suddivide training e test del modello.\\
+	\`E stato inoltre necessario, come per il precedente algoritmo, introdurre una funzione che calcolasse l'RMSE. Non è stato però possibile ricavare dal codice il valore delle membership predette, e quindi il valore dell'RMSE è stato calcolato sulla base della label predetta. L'algoritmo presenta un tempo di esecuzione notevole, dovuto solo in parte alla fase di model selection; sono stati fatti esperimenti sui tre dataset ottenuti da Iris e sul dataset Breast Cancer. 
 	\section{Risultati}
+		Di seguito si indicano i risultati degli esperimenti eseguiti su FCM (Tabella~\ref{tab:fcm}) e FSVM-CIL(Tabella~\ref{tab:fsvm}). In seguito sono illustrati gli stessi esperimenti eseguiti su Reti Neurali e Fuzzy k-Nearest Neighbour (approfonditi in~\cite{bib:rita}).
+		
+		Dai risultati ottenuti dagli esperimenti si nota come FCM ottiene buoni risultati sul dataset \textit{iris-setosa}, in quanto la classe è linearmente separabile dalle altre, mentre la performance peggiora sugli altri due dataset estratti da Iris. Considerando la performance sull'intero dataset Iris, si può notare che il valore di accuratezza è piuttosto basso, mentre quello dell'errore è piuttosto alto: ciò è dovuto al fatto che FCM durante la fase di training non considera le label, e assegna valori di membership agli elementi senza curarsi delle etichette originarie. Può quindi accadere che la classificazione avvenga correttamente, ma che la label assegnata ad un punto non corrisponda a quella presente nel dataset originale: ciò influisce sulla valutazione della performance.
+		
+		L'algoritmo SVM-CIL non può invece essere valutato sull'intero Iris, in quanto nel dataset sono presenti 3 classi mentre gli algoritmi basati su Support Vector Machine ne considerano due alla volta. L'algoritmo ottiene una performance discreta su tutti i dataset, e l'errore rilevato aumenta molto sui dataset \textit{Iris-versicolor} e \textit{Breast Cancer}. Nel calcolo dell'RMSE, in questo caso, si è considerato l'errore sulla classificazione, e non sulla predizione della membership (che non è stato possibile estrarre dal processo di predizione).
+		\begin{table}[h]
+		\caption{Risultati degli esperimenti eseguiti su FCM}
+		\begin{center}\begin{tabular}{ |c|c|c| } 
+				\hline
+				\textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
+				\hline
+				Iris Dataset & 59.33\% & 0.75\\
+				\hline
+				Iris-setosa & 98.0\% & 0.12\\
+				\hline
+				Iris-versicolor & 64.7\% & 0.55\\
+				\hline
+				Iris-virginica & 68.7\% & 0.69\\
+				\hline
+				Breast Cancer Dataset &  55.7\% & 0.56\\
+				\hline									
+			\end{tabular}
+		\end{center}
+		\label{tab:fcm}	
+		\end{table}
+		\begin{table}[h]
+			\caption{Risultati degli esperimenti eseguiti su FSVM-CIL}
+			\begin{center}\begin{tabular}{ |c|c|c| } 
+				\hline
+				Dataset & Accuratezza & RMSE\\
+				\hline
+				Iris Dataset& - & - \\
+				\hline
+				Iris-setosa & 80\% & 0.69\\
+				\hline
+				Iris-versicolor & 66\% & 1.16\\
+				\hline
+				Iris-virginica & 84\% & 0.74\\
+				\hline
+				Breast Cancer Dataset &  53.9\% & 1.36\\
+				\hline									
+			\end{tabular}
+		\end{center}
+		\label{tab:fsvm}	
+		\end{table}
+	\begin{table}[h]
+		\caption{Risultati degli esperimenti eseguiti su FKNN}
+		\begin{center}\begin{tabular}{ |c|c|c| } 
+				\hline
+				Dataset & Accuratezza & RMSE\\
+				\hline
+				Iris Dataset& 95\% & 0.21 \\
+				\hline
+				Iris-setosa & 99\% & 0.08 \\
+				\hline
+				Iris-versicolor & 76\% & 0.44 \\
+				\hline
+				Iris-virginica & 75\% & 0.44 \\
+				\hline
+				Breast Cancer Dataset & 62\% & 4.6 \\
+				\hline                  
+			\end{tabular}
+		\end{center}
+		\label{tab:fknn}  
+	\end{table}
+	\begin{table}[h]
+		\caption{Risultati degli esperimenti eseguiti su Fuzzy min max}
+		\begin{center}\begin{tabular}{ |c|c|c| } 
+				\hline
+				Dataset & Accuratezza & RMSE\\
+				\hline
+				Iris Dataset& 93\% & 0.27 \\
+				\hline
+				Iris-setosa & 99\% & 0.64 \\
+				\hline
+				Iris-versicolor & 76\% & 0.63 \\
+				\hline
+				Iris-virginica & 78\% & 0.57 \\
+				\hline
+				Breast Cancer Dataset & 71\%  & 0.84 \\
+				\hline                  
+			\end{tabular}
+		\end{center}
+		\label{tab:fmm}  
+	\end{table}
 	\chapter*{Conclusioni}
 	\addcontentsline{toc}{chapter}{Conclusioni}
 	\bibliography{Bibliografia}{}
