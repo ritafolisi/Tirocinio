@@ -1,9 +1,13 @@
 \documentclass[11pt,  oneside, openany]{book}
 \usepackage[greek, italian]{babel}
+\pagestyle{plain}
 \usepackage{geometry}
 \usepackage{float}
 \usepackage{graphicx} 
+\usepackage{amsmath}
+\usepackage{subfig}
 \usepackage{array}
+\usepackage{amsfonts}
 \usepackage{multirow}
 \geometry{a4paper} 
 \usepackage{listings} % necessario per inclusione codice sorgente
@@ -42,10 +46,10 @@
 
 	\pagenumbering{arabic}
 
-	\chapter{Introduzione}
+	\chapter*{Introduzione}
 
 	\chapter{Apprendimento automatico e logica fuzzy}
-Nel seguente capitolo si passano in rassegna i concetti di apprendimento automatico e di logica fuzzy, illustrando come i due argomenti possano essere coniugati insieme. Nel Paragrafo 2.1 ci si soffermerà sull'apprendimento supervisionato, di cui i metodi proposti in seguito faranno parte. Nel Paragrafo 2.2 si riprenderanno i concetti relativi ai \textit {fuzzy set}, fino a illustrare cosa significa indurne la funzione di appartenenza. 
+Nel seguente capitolo si passano in rassegna i concetti di apprendimento automatico e di logica fuzzy, illustrando come i due argomenti possano essere coniugati insieme. Nel Paragrafo 1.1 ci si soffermerà sull'apprendimento supervisionato, di cui i metodi proposti in seguito faranno parte. Nel Paragrafo 1.2 si riprenderanno i concetti relativi ai \textit {fuzzy set}, fino a illustrare cosa significa indurne la funzione di appartenenza. 
 
 	\section{Apprendimento supervisionato}
 
@@ -78,13 +82,13 @@ La valutazione non viene effettuata sugli esempi utilizzati per l'apprendimento,
 \end{center}
 \end{figure}
 
-Graficamente, si avrà la situazione presente in Figura 2.1, ovvero la funzione in blu $h$, appresa dal modello, si adatterà perfettamente ai dati di training (segnati in rosso), ma non riuscirà a predire bene i dati di testing. In altri termini, se il modello allenato viene eseguito sui dati di training, il modello produrrà un numero sensibilmente minore di errori rispetto a quando viene eseguito sui dati di testing. Un overfitting può essere causato anche da una suddivisione casuale dei dati che comporti l'inserimento nel training set di osservazioni non generali. Più in generale, nel valutare le performance, è bene considerare quanto la scelta di determinati esempi di apprendimento possa influenzare le performance. Può infatti succedere che una buona valutazione sia data da una scelta fortuita di esempi di apprendimento, mentre con un'altra scelta di esempi tale modello non dia la stessa performance. Dunque la valutazione effettuata dopo aver allenato il modello è la valutazione di un solo esperimento, non per forza del modello in sé. Occorre dunque uno strumento che possa generalizzare le valutazioni delle performance complessive di un modello. Per la risoluzione del problema, si rimanda ai paragrafi successivi. 
+Graficamente, si avrà la situazione presente in Figura 1.1, ovvero la funzione in blu $h$, appresa dal modello, si adatterà perfettamente ai dati di training (segnati in rosso), ma non riuscirà a predire bene i dati di testing. In altri termini, se il modello allenato viene eseguito sui dati di training, il modello produrrà un numero sensibilmente minore di errori rispetto a quando viene eseguito sui dati di testing. Un overfitting può essere causato anche da una suddivisione casuale dei dati che comporti l'inserimento nel training set di osservazioni non generali. Più in generale, nel valutare le performance, è bene considerare quanto la scelta di determinati esempi di apprendimento possa influenzare le performance. Può infatti succedere che una buona valutazione sia data da una scelta fortuita di esempi di apprendimento, mentre con un'altra scelta di esempi tale modello non dia la stessa performance. Dunque la valutazione effettuata dopo aver allenato il modello è la valutazione di un solo esperimento, non per forza del modello in sé. Occorre dunque uno strumento che possa generalizzare le valutazioni delle performance complessive di un modello. Per la risoluzione del problema, si rimanda ai paragrafi successivi. 
 
 
 Normalmente, prima di effettuare il processo di apprendimento, occorre impostare uno o più iperparametri. Si definiscono iperparametri tutte le parti del modello da impostare prima di iniziare la fase di apprendimento, mentre i parametri sono quelle parti del modello apprese durante la fase di apprendimento. Impostare gli iperparametri non è un'operazione semplice, dal momento che una configurazione erronea può incidere notevolmente sulle performance del modello. Si parla pertanto di \textit{model selection} (selezione del modello) o \textit{tuning degli iperparametri}, che si servono di un sottinsieme del training set, che prende il nome di \textit{validation set}. L'obiettivo è trovare la combinazione di iperparametri che ottimizza le performance del modello. Si definiscono gli insiemi di valori potenziali di ogni iperparametro e il modello viene addestrato con tutte le combinazioni possibili. Si decreta poi il \textit{validation score} (punteggio di validazione), che è coerente con il criterio scelto per valutare le performance del modello alla fine. Infine, si selezionano i parametri che massimizzano il validation score e vengono assegnati al modello. 
  
 
-Per risolvere il problema della model selection e della generalizzazione delle valutazioni, si ricorre alla \textit{k-fold cross validation}. Più in generale, la cross validation è una tecnica utilizzata per la suddivisione del dataset in training set e in validation set nel primo caso o in training set e in testing set nel secondo caso. Si prenda ad esempio il problema della model selection e quindi della suddivisione in training set e in validation set. Si definisce il numero di fold \textit{k} e si divide il dataset $\Xi$ in \textit{k} sottinsiemi mutuamente esclusivi e di ugual dimensione: $\Xi_1 ... \Xi_k$. In seguito, si reitera l'algoritmo di apprendimento \textit{k} volte considerando a ogni iterazione il sottinsieme $\Xi_k$ come training set e i rimanenti come validation set. La valutazione finale viene effettuata facendo la media delle valutazioni parziali dei sottinsiemi. In Figura 2.2 è presente una visualizzazione grafica della cross validation, con suddivisione in training set e validation set. Tale procedimento è del tutto analogo anche nel caso in cui si voglia generalizzare le valutazioni delle performance e dunque suddividere in training set e testing set. Qualora si volesse risolvere in maniera combinata entrambi i problemi, sarà necessario fare una crossvalidation annidata nell'altra. Per maggiori dettagli implementativi si rimanda al Capitolo 4. 
+Per risolvere il problema della model selection e della generalizzazione delle valutazioni, si ricorre alla \textit{k-fold cross validation}. Più in generale, la cross validation è una tecnica utilizzata per la suddivisione del dataset in training set e in validation set nel primo caso o in training set e in testing set nel secondo caso. Si prenda ad esempio il problema della model selection e quindi della suddivisione in training set e in validation set. Si definisce il numero di fold \textit{k} e si divide il dataset $\Xi$ in \textit{k} sottinsiemi mutuamente esclusivi e di ugual dimensione: $\Xi_1 ... \Xi_k$. In seguito, si reitera l'algoritmo di apprendimento \textit{k} volte considerando a ogni iterazione il sottinsieme $\Xi_k$ come training set e i rimanenti come validation set. La valutazione finale viene effettuata facendo la media delle valutazioni parziali dei sottinsiemi. In Figura 1.2 è presente una visualizzazione grafica della cross validation, con suddivisione in training set e validation set. Tale procedimento è del tutto analogo anche nel caso in cui si voglia generalizzare le valutazioni delle performance e dunque suddividere in training set e testing set. Qualora si volesse risolvere in maniera combinata entrambi i problemi, sarà necessario fare una crossvalidation annidata nell'altra. Per maggiori dettagli implementativi si rimanda al Capitolo 3. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -97,7 +101,7 @@ Per risolvere il problema della model selection e della generalizzazione delle v
 Il linguaggio e il ragionamento umano, spesso imprecisi e complessi, difficilmente sono colti appieno dalla logica classica basata sull'assegnazione di un valore di verità binario (vero o falso). Infatti, nel linguaggio naturale, molte espressioni risultano ambigue e, per la loro mancanza di formalità, diventano difficilmente trattabili con i classici strumenti della matematica. Una proposizione, in particolare, viene definita imprecisa nel momento in cui contiene predicati che possono essere veri o falsi solo parzialmente o solo a un certo grado. Un esempio concreto è la frase ``Il caffè è abbastanza dolce''. In questa frase il concetto di dolce non è formalizzato e non ha un significato fisso, in quanto non viene indicata una certa quantità di zucchero affinché il caffè possa considerarsi effettivamente dolce. Inoltre, è accompagnata dall'avverbio ``abbastanza'', che non esprime a sua volta un grado di certezza ben definito. Pertanto, alla proposizione è impossibile affidare un valore di verità binario, dal momento che il grado di dolcezza è soggettivo e, dunque, non interpretabile universalmente. Per poter trattare queste situazioni si introduce la \textit{logica fuzzy}~\cite{fuzzylogicintro}, un'estensione della logica booleana. La logica fuzzy attribuisce ad ogni proposizione un valore di verità compreso tra 0 e 1, estremi inclusi: pertanto, è capace di trattare proposizioni vere (valore pari ad 1), false (valore pari a 0) e parzialmente vere o false (valore compreso tra 0 e 1). Permettendo quindi alle proposizioni di trovarsi in uno stato diverso dal vero o falso, la logica fuzzy consente di descrivere con flessibilità il ragionamento umano e gestire l'incertezza e l'inesattezza. Per questo motivo è ampiamente utilizzata in molti domini di applicazione, come processi decisionali, analisi testuale, \textit{data analysis}, \textit{feature extraction} in un'immagine. Un esempio recente di applicabilità è stato presentato in ~\cite{fuzzybraintumor}, dove vengono elaborate immagini di risonanze magnetiche del cervello per poterne rilevare anomalie. 
 
 \subsection{Fuzzy set e funzione di appartenenza}
-Il \textit{fuzzy set} è una generalizzazione della teoria classica degli insiemi e si basa sulla logica fuzzy. Viene definito come un raggruppamento di oggetti ed è caratterizzato da una funzione che sintetizza il grado di appartenenza di ogni oggetto all'insieme stesso. Formalmente, si avranno un universo del discorso $X$, un generico elemento $x$  appartenente a $X$ e un generico fuzzy set $A$ contenuto in $X$. L'insieme $A$ è caratterizzato da una funzione $f_A$, che prende il nome di \textit{membership function}, che associa a ogni punto $x$ un numero reale dell'intervallo [0,1]. Il valore $f_A(x)$ rappresenta il grado di appartenenza (\textit {membership value}) di $x$ ad $A$. Più questo valore sarà prossimo a 1, maggiore sarà il grado di appartenenza di $x$ ad $A$. Quindi 1 indicherà la piena appartenenza all'insieme $A$, mentre 0 indicherà la piena esclusione. I valori compresi tra 1 e 0 indicheranno invece la parziale appartenenza all'insieme $A$. Gli insiemi classici possono essere visti come un caso particolare di fuzzy set, dove gli unici valori di membership ammessi sono 1 e 0, corrispondenti a piena appartenenza o piena esclusione. Questo tipo di insiemi prende il nome di \textit{crisp set} o \textit{boolean set} e $f_A(x)$ avrà solo valori 0 o 1 (vedi Figura 2.3). 
+Il \textit{fuzzy set} è una generalizzazione della teoria classica degli insiemi e si basa sulla logica fuzzy. Viene definito come un raggruppamento di oggetti ed è caratterizzato da una funzione che sintetizza il grado di appartenenza di ogni oggetto all'insieme stesso. Formalmente, si avranno un universo del discorso $X$, un generico elemento $x$  appartenente a $X$ e un generico fuzzy set $A$ contenuto in $X$. L'insieme $A$ è caratterizzato da una funzione $f_A$, che prende il nome di \textit{membership function}, che associa a ogni punto $x$ un numero reale dell'intervallo [0,1]. Il valore $f_A(x)$ rappresenta il grado di appartenenza (\textit {membership value}) di $x$ ad $A$. Più questo valore sarà prossimo a 1, maggiore sarà il grado di appartenenza di $x$ ad $A$. Quindi 1 indicherà la piena appartenenza all'insieme $A$, mentre 0 indicherà la piena esclusione. I valori compresi tra 1 e 0 indicheranno invece la parziale appartenenza all'insieme $A$. Gli insiemi classici possono essere visti come un caso particolare di fuzzy set, dove gli unici valori di membership ammessi sono 1 e 0, corrispondenti a piena appartenenza o piena esclusione. Questo tipo di insiemi prende il nome di \textit{crisp set} o \textit{boolean set} e $f_A(x)$ avrà solo valori 0 o 1 (vedi Figura 1.3). 
 
 
 \begin{figure}[h!]
@@ -108,7 +112,7 @@ Il \textit{fuzzy set} è una generalizzazione della teoria classica degli insiem
 \end{center}
 \end{figure}
 
-In Figura 2.4 è possibile osservare la rappresentazione grafica di un crisp set (a sinistra) e di un fuzzy set (a destra). Il crisp set ha i contorni ben delineati e presenta due soli colori, bianco o nero: ciò accade poiché un punto può o appartenere al set e quindi trovarsi nello spazio in nero, oppure non appartenere al set e dunque trovarsi nello spazio bianco. Il fuzzy set, invece, avrà i contorni più sfumati e zone in grigio, dal momento che contempla l'imprecisione e l'incertezza e pertanto un punto può parzialmente appartenere a un insieme. 
+In Figura 1.4 è possibile osservare la rappresentazione grafica di un crisp set (a sinistra) e di un fuzzy set (a destra). Il crisp set ha i contorni ben delineati e presenta due soli colori, bianco o nero: ciò accade poiché un punto può o appartenere al set e quindi trovarsi nello spazio in nero, oppure non appartenere al set e dunque trovarsi nello spazio bianco. Il fuzzy set, invece, avrà i contorni più sfumati e zone in grigio, dal momento che contempla l'imprecisione e l'incertezza e pertanto un punto può parzialmente appartenere a un insieme. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -141,7 +145,7 @@ Le variabili linguistiche possono essere utilizzate all'interno dei FIS (\textit
 \subsection{Apprendimento automatico supervisionato e fuzzy set}
 
 Per molto tempo, all'interno della teoria dei fuzzy set, grande peso ha assunto la rappresentazione della conoscenza, soprattutto in relazione allo sviluppo di sistemi intelligenti e intelligenza artificiale. Tuttavia, negli ultimi anni sono emersi sempre più problemi con l'approccio puramente \textit{knowledge-driven}, che si basa sull'utilizzo da parte di un sistema di inferenza di conoscenze definite a priori, dal momento che risulta essere difficoltoso, intricato e spesso poco produttivo in termini di risultati. Di conseguenza, si è pensato di adattare i concetti della teoria dei fuzzy set a un approccio \textit{data-driven}, che invece utilizza i dati empirici per estrarre modelli. In questo modo, dunque, si può osservare come la teoria dei fuzzy set sia stata applicata all'interno dell'apprendimento automatico supervisionato, portando così alla nascita della \textit{fuzzy machine learning}~\cite{fuzzyml}. Difatti, la teoria dei fuzzy set riesce a rispondere a problemi di analisi dei dati, risultando pertanto un ottimo strumento per l'ambito dell'apprendimento automatico supervisionato. Difatti, la logica fuzzy risulta idonea, ad esempio, per operare con la vaghezza risultante dai dati empirici, che risentono di linguaggio naturale~\cite{fuzzydata}. 
-Gli algoritmi classici del machine learning vengono pertanto estesi ai corrispettivi fuzzy: saranno presenti dunque alberi di decisione fuzzy~\cite{fuzzydectree}, fuzzy clustering~\cite{fcm-intro}, fuzzy k-nearest neighbors~\cite{fknn-example1} e così via. In Figura 2.5 è presente un esempio di albero di decisione fuzzy. In questo modo è dunque possibile combinare punti di forza dei metodi classici e della teoria fuzzy al fine di ottenere un metodo che riesce ad ottimizzare caratteristiche del modello altrimenti più complessi da migliorare, come l'interpretabilità dei dati e la gradualità. 
+Gli algoritmi classici del machine learning vengono pertanto estesi ai corrispettivi fuzzy: saranno presenti dunque alberi di decisione fuzzy~\cite{fuzzydectree}, fuzzy clustering~\cite{fcm-intro}, fuzzy k-nearest neighbors~\cite{fknn-example1} e così via. In Figura 1.5 è presente un esempio di albero di decisione fuzzy. In questo modo è dunque possibile combinare punti di forza dei metodi classici e della teoria fuzzy al fine di ottenere un metodo che riesce ad ottimizzare caratteristiche del modello altrimenti più complessi da migliorare, come l'interpretabilità dei dati e la gradualità. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -156,7 +160,7 @@ Relativamente al fuzzy machine learning, il focus di questo elaborato è l'induz
 	\newpage
 	\chapter{Tecniche per l'induzione della funzione di appartenenza}
 
-Generare la funzione di appartenenza dato un particolare problema è un compito piuttosto complesso all'interno della teoria della logica fuzzy, dovuto all'interpretazione che si può attribuire al concetto di funzione di appartenenza. In particolare, Dubois e Prade~\cite{membinterp} affermano che vi possano essere tre interpretazioni differenti della questione, comportando dunque l'inesistenza di regole generali e sempre ottimali per la generazione della funzione di appartenenza. Ad esempio, la frase ``Il valore di appartenenza di George Bush alla classe di uomini alti è 0.8''~\cite{membpaper} può essere vista in tre differenti modi:
+Generare la funzione di appartenenza è un compito piuttosto complesso all'interno della teoria degli insiemi fuzzy, dovuto all'interpretazione che si può attribuire al concetto di funzione di appartenenza. In particolare, Dubois e Prade~\cite{membinterp} affermano che vi possano essere tre interpretazioni differenti della questione, comportando dunque l'inesistenza di regole generali e sempre ottimali per la generazione della funzione di appartenenza. Ad esempio, la frase ``Il valore di appartenenza di George Bush alla classe di uomini alti è 0.8''~\cite{membpaper} può essere vista in tre differenti modi:
 
 \begin{enumerate}
 \item Vista probabilistica: l'80\% della popolazione dichiara che George Bush è alto.
@@ -164,33 +168,32 @@ Generare la funzione di appartenenza dato un particolare problema è un compito 
 \item Vista di tipicità: l'altezza di George Bush presenta una distanza normalizzata pari a 0.2 dal prototipo più vicino al concetto di alto, che avrà invece grado di appartenenza pari a 1. 
 \end{enumerate}
 
-Non esistendo dunque un'interpretazione univoca, si può ben comprendere come i metodi deduttivi possano risultare inefficaci per stimare la funzione di appartenza, in quanto una stessa variabile può comportare interpretazioni diverse e dunque a funzioni di appartenenza diverse. Non esiste, in altri termini, un processo automatizzabile per la generazione della funzione che risponde perfettamente ad ogni situazione proposta. Per questo motivo, si utilizzano gli algoritmi induttivi che consentono una generalizzazione della funzione a partire da dati empirici, permettendo dunque di risolvere le ambiguità di interpretazione e di definire maggiormente il dominio. In generale in letteratura son stati presentati molti algoritmi, tra i quali si annoverano metodi basati sulla percezione, metodi euristici, clustering, support vector machine, istogrammi, k-nearest neighbour, reti neurali, algoritmi genetici e istogrammi. 
-\`E bene notare che non esistono misurazioni che in generale sappiano decretare il metodo migliore per la generazione delle funzioni di appartenenza, ma varia in base al campo e al problema sui quali si opera. Ciò può risultare problematico nel momento in cui si cerca di modellare concetti che non hanno un significato concreto, ma puramente astratto: in tal caso è necessario che il modello utilizzato per indurre la funzione di appartenenza sia abbastanza flessibile e facilmente modificabile, per poter migliorare le performance generali dell'algoritmo. La generazione della funzione di appartenenza diviene così uno passaggio abbastanza cruciale, dal momento che influenza anche le performance generali dell'algoritmo scelto. La scelta di un metodo a dispetto di un altro risulta dunque fortemente legata al tipo di problema e al tipo di dati ai quali ci si interfaccia. 
+Non esistendo dunque un'interpretazione univoca, si può ben comprendere come i metodi deduttivi possano risultare inefficaci per stimare la funzione di appartenza, in quanto uno stesso concetto può essere definito a partire da interpretazioni diverse, ottenendo così diverse funzioni di appartenenza. Non esiste, in altri termini, un processo automatizzabile per la generazione della funzione che risponde perfettamente a ogni situazione proposta. Per ovviare a questo inconveniente, si ricorre agli algoritmi induttivi che consentono di generare la funzione a partire da dati empirici, permettendo dunque di risolvere le ambiguità di interpretazione e di definire maggiormente il dominio. In generale in letteratura sono stati presentati molti algoritmi, tra i quali si annoverano metodi basati sulla percezione, metodi euristici, clustering, support vector machine, istogrammi, k-nearest neighbour, reti neurali, algoritmi genetici e istogrammi. 
+\`E bene notare che non esistono misurazioni che in generale sappiano decretare il metodo migliore per la generazione delle funzioni di appartenenza, ma che questo varia in base al campo e al problema sui quali si opera. Ciò può risultare problematico nel momento in cui si cerca di modellare concetti che non hanno un significato concreto, ma puramente astratto: in tal caso è necessario che il modello utilizzato per indurre la funzione di appartenenza sia abbastanza flessibile e facilmente modificabile, per poterne migliorare le performance generali. La generazione della funzione di appartenenza diviene così un passaggio abbastanza cruciale, dal momento che influenza anche le performance generali dell'algoritmo scelto. La scelta di un metodo a dispetto di un altro risulta dunque fortemente legata al tipo di problema e al tipo di dati ai quali ci si interfaccia. 
 
-In questo capitolo, si illustreranno nel paragrafo 3.1 i metodi basati sulle reti neurali e nel paragrafo 3.2 i metodi basati sull'algoritmo di k-nearest neighbour. In entrambi i capitoli si illustrerà il funzionamento degli algoritmi proposti e si darà una panoramica generale delle possibili varianti. 
+In questo capitolo si illustreranno nel Paragrafo 2.1 i metodi basati sulle reti neurali e nel Paragrafo 2.2 i metodi basati sull'algoritmo di k-nearest neighbour. In entrambi i paragrafi si illustrerà il funzionamento degli algoritmi proposti e si darà una panoramica generale delle possibili varianti. 
 
-\newpage
 
 	\section{Reti neurali}
 
-Le reti neurali artificiali (ANN) sono modelli computazionali e matematici composti da neuroni artificiali, che traggono ispirazione dalle reti neurali biologiche del cervello umano. Difatti, come le reti neutrali celebrali permettono all'individuo di ragionare e di apprendere, le reti neurali artificiali apprendono attraverso una fitta rete di neuroni interconessi che rielaborano le informazioni e le spediscono poi ai neuroni successivi. Le reti neurali vengono ampiamente utilizzate in molteplici campi, tra cui riconoscimento di pattern (ad esempio in bioinformatica), classificazione e compressione di dati. Come è possibile vedere in Figura 3.1, le reti neurali presentano essezialmente tre tipologie di strati o \textit{layer}: un \textit{input layer}, che riceve dati in ingresso, diversi \textit{hidden layer}, che si occupano dell'elaborazione e un \textit{output layer}, che raccoglie i risultati dell'elaborazione. Il numero di nodi in input è pari al numero delle feature dei vettori di input, mentre il numero di nodi in output è pari al numero di etichette.  Ogni neurone di un layer può avere molteplici connessioni con i neuroni del layer successivo: ad esempio, , è possibile avere una rete neurale \textit{fully connected}). 
+Le reti neurali artificiali (ANN) sono modelli computazionali e matematici composti da neuroni artificiali, che traggono ispirazione dalle reti neurali biologiche del cervello umano. Difatti, come le reti neutrali biologiche permettono all'individuo di ragionare e di apprendere, le reti neurali artificiali apprendono attraverso una fitta rete di neuroni interconessi, ognuno dei quali riceve informazioni da alcuni neuroni, le rielabora e spedisce poi il risultato dell'elaborazione ad altri neuroni della rete. Le reti neurali vengono ampiamente utilizzate in molteplici campi, tra cui riconoscimento di pattern (ad esempio in bioinformatica), classificazione e compressione di dati. In questo elaborato, ci si occuperà delle reti feed-forward, dette anche percettroni multistrato, di cui è possibile vedere  un esempio in Figura 2.1. Queste reti neurali presentano essenzialmente tre tipologie di strati o \textit{layer}: un \textit{input layer}, che riceve dati in ingresso, uno o più \textit{hidden layer}, che si occupano dell'elaborazione e un \textit{output layer}, che raccoglie i risultati dell'elaborazione. Il numero di nodi in input è pari al numero delle feature dei vettori di input, mentre il numero di nodi in output è legato alla natura del problema in esame: ad esempio, nei problemi di classificazione binaria si utilizza un solo neurone di output, mentre nei problemi multiclasse il numero di neuroni è pari al numero di etichette considerate.  Ogni neurone in uno strato può avere molteplici connessioni con i neuroni dello strato successivo. Normalmente, si utilizzano strati \textit{fully connected}, in cui ogni neurone è collegato a tutti i neuroni dello strato successivo. 
 
 \begin{figure}[h!]
 \begin{center}
   \includegraphics[width=10cm]{Immagini/ReteNeurale.png}\\
   \caption{Struttura di una rete neurale artificiale}
-  \source{\url{https://commons.wikimedia.org/w/index.php?curid=1496812} [Accesso in Settembre 2020]}
+  \source{\url{https://commons.wikimedia.org/w/index.php?curid=1496812} [Accesso: settembre 2020]}
 \end{center}
 \end{figure}
 
-I neuroni e le connessioni tra neuroni presentano dei pesi da aggiustare durante la fase di apprendimento, per rafforzare o meno il segnale da mandare al neurone successivo. Spesso, all'interno del nodo vi è una soglia che decreta se tale segnale verrà trasmesso ai neuroni successivi o meno. Per determinare l'output di ogni neurone, si sommano tutti i pesi ricevuti in input, ognuno dei quali è composto dal peso del neurone del layer precedente moltiplicato per il peso della connessione associata. A questo peso si aggiunge un bias e il risultato finale viene dato in input a una funzione di attivazione che produce l'output da trasmettere ai neuroni del layer successivo. Infine, nell'output layer si raccoglie l'output finale. 
-Le reti neurali vengono definite anche ``adattive'', dal momento che sono in grado di modificare la propria struttura e i propri pesi attraverso la rielaborazione dei dati esterni e delle informazioni interne, ottenuta durante la fase di apprendimento. Con l'approccio supervisionato, le reti neurali vengono addestrate attraverso esempi, di cui è anche nota l'etichetta. In questo modo, durante il processo di apprendimento, il modello confronta l'output predetto con l'etichetta reale e questa differenza, definita dalla funzione di perdita, verrà utilizzata per ridefinire i pesi interni. Infatti, una volta calcolata la funzione di perdita, si torna indietro nella rete per sistemare tutti i pesi e minimizzare così la funzione di costo. Per sistemare i pesi, si utilizza l'algoritmo di backpropagation, che sfrutta metodi di ottimizzazione come la discesa del gradiente. 
+Le connessioni tra neuroni presentano dei pesi atti a rafforzare o meno il segnale da mandare al neurone successivo e che vengono aggiustati durante la fase di apprendimento, . Spesso, all'interno del neurone vi è una soglia che decreta se tale segnale verrà trasmesso ai neuroni successivi o meno. Per determinare l'output di ogni neurone, si sommano tutti i pesi ricevuti in input, ognuno dei quali è composto dallo stato del neurone del layer precedente moltiplicato per il peso della connessione associata. 
+% SPIEGARE COSA SIGNIFICA STATO DEL NEURONE
+A questo segnale totale si sottrae l'eventuale soglia del neurone e il risultato finale viene dato in input a una funzione di attivazione che produce il nuovo stato del neurone, che rappresenta anche l'output da trasmettere ai neuroni dello strato successivo. Infine, nell'output layer si raccoglie l'output finale. 
+Le reti neurali vengono definite anche ``adattive'', dal momento che sono in grado di modificare i propri pesi attraverso la rielaborazione dei dati esterni e delle informazioni interne, ottenuta durante la fase di apprendimento. Con l'approccio supervisionato, le reti neurali vengono addestrate attraverso esempi, ognuno dei quali è una coppia di input ed etichetta. La rete viene allenata in modo tale che, dato un input, riesca ad approssimare bene l'etichetta corrispondente. Durante il processo di apprendimento, per ogni input fornito, la rete ne predice l'etichetta, che poi confronta con l'etichetta reale corrispondente. La differenza tra output predetto e etichetta corrispondente viene misurata da una funzione di perdita, che diventa l'indicazione per ridefinire i pesi delle connessioni. I pesi delle connessioni, infatti, vengono modificati di modo da minimizzare la funzione di perdita, utilizzando l'algoritmo del gradiente. Per effettuare questa modifica, si procede a ritroso nella rete, partendo dallo strato di output e andando via via a considerare gli strati precedenti, fino ad arrivare a quello di input. Per questo motivo, l'algoritmo di apprendimento viene chiamato backpropagation. 
 
 
-
-\subsection{Neurofuzzy}
-Le reti neurali descritte sopra possono essere utilizzate per generare funzioni di appartenenza, dal momento che i valori di output della funzione di attivazione di ogni neurone sono simili ai valori di appartenenza dei fuzzy set. Una volta addestrata la rete, pertanto, questa può essere utilizzata per generare gradi di appartenenza, ricevendo in input il vettore delle feature e dando in output il grado di appartenenza ai fuzzy set. Questo approccio funziona dal momento che le funzioni di attivazione hanno la stessa forma di
-alcune funzioni di appartenenza ~\cite{membneuralnetwsimilar}. Le reti neurali e i fuzzy system hanno delle caratteristiche abbastanza diverse tra loro, come è possibile vedere nella Tabella \ref{table:0}~\cite{neurofuzzyintro}. Entrambi i sistemi presentano i loro punti di forza e le loro debolezze. Da una parte, i sistemi fuzzy sono in grado di rappresentare l'incertezza, sono facilmente estendibili grazie alla generazione di nuove regole e risultano essere robusti, ma sono incapaci di generalizzare. D'altra parte, le reti neurali sanno apprendere e generalizzare, ma è più complesso interpretarle e determinare il numero di layer e neuroni ~\cite{surveyneurofuzzy}.
+\subsection{Sistemi neurofuzzy}
+Le reti neurali descritte nel paragrafo precedente possono essere utilizzate per generare funzioni di appartenenza, dal momento che i valori di output della funzione di attivazione di ogni neurone possono essere simili ai valori di appartenenza dei fuzzy set~\cite{membneuralnetwsimilar}. Una volta addestrata la rete, pertanto, questa può essere utilizzata per generare gradi di appartenenza, ricevendo in input il vettore delle feature e dando in output il grado di appartenenza ai fuzzy set. Le reti neurali e i fuzzy system hanno delle caratteristiche abbastanza diverse tra loro, come è possibile vedere nella Tabella \ref{table:0}~\cite{neurofuzzyintro}. Entrambi i sistemi presentano i loro punti di forza e le loro debolezze. Da una parte, i sistemi fuzzy sono in grado di rappresentare l'incertezza, sono facilmente estendibili grazie alla generazione di nuove regole e risultano essere robusti, ma sono incapaci di generalizzare. D'altra parte, le reti neurali sanno apprendere e generalizzare, ma è più complesso interpretarle e determinare il numero di layer e neuroni~\cite{surveyneurofuzzy}.
 
 
 \begin{table}[h!]
@@ -202,11 +205,11 @@ alcune funzioni di appartenenza ~\cite{membneuralnetwsimilar}. Le reti neurali e
 \hline
 Sono strutture di basso livello & Affrontano ragionamento di alto livello\\ 
 \hline
-Buone performance quando sono si utilizzano molti esempi di apprendimento & Utilizzano informazioni linguistiche da esperti del dominio \\
+Buone performance quando si utilizzano molti esempi di apprendimento & Utilizzano informazioni linguistiche da esperti del dominio \\
 \hline
-Possono appredere & Non imparano e non si adattano a nuovi environment \\
+Possono appredere & Non imparano e non si adattano a cambiamenti di environment \\
 \hline
-Sono scatole nere per l'utente & Si basano sul linguaggio naturale\\
+Sono scatole nere \footnote{Con ``scatola nera'' si intende un sistema in cui non sono noti a priori i processi interni che portano al funzionamento del sistema stesso} per l'utente & Si basano sul linguaggio naturale\\
 \hline
 
 \end{tabular}
@@ -214,21 +217,21 @@ Sono scatole nere per l'utente & Si basano sul linguaggio naturale\\
 \label{table:0}
 \end{table}
 
-La loro combinazione consente di ottenere un sistema capace di integrare la capacità di apprendere delle reti neurali e la flessibilità vicina al ragionamento umano dei sistemi fuzzy. Tale sistema prende il nome \textit{neurofuzzy}, un modello ibrido in cui i fuzzy set e le regole vengono sistemate, in un vero e proprio processo di tuning, attraverso le tecniche delle reti neurali. 
+La combinazione di reti neurali e fuzzy system consente di ottenere un sistema capace di integrare la capacità di apprendere delle reti neurali e la flessibilità vicina al ragionamento umano dei sistemi fuzzy. Tale sistema viene detto di tipo \textit{neurofuzzy}, un modello ibrido in cui i fuzzy set e le regole vengono sistemate, in un vero e proprio processo di tuning, attraverso le tecniche delle reti neurali. 
 Esistono diversi approcci al riguardo, di cui si fornisce una breve elencazione in seguito. 
 
 \begin{itemize}
 \item \textit{Cooperative Neuro-Fuzzy System}: esiste una fase di pre-processing in cui attraverso le reti neurali si determinano alcuni sottoblocchi del sistema fuzzy; in seguito, si esegue soltanto il sistema fuzzy. Ha come svantaggio che la struttura diventa non totalmente interpretabile. 
-\item \textit{Concurrent Neuro-Fuzzy System}: la rete neurale e il sistema fuzzy lavorano insieme in modo continuativo. Generalmente, l'input entra nel sistema fuzzy, viene pre-processato ed in seguito viene immesso nella rete neurale, oppure si può invertire il processo. Uno svantaggio, tuttavia, è la minore interpretabilità dei risultati. 
+\item \textit{Concurrent Neuro-Fuzzy System}: la rete neurale e il sistema fuzzy lavorano insieme in modo continuativo. Generalmente, l'input entra nel sistema fuzzy, viene pre-processato e in seguito viene immesso nella rete neurale, oppure si può invertire il processo. Uno svantaggio, tuttavia, è la minore interpretabilità dei risultati. 
 \item \textit{Hybrid Neuro-Fuzzy System}: la rete neurale apprende alcuni parametri del sistema fuzzy in modo iterativo. Tra tutti è l'approccio più utilizzato. 
 \end{itemize}
 
-Nel terzo approccio il sistema complessivo riprende due modalità diverse. Dapprima, nella fase di apprendimento, impara i propri parametri interni come una rete neurale. In seguito, durante la fase di esecuzione, si comporterà come un sistema fuzzy. Questa scelta è stata adottata dal momento che esistono algoritmi efficienti di apprendimento presenti nelle reti neurali, che riescono dunque ad alleviare il processo di tuning dei sistemi fuzzy. Di questo approccio sono state fornite diversi modelli, che spesso risultano essere abbastanza simili tra loro. Una delle famiglie di architetture più comuni è ANFIS, di cui sono state registrate varianti in Tabella \ref{table:1}.
+Nel terzo approccio il sistema complessivo riprende due modalità diverse. Dapprima, nella fase di apprendimento, impara i propri parametri interni come una rete neurale. In seguito, durante la fase di esecuzione, si comporterà come un sistema fuzzy. Questa scelta è stata adottata dal momento che esistono algoritmi efficienti di apprendimento presenti nelle reti neurali, che riescono dunque ad alleviare il processo di tuning dei sistemi fuzzy. Di questo approccio sono state fornite diversi modelli, che spesso risultano essere abbastanza simili tra loro. Una delle famiglie di architetture più comuni è ANFIS, di cui la Tabella \ref{table:1} indica la principali varianti. 
 
 \subsection{Fuzzy min-max Neural Network}
 
-Negli ultimi anni, la classificazione di pattern è diventata uno dei campi più importanti dell'intelligenza artificiale, dal momento che fornisce innumerevoli applicazioni nel mondo reale. In questo ambito, sia le reti neurali sia la logica fuzzy sono state ampiamente utilizzati, e pertanto si è deciso di costruire un modello ibrido che combina i due sistemi. 
-L'algoritmo fuzzy min-max neural network utilizza i fuzzy set come \textit{pattern class}. L'idea è quella di avere una rete neurale che crea classi aggregando diversi fuzzy set più piccoli in un singolo fuzzy set, che corrisponderà alla classe. L'algoritmo si basa sulla costruzione di \textit{hyperbox}. Un hyperbox descrive una regione n-dimensionale definita completamente dai punti di minimo e di massimo, in corrispondenza dei quali viene definita la funzione di appartenenza. In Figura 3.2 è raffigurato un hyperbox, con associata una funzione di appartenenza che determina con quale grado un punto $x\in R^3$ è contenuto all'interno del box. La collezione di questi hyperbox forma un pattern class. 
+Negli ultimi anni, la classificazione di pattern è diventata uno dei campi più importanti dell'intelligenza artificiale, dal momento che fornisce innumerevoli applicazioni nel mondo reale. In questo ambito, sia le reti neurali sia la logica fuzzy sono state ampiamente utilizzate, e pertanto si è deciso di costruire un modello ibrido che combina i due sistemi. 
+L'algoritmo fuzzy min-max neural network utilizza i fuzzy set come \textit{pattern class}. L'idea è quella di avere una rete neurale che crea classi aggregando diversi fuzzy set più piccoli in un singolo fuzzy set (fuzzy set class), che corrisponderà alla classe. L'algoritmo si basa sulla costruzione di \textit{hyperbox}. Un hyperbox descrive una regione n-dimensionale definita completamente dai punti di minimo e di massimo, in corrispondenza dei quali viene definita la funzione di appartenenza. In Figura 2.2 è raffigurato un hyperbox, con associata una funzione di appartenenza che determina con quale grado un punto $x\in \mathbb{R}^3$ è contenuto all'interno del box. La collezione di questi hyperbox forma un pattern class. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -240,12 +243,12 @@ L'algoritmo fuzzy min-max neural network utilizza i fuzzy set come \textit{patte
 I punti di minimo e di massimo vengono determinati attraverso il \textit{fuzzy min-max learning algorithm}, un processo di espansione e contrazione che impara e definisce i confini dei fuzzy set e quindi delle classi. Ogni fuzzy set class è formato dall'aggregazione di più hyperbox, operazione svolta all'interno della struttura della rete neurale. L'apprendimento avviene collocando correttamente gli hyperboxes nel \textit{pattern space}. In seguito è stata fornita una breve descrizione dell'algoritmo fuzzy min-max learning: 
 
 \begin{itemize}
-\item Espansione: identificare degli hyperbox espandibili ed eventualmente espanderli. Se non è possibile trovarne, aggiungere un nuovo hyperbox per la data classe
-\item Controllo di sovrapposizioni: determinare se esiste una sovrapposizione di hyperbox tra classi diverse
-\item Contrazione: se esiste una sovrapposizione di classi diverse, eliminarlo riducendo leggermente ogni hyperbox
+\item espansione: identificare degli hyperbox espandibili ed eventualmente espanderli; se non è possibile trovarne, aggiungere un nuovo hyperbox per la data classe;
+\item controllo di sovrapposizioni: determinare se esiste una sovrapposizione di hyperbox tra classi diverse;
+\item contrazione: se esiste una sovrapposizione di classi diverse, eliminarlo riducendo leggermente ogni hyperbox.
 \end{itemize}
 
-In Figura 3.3 è presente un esempio di sovrapposizione. Definiti $v_i$ e $w_i$ rispettivamente il punto minimo e il punto massimo dell'hyperbox i, è possibile notare a sinistra una sovrapposizione tra i due hyperbox che rappresentano classi diverse. Pertanto, occorre effettuare un'operazione di eliminazione, contraendo i confini di ogni hyperbox. 
+In Figura 2.3 è presente un esempio di sovrapposizione. Definiti $v_i$ e $w_i$ rispettivamente il punto minimo e il punto massimo dell'hyperbox i, è possibile notare a sinistra una sovrapposizione tra i due hyperbox che rappresentano classi diverse. Pertanto, occorre effettuare un'operazione di eliminazione, contraendo i confini di ogni hyperbox. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -255,7 +258,7 @@ In Figura 3.3 è presente un esempio di sovrapposizione. Definiti $v_i$ e $w_i$ 
 \end{figure}
 
 
-L'algoritmo fornisce la capacità di incorporare nuove classi e ridefinire quelle esistenti senza dover nuovamente rieffettuare il processo di apprendimento. Tuttavia, presenta anche alcune limitazioni, soprattutto nella procedura di contrazione e controllo di sovrapposizioni, comportando, negli anni, la presentazione in letteratura di nuove varianti~\cite{fmmnn_variants}. In Figura 3.4 è possibile osservane alcune, principalmente divise tra utilizzo della contrazione o meno. 
+L'algoritmo fornisce la capacità di incorporare nuove classi e ridefinire quelle esistenti senza dover nuovamente rieffettuare il processo di apprendimento. Tuttavia, presenta anche alcune limitazioni, soprattutto nella procedura di contrazione e controllo di sovrapposizioni, comportando, negli anni, la presentazione in letteratura di nuove varianti~\cite{fmmnn_variants}. In Figura 2.4 è possibile osservane alcune, principalmente divise tra utilizzo della contrazione o meno. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -264,15 +267,15 @@ L'algoritmo fornisce la capacità di incorporare nuove classi e ridefinire quell
 \end{center}
 \end{figure}
 
-Nel capitolo 4.1 si vedrà l'implementazione in Python dell'algoritmo fuzzy min-max Neural Network.
+Nel capitolo 3 si vedrà l'implementazione in Python dell'algoritmo fuzzy min-max Neural Network.
 
 \subsection{Altre varianti}
 
-Infine, oltre ai modelli trattati precedentemente, esistono altre possibili reti neurali fuzzy. Nella Tabella \ref{table:1} è possibile osservare una panoramica di alcuni metodi presenti in letteratura. Per comodità, alcuni metodi sono stati raggruppati per famiglia di algoritmo, di cui è fornita qui in seguito una breve elencazione delle caratteristiche più rilevanti. 
+Infine, oltre ai modelli trattati precedentemente, esistono altre implementazioni di reti neurali fuzzy. Nella Tabella \ref{table:1} è possibile osservare una panoramica di alcuni metodi presenti in letteratura. Per comodità, alcuni metodi sono stati raggruppati per famiglia di algoritmo, di cui è fornita qui in seguito una breve elencazione delle caratteristiche più rilevanti. 
 
 \begin{itemize}
 \item \textit{Self-organizing fuzzy neural network}:  capaci di riorganizzare il modello e adattarsi a cambiamenti di \textit{environment}. Si utilizzano nuovi algoritmi di \textit{pruning}, cioè algoritmi di compressione e ottimizzazione della rete neurale. 
-\item \textit{Interval Type-2 Fuzzy Neural Network}: estensione con i \textit{Type-2 Fuzzy set}, che presentano una funzione di appartenenza secondaria. Presentano una maggiore \textit{learning accuracy} con minor numero di regole rispetto al Type-1 
+\item \textit{Interval Type-2 Fuzzy Neural Network}: estensione con i \textit{Type-2 Fuzzy set}, che consente di esprimere il grado di incertezza per i valori espressi dalla funzione di appartenenza. Presentano una maggiore \textit{learning accuracy} con minor numero di regole rispetto al Type-1.
 \item \textit{Dynamic Fuzzy Neural Network}: i neuroni posso essere ricreati o eliminati dinamicamente a seconda delle performance del sistema. L'apprendimento risulta molto più veloce. 
 \end{itemize}
 
@@ -318,19 +321,19 @@ Online Self-Constructing  & SONFIN & 1998 & ~\cite{SONFIN} \\
 
 
 \section{ K-Nearest Neighbour}	
-L'algoritmo nearest neighbour è uno degli algoritmi più semplici e facili da implementare nell'apprendimento automatico supervisionato. Vede le sue applicazioni principali nei problemi di classificazione e di regressione. L'idea basilare di questo algoritmo è che due oggetti, se sono simili, saranno vicini tra loro. Si consideri l'insieme $X={x_1, x_2, ..., x_n}$ di n campioni etichettati e si ponga $x_j \in X$ come l'esempio più vicino ad $x$. L'algoritmo classificherà $x$ con la stessa etichetta associata a $x_j$. L'algoritmo può essere esteso come  K-nearest neighbor, che classifica un oggetto con la stessa etichetta rappresentata dalla maggioranza dei $k$ campioni più vicini. Durante la fase di apprendimento, occorre partizionare lo spazio in diverse regioni, in riferimento alle feature e alle posizioni che occupano gli esempi di apprendimento. Fissato il parametro $k$, corrispondente al numero di vicini necessari per decretare l'etichetta di un oggetto, si andranno a calcolare le distanze tra l'oggetto da classificare e tutti i punti dello spazio, corrispondenti agli esempi di apprendimento. Per calcolare la distanza, si può utilizzare la distanza euclediana, molto utile se le variabili sono dello stesso tipo:
+L'algoritmo nearest neighbour è uno degli algoritmi più semplici e facili da implementare nell'apprendimento automatico supervisionato. Vede le sue applicazioni principali nei problemi di classificazione e di regressione. L'idea basilare di questo algoritmo è che due oggetti, se sono simili, saranno vicini tra loro. Si consideri l'insieme $X=\{x_1, x_2, ..., x_n\}$ di $n$ campioni etichettati e si ponga $x_j \in X$ come l'esempio più vicino a un nuovo oggetto $x$. L'algoritmo classificherà $x$ con la stessa etichetta associata a $x_j$. L'algoritmo può essere esteso come  K-nearest neighbor, che classifica un oggetto con la stessa etichetta rappresentata dalla maggioranza dei $k$ campioni più vicini. Durante la fase di apprendimento, occorre partizionare lo spazio in diverse regioni, in riferimento alle feature e alle posizioni che occupano gli esempi di apprendimento. Fissato il parametro $k$, corrispondente al numero di vicini necessari per decretare l'etichetta di un oggetto, si andranno a calcolare le distanze tra l'oggetto da classificare e tutti i punti dello spazio, corrispondenti agli esempi di apprendimento. Per calcolare la distanza, dati due punti $ p = (p_1, ..., p_n)$ e $q =  (q_1, ..., q_n)$ si può utilizzare la distanza euclidea:
 
 $$d\left( p,q\right)   = \sqrt {\sum _{i=1}^{n}  \left( q_{i}-p_{i}\right)^2 }$$
 
-oppure, la distanza di Manhattan, utile se le variabili non sono dello stesso tipo:
+\noindent oppure, la distanza di Manhattan: 
 
 
-$$  d\left( p,q\right) = |x_{p}-x_{q}|+|y_{p}-y_{q}| $$
+$$  d\left( p,q\right) = \sum _{i=1}^{n} \left(|q_{i}-p_{i}|\right)$$
 
 
-o, se si opera con stringhe, si può utilizzare la distanza di Hamming. 
-Una volta calcolata la distanza tra l'oggetto da classificare e tutti i punti dello spazio, le si elencano in ordine non decrescente e si selezionano i primi $k$ punti più vicini. Infine, verrà attribuita all'oggetto l'etichetta più frequente nei $k$ punti più vicini selezionati. 
-Un esempio grafico del k-Nearest Neighbour è presente in Figura 3.5. 
+\noindent o, se si opera con stringhe, si può utilizzare la distanza di Hamming. 
+Una volta calcolata la distanza tra l'oggetto da classificare e tutti i punti del dataset, le si elencano in ordine non decrescente e si selezionano i primi $k$ punti più vicini. Infine, verrà attribuita all'oggetto l'etichetta più frequente nei $k$ punti più vicini selezionati. 
+Un esempio grafico del k-Nearest Neighbour è presente in Figura 2.5. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -339,24 +342,24 @@ Un esempio grafico del k-Nearest Neighbour è presente in Figura 3.5.
 \end{center}
 \end{figure}
 
-Tra i vantaggi dell'algoritmo KNN si possono annoverare la sua estensibilità a molti problemi, l'alta accuratezza e semplicità di implementazione e l'adattabilità sui dati. Infatti, l'algoritmo non è parametrico e dunque non viene fatta assunzione sui dati, ma il modello viene costruito interamente dai dati forniti. Tuttavia, l'algoritmo diventa computazionalmente costoso all'aumentare delle dimensioni del dataset, dal momento che conserva la maggior parte dei dati. Ciò comporta tempi cospicui nel dover processare un dataset di grandi dimensioni. Un modo per migliorare le performance dell'algoritmo può essere fare \textit{feature selection}, di modo da ridurre il numero di attributi irrilevanti ai fini della classificazione. Un'altra questione delicata è decretare il valore del parametro $k$, in base al quale può variare sensibilmente l'esito della classificazione. Per maggiori chiarimenti, si rimanda al Capitolo 4.2
+Tra i vantaggi dell'algoritmo KNN si possono annoverare la sua estensibilità a molti problemi, l'alta accuratezza e la semplicità di implementazione e l'adattabilità sui dati. Infatti, l'algoritmo non è parametrico e dunque non viene fatta assunzione sui dati, ma il modello viene costruito interamente dai dati forniti. Tuttavia, l'algoritmo diventa computazionalmente costoso all'aumentare delle dimensioni del dataset, dal momento che conserva la maggior parte dei dati. Ciò comporta tempi cospicui nel dover elaborare un dataset di grandi dimensioni. Un modo per migliorare le performance dell'algoritmo può essere fare \textit{feature selection}, di modo da ridurre il numero di attributi irrilevanti ai fini della classificazione. Un'altra questione delicata è decretare il valore del parametro $k$, in base al quale può variare sensibilmente l'esito della classificazione. Per maggiori chiarimenti si rimanda al Capitolo 3. 
 
 \subsection{Fuzzy k-Nearest Neighbour}
 
-\`E possibile coniugare l'algoritmo k-Nearest Neighbour alla logica fuzzy, ottenendo così il \textit{Fuzzy K-Nearest Neighbour}. Questo algoritmo, a differenza della versione base, non assegnerà la classe all'oggetto, ma computerà i gradi di appartenenza a tutte le classi possibili, per evitare nessuna assegnazione arbitraria. I gradi di appartenenza assegnati dipendono dalla distanza dell'oggetto dai k campioni più vicini e dai gradi di appartenenza di quest'ultimi dalle classi possibili. Infatti, uno dei problemi della versione base dell'algoritmo è che i campioni vengono considerati allo stesso modo importanti nell'assegnamento dell'etichetta all'oggetto in questione. Ciò genera spesso difficoltà laddove vi siano sovrapposizioni di campioni. Pertanto in generale, la versione fuzzy consente di poter definire il grado di appartenenza di un oggetto in una certa classe, in base alla quale ridefinire l'importanza dei campioni vicini nel determinare la classe ed evitare situazioni ambigue. Infatti, avere dei gradi di appartenenza permette di poter definire con maggior sicurezza l'appartenenza o meno di un oggetto a una classe e, dunque, consente di aver maggiore sensibilità nella classificazione. Ad esempio, se un oggetto viene assegnato con un grado di appartenenza pari a 0.9 a una classe e 0.05 a un'altra, sarà altamente probabile che l'oggetto appartenga alla prima classe; d'altra parte, se un oggetto ha un grado di appartenenza pari a 0.55 a una classe e un 0.44 a un'altra, allora l'esito della classificazione sarà un po' più incerto. In tal caso allora sarà necessaria maggiore attenzione e magari una seconda esaminazione, per comprendere quale delle due classi sia eventualmente la più consona. Grazie all'implementazione fuzzy, pertanto, si raffina la classificazione. L'algoritmo fuzzy è simile alla versione crisp, dalla quale differisce dopo aver selezionato i $k$ campioni più vicini. 
+\`E possibile coniugare l'algoritmo k-Nearest Neighbour alla logica fuzzy, ottenendo così il \textit{Fuzzy K-Nearest Neighbour} (FKNN). Questo algoritmo, a differenza della versione base, non assegnerà la classe all'oggetto, ma computerà i gradi di appartenenza a tutte le classi possibili, per evitare nessuna assegnazione arbitraria. I gradi di appartenenza assegnati dipendono dalla distanza dell'oggetto dai k campioni più vicini e dai gradi di appartenenza di quest'ultimi dalle classi possibili. Infatti, uno dei problemi della versione base dell'algoritmo è che i campioni vengono considerati allo stesso modo importanti nell'assegnamento dell'etichetta all'oggetto in questione. Ciò genera spesso difficoltà laddove vi siano sovrapposizioni di campioni. Pertanto, la versione fuzzy  in generale consente di poter definire il grado di appartenenza di un oggetto in una certa classe, in base alla quale ridefinire l'importanza dei campioni vicini nel determinare la classe ed evitare situazioni ambigue. Infatti, avere dei gradi di appartenenza permette di poter definire con maggior sicurezza l'appartenenza o meno di un oggetto a una classe e, dunque, consente di aver maggiore sensibilità nella classificazione. Ad esempio, se un oggetto viene assegnato con un grado di appartenenza pari a 0.9 a una classe e 0.05 a un'altra, sarà altamente probabile che l'oggetto appartenga alla prima classe; d'altra parte, se un oggetto ha un grado di appartenenza pari a 0.55 a una classe e un 0.44 a un'altra, allora l'esito della classificazione sarà un po' più incerto. In tal caso allora sarà necessaria maggiore attenzione e magari un secondo esame, per comprendere quale delle due classi sia eventualmente la più consona. Grazie all'implementazione fuzzy, pertanto, si raffina la classificazione. L'algoritmo fuzzy è simile alla versione crisp, dalla quale differisce dopo aver selezionato i $k$ campioni più vicini. 
 
-Nel Capitolo 4.2 si vedrà l'implementazione in Python del Fuzzy K-Nearest Neighbour. 
+Nel Capitolo 3 si vedrà l'implementazione in Python del Fuzzy K-Nearest Neighbour. 
 
 
 \subsection{Varianti}
 
-Il Fuzzy K-Nearest Neighbour, tuttavia, presenta alcune debolezze che hanno portato a ricercare varianti per poterle affrontare al meglio. Molte ricerche hanno proposto varie tecniche, tra le quali l'uso della riduzione dei dati, sviluppo di metodi per decretare l'iperparametro $k$, introduzione dei pesi per adattare l'influenza delle feature e versioni più velocizzate per la ricerca dei campioni più vicini. 
+Il Fuzzy K-Nearest Neighbour presenta alcune debolezze che hanno portato a ricercare varianti per poterle affrontare al meglio. Molte ricerche hanno proposto varie tecniche, tra le quali l'uso della riduzione dei dati, lo sviluppo di metodi per decretare l'iperparametro $k$, l'introduzione dei pesi per adattare l'influenza delle feature e delle versioni più velocizzate per la ricerca dei campioni più vicini. 
 
-In particolare, esiste un'estenzione ai fuzzy rough set, che introduce la cosiddetta \textit{classificazione possibilistica}. Infatti, un algoritmo di classificazione dovrebbe notificare la situazione in cui un oggetto non appartiene in realtà a nessuna classe: tale abilità è, difatti, alla base della mente umana, che è in grado di cogliere la non-appartenenza di un oggetto a tutte le classi da lui apprese con l'esperienza. Ad esempio, se un essere umano conosce solo cerchi e rettangoli e gli viene presentato un triangolo, egli sarà in grado di affermare che tale oggetto non apparterrà a nessuna classe da lui conosciuta. L'algoritmo FKNN in generale non possiede questa caratteristica. Si introduce dunque il FRNN, in cui, invece di considerare i $k$ campioni più vicini come punti di riferimento, comprende tutti i campioni dello spazio, assegnando gradi di appartenenza diversi. In questo modo, non si presenta il problema di scegliere il valore ottimale di $k$. 
+In particolare, esiste un'estensione ai fuzzy rough set, che introduce la cosiddetta \textit{classificazione possibilistica}. Infatti, un algoritmo di classificazione dovrebbe notificare la situazione in cui un oggetto non appartiene in realtà a nessuna classe: tale abilità è, difatti, alla base della mente umana, che è in grado di cogliere la non-appartenenza di un oggetto a tutte le classi da lui apprese con l'esperienza. Ad esempio, se un essere umano conosce solo cerchi e rettangoli e gli viene presentato un triangolo, egli sarà in grado di affermare che tale oggetto non apparterrà a nessuna classe da lui conosciuta. L'algoritmo FKNN in generale non possiede questa caratteristica. Si introduce dunque il FRNN, in cui, invece di considerare i $k$ campioni più vicini come punti di riferimento, comprende tutti i campioni dello spazio, assegnando gradi di appartenenza diversi. In questo modo, non si presenta il problema di scegliere il valore ottimale di $k$. 
 
 Tra le varianti, è possibile ritrovare nuovamente l'estensione ai Type-2 fuzzy set (si veda il IT2FKNN). Sono presenti anche modalità ibride del Fuzzy-KNN, combinato con algoritmi genetici (GAFuzzyKNN) e clustering (FCMKNN), che consentono di combinare i punti di forza di entrambi gli algoritmi. 
 
-In generale, in Tabella \ref{table:2} è possibile osservare una panoramica di alcuni metodi presenti in letteratura. Per comodità, alcuni metodi sono stati raggruppati per famiglia di algoritmo. Si annoverano le seguenti categorie: 
+In generale, in Tabella \ref{table:2} è possibile osservare una panoramica di alcuni metodi presenti in letteratura. Per comodità, alcuni metodi sono stati raggruppati per famiglia di algoritmo. Si annoverano le categorie elencate in seguito. 
 
 \begin{itemize}
 \item \textit{Interval-valued fuzzy set k-NN}: i valori di membership di ogni campione di training vengono rappresentati come array di intervalli, restituendo una rappresentazione più flessibile della tipicità delle istanze per ogni classe del problema. Usando questo approccio, si riduce sensibilmente la dipendenza al parametro $k$ del FKNN. 
@@ -403,7 +406,7 @@ Modified Fuzzy k-Nearest Neighbour & MOGA-MFNN & 2017 & ~\cite{ MOGA-MFNN} \\
 Parameter independent fuzzy weighted & PIFW-kNN & 2017 & ~\cite{PIFW-kNN} \\
 \hline
 \end{tabular}
-\caption{Elenco degli algoritmi basati su  k-Nearest Neighbour}
+\caption{Elenco degli algoritmi basati su k-Nearest Neighbour}
 \label{table:2}
 \end{table}
 
@@ -412,19 +415,281 @@ Parameter independent fuzzy weighted & PIFW-kNN & 2017 & ~\cite{PIFW-kNN} \\
 % POSSO CITARE https://www.researchgate.net/publication/335634726_An_Improved_Neural_Network_Classifier_Using_Fuzzy_Nearest_Neighbor_Partitioning_Method CHE COMBINA RETI NEURALI E FKNN
 
 	\chapter{Implementazioni ed esperimenti}
-	\section{Algoritmi basati su reti neurali}
-	\section{Algoritmi basati su k-Nearest neighbour}
 
-%The algorithm does not generate smooth membership curves in overlapping regions. Può essere utile dopo, ho notato una cosa nelle visualizzazioni della membership
+In questo capitolo, si illustreranno le implementazioni di due algoritmi, uno per le reti neurali e uno per il k-nearest neighbour, trattati nel Capitolo 2. Il codice è reperibile nel repository Github\footnote{https://github.com/ritafolisi/Tirocinio/}. Nel Paragrafo 3.1 si darà una panoramica dei dataset utilizzati, con la spiegazione delle operazioni di preprocessing effettuate. Nei Paragrafi 3.2 e 3.3 si passa in rassegna l'implementazione del Fuzzy min-max Neural Network e del Fuzzy k-Nearest Neighbour, di cui sono già state date delle introduzioni teoriche, rispettivamente, nel Paragrafo 2.1.2 e nel Paragrafo 2.2.1. Si osserverà inoltre l'implementazione dei processi descritti nel Paragrafo 1.1, come la cross-validation e il model selection. Infine, nel Paragrafo 3.4 si osserveranno i risultati degli esperimenti effettuati. 
 
-%RICORDA di parlare della scelta di k!!! C'è un po' da dire, illustrare come influenza. Cose da dire (da sistemare e cercare altre fonti): ARTICOLO 2!!! The value of K implicitly indicates the space of the neighborhood around the test pattern. When K is one, the
-%class label of the test pattern is determined just based on the class label of the closest neighbor. This scheme suffers if the class label of the closest neighbor is corrupted by noise. On the other hand, when K is equal to the total number of the training patterns, the information becomes too global, and the class label of the test pattern is determined based on the a priori probability of the classes. The large value of K may increase the classification efficiency as there are more bodies of evidence to classify the test pattern. But if the neighborhood is large, then the neighbors may belong to more than one class. It happens especially in the region where two classes overlap, or noise is present. Thus, it may increase the confusion in assigning the class label to the test pattern. Therefore, the optimal value of K can only be found by a trade-off, which is currently achieved using trial and error procedures. 
+%Presentazione dei dataset: Iris e Breast
+%Preprocessing per il dataset: spostamento colonna label e feature encoding. In Iris anche feature selection (non propriamente) in quanto sono state usati solo 2 attributi
 
-%Illustrare lo pseudocodice 
-% 
+%Tecniche per gli algoritmi: model selection con GridSearchCV, crossvalidation annidata
+%Valutazione algoritmi: accuratezza, MSE, RMSE delle membership
 
-	\subsection{Risultati}
-	\chapter{Conclusioni}
+	\section{Dataset}
+Il primo dataset utilizzato per fare esperimenti è stato Iris, scaricato dal repository UCI Machine Learning. Il dataset contiene in totale 150 istanze di iris, classificate in egual numero in tre classi. Ogni classe indica la specie (\textit{Species}) della pianta, ovvero \textit{iris setosa}, \textit{iris virginica} e \textit{iris versicolor}. Per ogni istanza, oltre all'etichetta di classe, viene fornita la dimensione in centimetri della lunghezza (\textit{length}) e larghezza (\textit{width}) del petalo (\textit{petal}) e del sepalo (\textit{width}). In Tabella \ref{table:3} sono presenti due esempi di istanze per ogni classe. 
+
+\begin{table} [h!]
+    \centering 
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+        \textbf{Sepal.lenght} & \textbf{Sepal.width} & \textbf{Petal.length} & \textbf{Petal.width} & \textbf{Species} \\ \hline
+        	5.1 	& 3.5 		& 1.4 		& 0.2 		&Setosa\\ 
+	4.9 	& 3 		& 1.4 		& 0.2 		&Setosa \\ 
+	7.0	& 3.2		& 4.7		&1.4		&Versicolor\\ 
+	6.4	& 3.2		& 4.5		&1.5		&Versicolor\\
+	6.3	&3.3		&6.0		&2.5		&Virginica\\ 
+	5.8	&2.7		&5.1		&1.9		&Virginica\\ \hline	
+   \end{tabular}
+\caption{Estratto del dataset originale Iris}
+\label{table:3}
+\end{table}
+
+Come si può osservare, gli attributi sono principalmente quantitativi, tranne Species che presenta invece valori categorici. Nell'apprendimento automatico molti modelli elaborano soltanto quantità numeriche, pertanto è bene convertire le etichette categoriche attraverso un processo che prende il nome di \textit{feature encoding}. Trasformare un valore categorico in uno numerico è in generale un'operazione delicata, in quanto si rischia di creare, ad esempio, un ordine tra le classi che, in realtà, non esiste. Nel caso di Iris, ad esempio, se si trasformassero le etichette  ``setosa'', ``versicolor'' e ``virginica'' rispettivamente in ``1'', ``2'' e ``3'', potrebbe esserci il rischio che la macchina possa rielaborare una relazione d'ordine tra le tre etichette, che in realtà non sussiste. Esistono molti metodi per effettuare feature encoding. In questo elaborato, si è scelta la classe LabelEncoder, dal package \textit{sklearn}. In questo modo, per ogni etichetta verrà affidato un numero: il dataset quindi avrà come classi ``1'', ``2'' e ``3''. Di questo dataset si è deciso di utilizzare soltanto sia la versione integrale, sia i primi due attributi (lunghezza e larghezza sepalo). Inoltre, per visualizzare meglio la funzione di appartenenza di ogni classe, a partire da questo dataset ne sono stati generati altri tre. In ognuno di questi, un'etichetta era convertita in 1, mentre le altre erano convertite a 0. Ad esempio, il dataset ``Iris-setosa'' pone l'etichetta pari ad ``1'' in corrispondenza di ``setosa'' e a 0 in tutte le altre, e così via. 
+ In questo modo, data un'istanza, invece di predire a quale delle tre specie appartenesse, si è più interessati se tale istanza sia o meno di una certa specie. 
+
+
+\begin{table} [h!]
+    \centering 
+    \begin{tabular}{|c|c|c|c|c|}
+    \hline
+        \textbf{age} & \textbf{menopause} & \textbf{tumor-size} & \textbf{inv-nodes} & \textbf{node-caps} \\ \hline
+
+	40-49		& premeno		& 15-19		&0-2		&true		\\ 		
+	50-59		& ge40		& 15-19		&0-2		&false		\\ 
+	50-59		& lt40			& 20-24		&0-2		&NaN		\\ 	
+	50-59		& ge40		& 40-44		&3-5		&false		\\ \hline \hline
+ \textbf{deg-malig} & \textbf{breast} & \textbf{breast-quad} & \textbf{irradiat} & \textbf{class}\\ \hline 
+3		&right		&left\_up	&false		&recurrence-events \\ \
+1		&right		&central	&false		&no-recurrence-events \\ 
+1		&left		&left\_low	&false		&recurrence-events \\ 
+2		&right		&left\_up	&true		&no-recurrence-events \\ \hline		
+   \end{tabular}
+\caption{Estratto del dataset originale Breast-Cancer}
+\label{table:4}
+\end{table}
+
+Il secondo dataset utilizzato è Breast-Cancer, elaborato dall'Istituto di Oncologia dell'University Medical Centre in Lubiana e scaricato dal repository UCI Machine Learning. Il dataset contiene 286 istanze, ognuna delle quali descrive le caratteristiche del tumore al seno e della paziente. Le classi sono ``recurrence-events'' e ``no-recurrence-events'', che si riferiscono al manifestarsi o meno della malattia dopo il trattamento. Oltre all'etichetta, gli attributi sono in totale 9: \textit{age} (età della paziente), \textit{menopause} (se la paziente è in menopausa o meno), \textit{tumor-size} (dimensione del tumore), \textit{inv-nodes} (numero di linfonodi ascellari che contiene carcinoma mammario metastatico),\textit{node-caps} (se il tumore si è infiltrato o meno nella capsula dei linfonodi), \textit{deg-malig} (grado di malignità del tumore), \textit{breast} (se è coinvolto il seno destro o il sinistro), \textit{breast-quad} (localizzazione del tumore) e \textit{irradiat} (se ci si sottopone alla radioterapia). Le istanze sono suddivise in 201 per ``no-recurrence-events'' e 85 per ``recurrence-events''. In Tabella \ref{table:4} sono presenti due esempi di istanze per ogni classe. 
+
+Anche in questo caso ci sono attributi categorici, come breast o irradiat, che saranno poi convertiti in quantitativi con LabelEncoder. Alcuni attributi, come tumor-size, presenteranno degli intervalli: in questo caso, si è deciso di considerarne solo il punto medio. Il dataset originale presenta anche dei valori NaN e duplicati, che sono stati rimossi. Dopo questa operazione di preprocessing, la dimensione finale del dataset  è 263, di cui 77 con etichetta ``recurrence-events'' e 186 con ``no-recurrence-events''. 
+
+
+	\section{Fuzzy min-max Neural Network}
+In questo paragrafo si presenta l'implementazione del Fuzzy min-max Neural Network, di cui è stato dato un accenno nel capitolo precedente. Il codice è scritto in Python ed è stato scaricato in rete\footnote{https://github.com/Cartmanishere/fuzzy-min-max-classifier}, per poi essere adattato e sistemato secondo le esigenze del tirocinio. Nel file \textit{fuzzy.py}, è possibile vedere l'algoritmo al completo, configurato sottoforma di classe. 
+
+Questo algoritmo viene utilizzato particolarmente nei problemi di classificazione dei pattern. Si consideri in generale come input un vettore n-dimensionale $A_h$, che viene immesso in $k$ funzioni discriminanti, ognuna delle quali calcola un punteggio per la propria classe, compreso tra 0 e 1. La funzione che restituisce il valore più alto assegna l'input alla propria classe. In modo analogo questo meccanismo può essere esteso al campo fuzzy: al posto delle funzioni discriminanti si utilizzano $k$ funzioni di appartenenza, ognuna delle quali è connessa ad un fuzzy set. Ogni fuzzy set fa riferimento a una classe, alla quale un input può appartenere, ed è formato dall'aggregazione di fuzzy set più piccoli. Per distinguere i due insiemi, si riferisce al primo come \textit{fuzzy set class}. In Figura 3.1 è raffigurata la struttura di un sistema che classifica pattern, con anche l'estensione fuzzy. 
+
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=12cm]{Immagini/FMMNN_nn.png}\\
+  \caption{Sistema per la classificazione di pattern}
+\end{center}
+\end{figure}
+
+I fuzzy set minori vengono rappresentati come hyperbox, già trattati nel capitolo precedente. Dato un hyperbox $B_j$, la classe k-esima $C_k$ viene definita come
+$$ C_k = \bigcup_{j \in k} B_j $$
+\noindent dove $k$ indica l'indice di tutti gli hyperbox associati alla classe $k$. %Nella teoria dei fuzzy set, l'unione tra più fuzzy set coincide con il massimo delle funzioni di appartenenza. 
+Dato in input un vettore $A_h$, la funzione di appartenenza  al $j$-esimo hyperbox viene indicata con $b_j(A_h)$ ed è pari ad 1 in caso di piena appartenenza, altrimenti diminuisce all'aumentare della distanza tra i punti del vettore, secondo la seguente formula: 
+
+\begin{equation} \label{eq:1}
+\begin{split}
+ b_j (A_h) = {1 \over 2n} \sum_{i=1}^n [\max (0.1-\max (0, \gamma \min (1, a_{hi} - w_{ji}))) \\
++ \max(0.1-\max(0, \gamma \min(1, v_{ji} - a_{hi})))]
+\end{split}
+\end{equation}
+
+\noindent dove $\gamma$ è la sensibilità (\textit{sensitivity}), un iperparametro della rete che indica quanto deve deve diminuire il valore della funzione di appartenenza all'aumentare della distanza tra $A_h$ e $B_j$. I vettori $W$ e $V$ indicano rispettivamente i punti di massimo e i punti di minimo del hyperbox $B_j$; infine, $n$ indica la dimensione del vettore $A_h$. 
+
+In questo elaborato l'algoritmo fuzzy min-max è stato implementato con una rete neurale, per perseguire maggiore velocità ed efficienza. In Figura 3.2 è presente l'architettura generale della rete neurale, divisa in tre strati. 
+
+
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=10cm]{Immagini/architecture_FMMNN.png}\\
+  \caption{Struttura di una rete neurale che implementa fuzzy min max}
+\end{center}
+\end{figure}
+
+Il primo strato è quello di input, $F_A$, che contiene gli $n$ elementi del vettore in input $A_h$. Questo strato è connesso al secondo, $F_B$, che contiene gli hyperbox. Per determinare connessioni, si ricorre a (\ref{eq:1}), utilizzando i vettori $V$ e $W$ che contengono i punti di minimo e di massimo. Queste connessioni vengono imparate e aggiustate durante il processo di apprendimento della rete neurale, attraverso l'algoritmo fuzzy min-max learning, già visto nel capitolo precedente. Lo strato degli hyperbox è connesso a quello delle classi, $F_C$, con valori binari memorizzati nella matrice $U$. L'elemento in posizione ($i,j$) viene così calcolato: 
+
+$$ u_{ij} = \bigg \{ 
+\begin{array}{rl}
+1 &\text{se } b_j \text{ è hyperbox per la classe } c_k \\
+0 & \text{altrimenti} \\
+\end{array}
+$$
+
+\noindent dove $b_j$ è il $j$-esimo nodo dello strato $ F_B$ e  $c_k$ è il $k$-esimo nodo dello strato $ F_C$. Ogni nodo in $F_C$ rappresenta una classe e fornisce in output il grado con cui l'input $A_h$ appartiene alla propria classe. Per determinarlo, si seleziona il massimo valore di appartenenza tra gli hyperbox della classe: i valori di hyperbox di altre classi non sono considerati. In formula, si ha: 
+
+$$ c_k = \max_{j = 1}^m b_j u_{jk} $$
+
+Pertanto se un hyperbox non appartiene alla classe, avrà $u_{jk} $ pari a zero e il suo valore $b_j$ risulterà irrilevante. 
+In Figura \ref{fmm_hyperbox}, è possibile osservare gli hyperbox creati durante il processo di apprendimento del dataset iris-versicolor. 
+
+\begin{figure}[h!]
+\begin{center}
+  \includegraphics[width=10cm]{Immagini/hyperbox_created_irisversicolor.png}\\
+  \caption{hyperbox creati con iris-versicolor}
+  \label{fmm_hyperbox}
+\end{center}
+\end{figure}
+
+Questa implementazione è stata utilizzata per vari esperimenti durante il tirocinio. Inizialmente sono stati fatti primi tentativi nel notebook Jupyter, in seguito è stato estratto uno script che permettesse l'esecuzione automatizzata di esperimenti, passando un dataset su linea di comando. In ogni esperimento è prevista una cross-validation annidata, per poter effettuare anche il tuning degli iperparametri della rete. Per poter effettuare la cross-validation, è stata utilizzata la libreria \textit{StratifiedKFold} dal package \textit{sklearn}. Si avrà dunque una cross-validation esterna che divide i dati in $k$ fold e per ogni fold $i$ = 1, ..., $k$ si effettua una cross-validation interna, che considera tutti i fold tranne l'$i$-esimo. All'interno della cross-validation interna viene effettuata la model selection: i dati risultanti vengono divisi ulteriormente in $l$ fold e per ogni configurazione di iperparametri, per ogni $j$ = 1, ..., $l$ si addestra il modello utilizzando tutti i fold, tranne l'$j$-esimo e lo si valuta sul fold $j$-esimo. Per la model selection è stata utilizzata la libreria \textit{GridSearchCV}, che opera costruendo una griglia contenente i validation score ottenuti dal modello, allenato di volta in volta con ogni possibile configurazione degli iperparametri. In questo caso, il validation score coincide con l'accuratezza. Per poter utilizzare GridSearchCV è necessario che il modello rispetti l'interfaccia di sklearn, ovvero avere i classici metodi di score, fit, predict e così via. Nell'implementazione originale non erano presenti i metodi get\_params e set\_params, che sono stati opportunamente definiti in seguito: il primo consente di restituire i parametri da ottimizzare e il secondo di modificarli. Gli iperparametri da ottimizzare, in questo caso, sono la già vista sensitivity ed \textit{exp\_bound}, pari al limite dell'espansione di un hyperbox. Per entrambi, la selezione avviene considerando i valori \{0 , 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1\}. Al termine della cross-validation interna, pertanto, si ottiene un modello, che viene poi valutato sull'$i$-esimo fold. Negli esperimenti, il numero di fold per la cross-validation interna ed esterna è stato fissato a cinque. Ogni valutazione effettuata all'interno della crossvalidation esterna è stato memorizzata in un array. I criteri utilizzati in questo caso sono stati l'accuratezza e l'RMSE tra l'etichetta dell'input e la membership indotta dal modello. I metodi che restituiscono questi valori sono stati opportunamente implementati durante il tirocinio. 
+
+ 
+Infine, nel file \textit {unittest\_gfmm.py} sono stati effettuati unit test per controllare il buon funzionamento del codice scritto. In particolare, sono state testate funzionalità del modello, se le metriche restituissero valori ammissibili e se l'RMSE fosse sotto una soglia accettabile. 
+
+
+	\section{Fuzzy k-Nearest Neighbor}
+In questo paragrafo è presentata l'implementazione in Python del Fuzzy k-Nearest Neighbor, scaricato in rete\footnote{https://github.com/sahilsehwag/FuzzyKNN}, per essere poi riadattato per effettuare esperimenti. Il codice è presente nel file \textit{fknn.py} e richiamato poi da uno script per automatizzare l'esecuzione di esperimenti. Come già descritto nel capitolo precedente, questo algoritmo è molto simile all'implementazione crispy, ma grazie all'introduzione di grado di appartenenza consente di raffinare la classificazione. Gli dati di apprendimento sono dei vettori n-dimensionale e nella fase di training vengono semplicemente memorizzati, suddividendoli ognuno in vettore delle feature e vettore di classe. Prima della fase di classificazione, bisogna fissare l'iperparametro $k$. Questo iperparametro regola quanti vicini bisogna considerare per predirre il grado di appartenenza di un input $x$ e pertanto può alterare sensibilmente i risultati della classificazione. Quando $k$ è pari ad 1, allora la classificazione viene effettuata considerando un solo vicino, con il rischio di una pessima classificazione qualora ci sia rumore nei dati di apprendimento: infatti, in tal caso si predirebbe un'etichetta erronea per $x$. D'altra parte, se si ponesse $k$ pari al numero totale dei dati di apprendimento, si perderebbe il senso dell'algoritmo e l'input verrebbe semplicemente classificato con l'etichetta che compare con maggior frequenza all'interno del dataset di apprendimento. Riassumendo, dunque, se $k$ assumesse un valore alto, si registrerebbe maggiore precisione nella classificiazione; ma d'altra parte, se $k$ assume un valore troppo grande, il processo di classificazione potrebbe diventare poco chiaro o, peggio, facilmente deducibile a priori. Altri due criteri che possono incidere nella scelta dell'iperparametro $k$  sono eventuali sovrapposizioni di classe, a causa delle quali un vicino può appartenere a più di una classe, o la presenza di molto rumore nel dataset di apprendimento. In generale, è consigliabile prima di procedere con l'algoritmo, effettuare operazioni di preprocessing. Alla luce di quanto visto, è evidente che la scelta di $k$ deve pertanto tener conto di molti aspetti. Definire a priori un $k$ corretto, che vada bene sempre, è un'operazione impossibile: è necessario dunque analizzare ogni caso singolarmente. A tal proposito, per decretare il valore di $k$ è utile fare model selection, con le stesse modalità già espresse nel paragrafo precedente. Gli esperimenti effettuati, dunque, avranno la stessa struttura vista con il Fuzzy min-max: si utilizza una cross-validation annidata e quella interna si occuperà della model selection. Anche in questo caso si lavora con StratifiedKFold e GridSearchCV, dunque è necessario adattare l'implementazione del Fuzzy k-Nearest Neighbor all'interfaccia di sklearn. I valori di $k$ considerati sono i valori dispari compresi tra 1 e 19. 
+
+Fissato $k$, è possibile iniziare il processo di predizione dell'etichetta per l'input $x$. Innanzitutto, si calcola la distanza tra ogni punto del dataset e $x$ e si selezionano i $k$ più vicini. In seguito per ogni classe $i$, si calcola la funzione di appartenenza $u_{i}(x)$, nel seguente modo: 
+
+\begin{equation} \label{eq:2}
+u_{i}(x) = {\sum_{j=1}^k u_{ij}({1 / \Vert x-x_j\Vert^{\frac{2}{m-1}}}) \over \sum_{j=1}^k ({1 / \Vert x-x_j\Vert^{\frac{2}{m-1}}}) }
+\end{equation}
+
+\noindent dove $u_{ij}$ è il grado di appartenenza del vicino $j$ appartenente alla classe $i$. La variabile $m$ determina quanto bisogna pesare la distanza quando si calcola il contributo di ogni vicino al grado di appartenenza di $x$. Nell'implementazione effettuata, $m$ è stato posto pari a due, pertanto il contributo di ogni vicino è ponderato dal reciproco della distanza da $x$. La classe che ottiene il grado di appartenenza maggiore sarà l'etichetta predetta per $x$. Può succedere che $x$ coincida ad un vicino $x_j$. In tal caso si ha che $u_i(x) = u_i(x_j) $, cioè il grado di appartenenza alla classe $i$ del punto $x$ è pari al grado di appartenenza del vicino $x_j$. 
+Negli esperimenti proposti, i metri di valutazione sono del tutto analoghi con quelli presentati nel paragrafo precedente. Anche in questo caso si restituiscono l'accuratezza e l'RMSE tra etichetta e grado di appartenenza, se la classificazione è binaria, o l'RMSE tra etichetta e predizione.  
+
+Nel file \textit{unittest\_fknn.py} sono stati effettuati unit test sul codice, per verificarne la correttezza in maniera del tutto analoga al Fuzzy min-max. 
+
+	\section{Risultati}
+
+
+In questo paragrafo si illustreranno i risultati ottenuti dagli esperimenti effettuati. Si sono utilizzati file di logging per registrare le accuratezze e l'RMSE e per avere un'indicazione generale della durata che ogni algoritmo impiega per elaborare i dati ed effettuare predizioni. In Tabella \ref{tab:fmm} è possibile vedere i risultati ottenuti con il Fuzzy min max. 
+
+Il metodo in generale predice bene i dati, ottenendo accuratezze più elevate dei metodi successivi. Tuttavia, l'RMSE tra etichetta e grado di appartenenza predetto risulta essere abbastanza alto, in relazione all'accuratezza. Con il dataset Iris-setosa, ad esempio, benché ci sia un'accuratezza pari al 99\% si ha un errore pari a 0.64. Per visualizzare meglio il problema, si osservino le proiezioni delle curve di livello dei gradi di appartenenza in Figura \ref{curvegfmm} e le relative heatmaps in Figura \ref{heatmapgfmm}. 
+Dai grafici è possibile notare che i gradi di appartenenza indotti sono in generale abbastanza alti, senza alcuna distinzione tra classi. Ciò rappresenta un punto debole dell'algoritmo, dal momento che la classificazione, seppur con una buona accuratezza, non risulta totalmente precisa. 
+
+\begin{table} [h!]
+      \begin{center}\begin{tabular}{ |c|c|c| } 
+        \hline
+        Dataset & Accuratezza & RMSE\\
+        \hline
+        Iris-setosa & 99\% & 0.64 \\
+        \hline
+        Iris-versicolor & 76\% & 0.63 \\
+        \hline
+        Iris-virginica & 78\% & 0.57 \\
+        \hline
+        Breast Cancer Dataset & 71\%  & 0.84 \\
+        \hline                  
+      \end{tabular}
+    \end{center}
+    \caption{Risultati degli esperimenti eseguiti su Fuzzy min max}
+    \label{tab:fmm}  
+    \end{table}
+
+\begin{figure}[h!]
+		\centering
+		\subfloat[\emph{}]
+		{\includegraphics[width=.44\textwidth]{Immagini/GFMM_setosa.png}} 
+		\quad
+		\subfloat[\emph{}]
+		{\includegraphics[width=.46\textwidth]{Immagini/GFMM_virginica.png}} \quad
+		\subfloat[\emph{}]
+		{\includegraphics[width=.45\textwidth]{Immagini/GFMM_versicolor.png}} \quad
+		\caption{Curve di livello con Fuzzy min max: (a) setosa, (b) virginica, (c) versicolor}
+		\label{curvegfmm}
+	\end{figure}	
+
+
+\begin{figure}[h!]
+		\centering
+		\subfloat[\emph{}]
+		{\includegraphics[width=.33\textwidth]{Immagini/gfmm-set-hm.png}} 
+		\quad
+		\subfloat[\emph{}]
+		{\includegraphics[width=.33\textwidth]{Immagini/gfmm-virg-hm.png}} \quad
+		\subfloat[\emph{}]
+		{\includegraphics[width=.33\textwidth]{Immagini/gfmm-vers-hm.png}} \quad
+		\caption{Heatmap con Fuzzy min max: (a) setosa, (b) virginica, (c) versicolor}
+		\label{heatmapgfmm}
+	\end{figure}	
+
+
+
+In Tabella \ref{tab:fknn} sono riportati i risultati ottenuti dagli esperimenti con il Fuzzy K-Nearest Neighbor. 
+Le accuratezze in generale sono vicine a quelle osservate nel Fuzzy min max, con valori sensibilmente inferiori per l'RMSE tra etichetta e grado di appartenenza predetto. Iris-setosa viene predetto con un'accuratezza pari al 99\% e ha un RMSE pari a 0.08, il che risulta coerente. Performance peggiori sono state rilevate però con il dataset Breast, dove invece si comporta decisamente meglio il Fuzzy min max. Partendo dallo stesso problema di classificazione, il Fuzzy k-Nearest Neighbor impiega molto più tempo per effettuare predizioni (circa 9 minuti) rispetto al Fuzzy min max (un minuto e mezzo). Per migliorare le tempistiche potrebbe essere utile effettuare operazioni di preprocessing sui dati. In Figura \ref{fknn-set} sono riportate le curve di livello con iris-setosa e iris-versicolor. 
+
+
+\begin{table} [h!]
+      \begin{center}\begin{tabular}{ |c|c|c| } 
+        \hline
+        Dataset & Accuratezza & RMSE\\
+        \hline
+        Iris-setosa & 99\% & 0.08 \\
+        \hline
+        Iris-versicolor & 76\% & 0.44 \\
+        \hline
+        Iris-virginica & 75\% & 0.44 \\
+        \hline
+        Breast Cancer Dataset & 62\% & 4.6 \\
+        \hline                  
+      \end{tabular}
+    \end{center}
+     \caption{Risultati degli esperimenti eseguiti su FKNN}
+    \label{tab:fknn}  
+    \end{table}
+
+\begin{figure}[h!]
+		\centering
+		\subfloat[\emph{}]
+		{\includegraphics[width=.44\textwidth]{Immagini/fknn_setosa.png}} 
+		\quad
+		\subfloat[\emph{}]
+		{\includegraphics[width=.44\textwidth]{Immagini/fknn_versicolor.png}} \quad
+		%\subfloat[\emph{}]
+		%{\includegraphics[width=.45\textwidth]{Immagini/GFMM_versicolor.png}} \quad
+		\caption{Curve di livello con Fuzzy K Nearest Neighbor: (a) setosa, (b) versicolor}
+		\label{fknn-set}
+	\end{figure}	
+
+
+Infine, sono riportate in Tabella \ref{tab:fcm} e Tabella \ref{tab:fsvm} i risultati degli algoritmi Fuzzy C-means e Support Vector Machine - Class Imbalance Learning, implementati in un elaborato affine a questo, ma che si soffermava sul clustering e le support vector machine. 
+
+% Fuzzy C-means
+\begin{table}
+
+    \begin{center}\begin{tabular}{ |c|c|c| } 
+        \hline
+        \textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
+        \hline
+        Iris-setosa & 98.0\% & 0.12\\
+        \hline
+        Iris-versicolor & 64.7\% & 0.55\\
+        \hline
+        Iris-virginica & 68.7\% & 0.69\\
+        \hline
+        Breast Cancer Dataset &  55.7\% & 0.56\\
+        \hline                  
+      \end{tabular}
+    \end{center}
+    \caption{Risultati degli esperimenti eseguiti su FCM}
+    \label{tab:fcm}  
+    \end{table}
+
+%Support Vector Machine - Class Imbalance Learning 
+\begin{table}
+      \begin{center}\begin{tabular}{ |c|c|c| } 
+        \hline
+        Dataset & Accuratezza & RMSE\\
+        \hline
+        Iris-setosa & 80\% & 0.69\\
+        \hline
+        Iris-versicolor & 66\% & 1.16\\
+        \hline
+        Iris-virginica & 84\% & 0.74\\
+        \hline
+        Breast Cancer Dataset &  53.9\% & 1.36\\
+        \hline                  
+      \end{tabular}
+    \end{center}
+      \caption{Risultati degli esperimenti eseguiti su FSVM-CIL}
+    \label{tab:fsvm}  
+    \end{table}
+
+
+	\chapter*{Conclusioni}
 
 
 \bibliographystyle{ieeetr}
