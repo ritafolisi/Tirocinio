@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.9.17)  1 OCT 2020 15:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2020.9.17)  1 OCT 2020 19:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -568,73 +568,81 @@ Underfull \hbox (badness 10000) in paragraph at lines 211--214
  []
 
 [14] [15]
-Overfull \hbox (4.69447pt too wide) in paragraph at lines 268--268
+Overfull \hbox (4.69447pt too wide) in paragraph at lines 266--266
 []|\OT1/cmr/m/n/10 Estensioni 
  []
 
 
-Overfull \hbox (5.08336pt too wide) in paragraph at lines 281--281
+Overfull \hbox (5.08336pt too wide) in paragraph at lines 279--279
 \OT1/cmr/m/n/10 Clustering|  
  []
 
 
-Overfull \vbox (12.0pt too high) detected at line 281
+Overfull \vbox (12.0pt too high) detected at line 279
  []
 
 
-Overfull \hbox (3.33336pt too wide) in paragraph at lines 285--285
+Overfull \hbox (3.33336pt too wide) in paragraph at lines 283--283
 []|\OT1/cmr/m/n/10 Shadowed 
  []
 
 
-Overfull \hbox (1.94449pt too wide) in paragraph at lines 285--285
+Overfull \hbox (1.94449pt too wide) in paragraph at lines 283--283
 \OT1/cmr/m/n/10 Induction|  
  []
 
 
-Overfull \hbox (5.08336pt too wide) in paragraph at lines 289--289
+Overfull \hbox (5.08336pt too wide) in paragraph at lines 287--287
 \OT1/cmr/m/n/10 Clustering|  
  []
+
+
+Overfull \hbox (14.58395pt too wide) in paragraph at lines 262--293
+ [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [16]
 <./images/svm2d.png, id=96, 572.1375pt x 475.02469pt>
 File: ./images/svm2d.png Graphic file (type png)
 <use ./images/svm2d.png>
-Package pdftex.def Info: ./images/svm2d.png  used on input line 306.
+Package pdftex.def Info: ./images/svm2d.png  used on input line 309.
 (pdftex.def)             Requested size: 165.59853pt x 137.49269pt.
 <./images/svm3d.png, id=97, 469.00218pt x 351.56343pt>
 File: ./images/svm3d.png Graphic file (type png)
 <use ./images/svm3d.png>
-Package pdftex.def Info: ./images/svm3d.png  used on input line 308.
+Package pdftex.def Info: ./images/svm3d.png  used on input line 311.
 (pdftex.def)             Requested size: 165.59853pt x 124.13264pt.
 <./images/svm3dhyp.png, id=98, 469.00218pt x 351.56343pt>
 File: ./images/svm3dhyp.png Graphic file (type png)
 <use ./images/svm3dhyp.png>
-Package pdftex.def Info: ./images/svm3dhyp.png  used on input line 310.
+Package pdftex.def Info: ./images/svm3dhyp.png  used on input line 313.
 (pdftex.def)             Requested size: 165.59853pt x 124.13264pt.
 <./images/svm3dto2d.png, id=99, 572.1375pt x 475.02469pt>
 File: ./images/svm3dto2d.png Graphic file (type png)
 <use ./images/svm3dto2d.png>
-Package pdftex.def Info: ./images/svm3dto2d.png  used on input line 312.
+Package pdftex.def Info: ./images/svm3dto2d.png  used on input line 315.
 (pdftex.def)             Requested size: 165.59853pt x 137.49269pt.
 <./images/svm.png, id=100, 520.94624pt x 438.13687pt>
 File: ./images/svm.png Graphic file (type png)
 <use ./images/svm.png>
-Package pdftex.def Info: ./images/svm.png  used on input line 320.
+Package pdftex.def Info: ./images/svm.png  used on input line 323.
 (pdftex.def)             Requested size: 155.24895pt x 130.56627pt.
 <./images/svm2.png, id=101, 522.45187pt x 450.9347pt>
 File: ./images/svm2.png Graphic file (type png)
 <use ./images/svm2.png>
-Package pdftex.def Info: ./images/svm2.png  used on input line 322.
+Package pdftex.def Info: ./images/svm2.png  used on input line 325.
 (pdftex.def)             Requested size: 155.24895pt x 133.99475pt.
  [17] [18 <./images/svm2d.png> <./images/svm3d.png> <./images/svm3dhyp.png> <./
 images/svm3dto2d.png>] [19 <./images/svm.png> <./images/svm2.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 340--341
+Underfull \hbox (badness 10000) in paragraph at lines 343--344
 
  []
 
 
-Overfull \hbox (7.63956pt too wide) in paragraph at lines 345--366
+Overfull \hbox (7.63956pt too wide) in paragraph at lines 348--369
  [] 
  []
 
@@ -643,7 +651,7 @@ Capitolo 3.
 [23
 
 ]
-Overfull \hbox (2.0838pt too wide) in paragraph at lines 431--442
+Overfull \hbox (2.0838pt too wide) in paragraph at lines 434--445
  [] 
  []
 
@@ -651,55 +659,55 @@ Overfull \hbox (2.0838pt too wide) in paragraph at lines 431--442
 <./images/setosahm.png, id=132, 505.89pt x 505.89pt>
 File: ./images/setosahm.png Graphic file (type png)
 <use ./images/setosahm.png>
-Package pdftex.def Info: ./images/setosahm.png  used on input line 470.
+Package pdftex.def Info: ./images/setosahm.png  used on input line 473.
 (pdftex.def)             Requested size: 106.94916pt x 106.9502pt.
 <./images/versicolorhm.png, id=133, 505.89pt x 505.89pt>
 File: ./images/versicolorhm.png Graphic file (type png)
 <use ./images/versicolorhm.png>
-Package pdftex.def Info: ./images/versicolorhm.png  used on input line 472.
+Package pdftex.def Info: ./images/versicolorhm.png  used on input line 475.
 (pdftex.def)             Requested size: 106.94916pt x 106.9502pt.
 <./images/virginicahm.png, id=134, 505.89pt x 505.89pt>
 File: ./images/virginicahm.png Graphic file (type png)
 <use ./images/virginicahm.png>
-Package pdftex.def Info: ./images/virginicahm.png  used on input line 474.
+Package pdftex.def Info: ./images/virginicahm.png  used on input line 477.
 (pdftex.def)             Requested size: 106.94916pt x 106.9502pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 470--475
+Underfull \hbox (badness 10000) in paragraph at lines 473--478
 
  []
 
 <./images/setosa.png, id=135, 437.635pt x 420.57124pt>
 File: ./images/setosa.png Graphic file (type png)
 <use ./images/setosa.png>
-Package pdftex.def Info: ./images/setosa.png  used on input line 481.
+Package pdftex.def Info: ./images/setosa.png  used on input line 484.
 (pdftex.def)             Requested size: 155.24895pt x 149.19795pt.
 <./images/setosacurve.png, id=136, 505.89pt x 505.89pt>
 File: ./images/setosacurve.png Graphic file (type png)
 <use ./images/setosacurve.png>
-Package pdftex.def Info: ./images/setosacurve.png  used on input line 483.
+Package pdftex.def Info: ./images/setosacurve.png  used on input line 486.
 (pdftex.def)             Requested size: 155.24895pt x 155.24954pt.
 <./images/versicolor.png, id=137, 438.63875pt x 417.56pt>
 File: ./images/versicolor.png Graphic file (type png)
 <use ./images/versicolor.png>
-Package pdftex.def Info: ./images/versicolor.png  used on input line 485.
+Package pdftex.def Info: ./images/versicolor.png  used on input line 488.
 (pdftex.def)             Requested size: 155.24895pt x 147.792pt.
 <./images/versicolorcurve.png, id=138, 505.89pt x 505.89pt>
 File: ./images/versicolorcurve.png Graphic file (type png)
 <use ./images/versicolorcurve.png>
-Package pdftex.def Info: ./images/versicolorcurve.png  used on input line 487.
+Package pdftex.def Info: ./images/versicolorcurve.png  used on input line 490.
 (pdftex.def)             Requested size: 155.24895pt x 155.24954pt.
 <./images/virginica.png, id=139, 450.68375pt x 428.60126pt>
 File: ./images/virginica.png Graphic file (type png)
 <use ./images/virginica.png>
-Package pdftex.def Info: ./images/virginica.png  used on input line 489.
+Package pdftex.def Info: ./images/virginica.png  used on input line 492.
 (pdftex.def)             Requested size: 155.24895pt x 147.64523pt.
 <./images/virginicacurve.png, id=140, 505.89pt x 505.89pt>
 File: ./images/virginicacurve.png Graphic file (type png)
 <use ./images/virginicacurve.png>
-Package pdftex.def Info: ./images/virginicacurve.png  used on input line 491.
+Package pdftex.def Info: ./images/virginicacurve.png  used on input line 494.
 (pdftex.def)             Requested size: 155.24895pt x 155.24954pt.
 
-LaTeX Warning: Float too large for page by 33.18674pt on input line 494.
+LaTeX Warning: Float too large for page by 33.18674pt on input line 497.
 
 [26 <./images/setosahm.png> <./images/versicolorhm.png> <./images/virginicahm.p
 ng>] [27 <./images/setosa.png> <./images/setosacurve.png> <./images/versicolor.
@@ -707,7 +715,7 @@ png> <./images/versicolorcurve.png> <./images/virginica.png> <./images/virginic
 acurve.png>] [28]
 
 LaTeX Warning: No positions in optional float specifier.
-               Default added (so using `tbp') on input line 561.
+               Default added (so using `tbp') on input line 564.
 
 [29] [30] (./Struttura.bbl [31
 
@@ -724,10 +732,10 @@ File: uni-1.def 2013/05/13 UCS: Unicode data U+0100..U+01FF
 ) [34])
 [35] (./Struttura.aux) ) 
 Here is how much of TeX's memory you used:
- 8055 strings out of 494912
- 115377 string characters out of 6180266
- 200504 words of memory out of 5000000
- 11190 multiletter control sequences out of 15000+600000
+ 8067 strings out of 494912
+ 115537 string characters out of 6180266
+ 199634 words of memory out of 5000000
+ 11202 multiletter control sequences out of 15000+600000
  12918 words of font info for 48 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  44i,18n,49p,1850b,574s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -747,7 +755,7 @@ cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb
 ></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
 
-Output written on Struttura.pdf (38 pages, 848275 bytes).
+Output written on Struttura.pdf (38 pages, 848049 bytes).
 PDF statistics:
  236 PDF objects out of 1000 (max. 8388607)
  138 compressed objects within 2 object streams

@@ -27,10 +27,10 @@
 	\chapter*{Ringraziamenti}
 	\addcontentsline{toc}{chapter}{Ringraziamenti}
 	Prima di procedere con la descrizione del lavoro di tirocinio vorrei dedicare qualche riga a tutti coloro che mi hanno sostenuta lungo questo percorso.
-	Ringrazio i miei genitori, che mi hanno permesso di portare avanti il percorso universitario e che mi hanno sostenuto in ogni sua parte. Ringrazio mia sorella Ilaria, che ha compreso le difficoltà di questi tre anni e ha saputo alleggerirle, e ne ha festeggiato con me le soddisfazioni.
+	Ringrazio i miei genitori, che mi hanno permesso di portare avanti il percorso universitario e che mi hanno sostenuto in ogni momento. Ringrazio mia sorella Ilaria, che ha compreso le difficoltà di questi tre anni e ha saputo alleggerirle, e ne ha festeggiato con me le soddisfazioni.
 	Ringrazio la mia relatrice e il mio correlatore, la professoressa Zanaboni e il professor Malchiodi, per il sostegno e la continua presenza durante questi mesi di tirocinio.
-	Grazie a Rita, che mi ha accompagnato in questo percorso di tirocinio e ne ha condiviso con me ogni momento: questi mesi sono stati più leggeri grazie al tuo sostegno!
-	Un grazie particolare ad Andrea e Elisa, compagni di viaggio in questi anni di università: mi avete spronata a fare meglio e a non lasciarmi abbattere dalle difficoltà incontrate, e con ,a vostra presenza avete.
+	Un sentito grazie a Rita, che mi ha accompagnato in questo percorso di tirocinio e ne ha condiviso con me ogni momento: lavorare con te è stato davvero un piacere!
+	Un ringraziamento particolare va ad Andrea e Elisa, compagni di viaggio in questi anni di università: mi avete spronata a fare meglio e a non lasciarmi abbattere dalle difficoltà incontrate, avete condiviso con me ogni giorno di questo percorso universitario: senza di voi non sarei arrivata fino a qui!
 	\tableofcontents
 	\mainmatter
 	%\pagestyle{plain}
@@ -68,16 +68,16 @@
 		Se ad esempio si considera un algoritmo che deve approssimare una funzione booleana in $n$ variabili, si potranno avere $2^n$ possibili input. 
 		\begin{figure}[h]
 			\centering
-			\subfloat[\emph{}]
+			\subfloat[\emph{}\label{fig:bias:a}]
 			{\includegraphics[width=.45\textwidth]{nobias.png}} \quad
-			\subfloat[\emph{}]
+			\subfloat[\emph{}\label{fig:bias:b}]
 			{\includegraphics[width=.45\textwidth]{bias.png}} \\
 			\caption{Relazione tra il numero di funzioni possibili e gli elementi del training set già esplorati in assenza e presenza di bias}
 			\label{fig:bias}
 			
 		\end{figure}
-		Si supponga di non avere bias, che si stia considerando l'insieme $\mathcal{H}$ delle $2^{2^n}$ possibili funzioni booleane e che non si abbiano preferenze tra quelle che danno corrispondenze sull'insieme dei dati usati per l'apprendimento (detto \textit{training set}). In questo caso, dopo aver considerato un elemento del training set e la sua etichetta si potrà suddividere a metà l'insieme delle funzioni, ovvero distinguere quelle che classificherebbero correttamente quell'elemento dalle restanti. Presentando via via più elementi del training set, ad ogni passo del processo si dimezza il numero di funzioni considerabili come ipotesi di approssimazione per $f$, come mostrato in Figura \ref{fig:bias}a. Non è possibile in questo caso generalizzare, perché le corrispondenze già trovate non danno alcun indizio su quelle ancora da scoprire: è solo possibile memorizzare le prime, e ciò causa un apprendimento molto oneroso.\newline
-		Se invece si limitasse l'insieme $\mathcal{H}$ a un sottoinsieme $\mathcal{H}_c$, dipendentemente dal sottoinsieme e dall'ordine di presentazione dei dati del training set, la curva che rappresenta il numero di possibili ipotesi di funzioni apparirebbe come in Figura~\ref{fig:bias}b: potrebbe infatti accadere che dopo aver visto meno di $2^n$ campioni si arrivi già a selezionare una funzione $h$ che ben approssimi $f$. L'introduzione del bias, quindi, ci permette di considerare solo alcune classi di funzioni, rendendo l'apprendimento più efficiente.
+		Si supponga di non avere bias, che si stia considerando l'insieme $\mathcal{H}$ delle $2^{2^n}$ possibili funzioni booleane e che non si abbiano preferenze tra quelle che danno corrispondenze sull'insieme dei dati usati per l'apprendimento (detto \textit{training set}). In questo caso, dopo aver considerato un elemento del training set e la sua etichetta si potrà suddividere a metà l'insieme delle funzioni, ovvero distinguere quelle che classificherebbero correttamente quell'elemento dalle restanti. Presentando via via più elementi del training set, ad ogni passo del processo si dimezza il numero di funzioni considerabili come ipotesi di approssimazione per $f$, come mostrato in Figura \ref{fig:bias:a}. Non è possibile in questo caso generalizzare, perché le corrispondenze già trovate non danno alcun indizio su quelle ancora da scoprire: è solo possibile memorizzare le prime, e ciò causa un apprendimento molto oneroso.\newline
+		Se invece si limitasse l'insieme $\mathcal{H}$ a un sottoinsieme $\mathcal{H}_c$, dipendentemente dal sottoinsieme e dall'ordine di presentazione dei dati del training set, la curva che rappresenta il numero di possibili ipotesi di funzioni apparirebbe come in Figura~\ref{fig:bias}b: potrebbe infatti accadere che dopo aver visto meno di $2^n$ campioni si arrivi già a selezionare una funzione $h$ che ben approssimi $f$. L'introduzione del bias, quindi, ci permette di considerare solo alcune classi di funzioni, rendendo l'apprendimento più efficiente (come mostrato in Figura~\ref{fig:bias:b}).
 		
 		Spieghiamo ora il funzionamento dell'algoritmo di apprendimento: inizialmente si ha una fase di addestramento sul \textit{training set}, seguita da una fase di valutazione su un insieme distinto di dati, il \textit{test set}. Si dice che una funzione \textit{generalizza} se è in grado di predire ``bene" anche i dati presenti nel test set.\newline
 		In questo contesto è anche necessario selezionare le feature da considerare per ogni campione, in quanto feature rilevanti nella soluzione del problema che si sta considerando possono guidare l'algoritmo di apprendimento correttamente, mentre altre meno rilevanti possono portare a un errore maggiore. Risulta quindi necessario, prima di procedere con l'apprendimento, utilizzare un algoritmo di \textit{feature selection}.
@@ -186,7 +186,7 @@
 		Determinare la funzione di membership a partire dai dati di training è uno dei problemi fondamentali legati all'applicazione della teoria dei fuzzy set. Non esistono però regole o linee guida che possano essere usate per scegliere l'appropriata tecnica di generazione, e il problema è reso più complesso dalla mancanza di accordo sulla definizione e interpretazione delle funzioni di membership: uno stesso concetto può infatti essere definito e quindi interpretato in modi diversi, portando alla determinazione di funzioni di appartenenza diverse tra loro. I diversi metodi presenti in letteratura spaziano da tecniche basate sulla percezione, cioè sul giudizio umano o di esperti, a tecniche euristiche, che usano forme di funzioni di membership predefinite, tecniche basate su istogrammi (che utilizzano appunto istogrammi per considerare la distribuzione delle features di input), trasformazione di distribuzioni di probabilità in distribuzioni di possibilità, tecniche basate su fuzzy nearest neighbour o su reti neurali (come approfondito in ~\cite{bib:rita}), su clustering o support vector machine (che approfondiremo meglio in seguito); l'intera rassegna è presentata in~\cite{bib:rassegna}.
 		
 		\section{Clustering}
-		Gli algoritmi classici di clustering hanno come fine il raggruppamento di elementi omogenei in un insieme di dati. Dati in input $n$ oggetti, un algoritmo di clustering restituisce in output un raggruppamento (detto \textit{clustering}) $\mathcal{C}=\{c_1, ..., c_k\}$ degli oggetti appartenenti a un insieme universo $V$, ovvero una partizione di $V$. Due elementi sono detti omogenei o disomogenei in relazione a una funzione di similarità o dissimilarità $\sigma: V\times V\mapsto \mathbb{R}$, detta \textit{metrica}, che assegna un valore a ogni possibile coppia di punti: un esempio banale può essere costituito da una funzione che assegna il valore $1$ a elementi omogenei e il valore $-1$ a elementi disomogenei. Si possono utilizzare svariati tipi di funzioni: un esempio comune è la norma euclidea, che è una funzione di dissimilarità e si può utilizzare quando le descrizioni degli oggetti $u$ e $v$ sono punti in $\mathbb R^d$ per qualche $d$. Dati quindi due punti $u$ e $v$, la norma euclidea è definita come:
+		Gli algoritmi classici di clustering hanno come fine il raggruppamento di elementi omogenei in un insieme di dati. Dati in input $N$ oggetti, un algoritmo di clustering restituisce in output un raggruppamento (detto \textit{clustering}) $\mathcal{P}=\{P_1, ..., P_c\}$ degli oggetti appartenenti a un insieme universo $X$, ovvero una partizione di $X$. L'insieme $X$ è quindi lo spazio in cui giacciono i vettori di input, e dato un suo generico elemento $x_k$ sappiamo che questo appartiene a $\mathbb R^n$. Due elementi sono detti omogenei o disomogenei in relazione a una funzione di similarità o dissimilarità $\sigma: X\times X\mapsto \mathbb{R}$, detta \textit{metrica}, che assegna un valore a ogni possibile coppia di punti: un esempio banale può essere costituito da una funzione che assegna il valore $1$ a elementi omogenei e il valore $-1$ a elementi disomogenei. Si possono utilizzare svariati tipi di funzioni: un esempio comune è la norma euclidea, che è una funzione di dissimilarità e si può utilizzare quando le descrizioni degli oggetti $u$ e $v$ sono punti in $\mathbb R^n$ per qualche $n$. Dati quindi due punti $u$ e $v$, la norma euclidea è definita come:
 		\[
 			\sigma(u, v) = \norma{u - v}\text{.}\text{;}
 		\]
@@ -204,46 +204,44 @@
 			I metodi divisivi, invece, prevedono che all'inizio tutti gli elementi siano in un unico cluster: l'algoritmo, poi, inizia a dividere il cluster in tanti sottoinsiemi di dimensioni inferiori, cercando di ottenere gruppi sempre più omogenei. L'algoritmo procede fino a che non viene soddisfatto un generico criterio di arresto, come per i metodi aggregativi, o ad esempio fino al raggiungimento di un numero prefissato di cluster.\\
 			\`E possibile inoltre operare un'ulteriore classificazione delle tecniche di clustering: si distingue il clustering di tipo \textit{esclusivo} o \textit{hard clustering}, in cui ogni elemento può essere assegnato a uno e un solo gruppo (di conseguenza i cluster saranno a due a due disgiunti) e il clustering \textit{non-esclusivo}, noto anche con il nome di \textit{soft clustering} o \textit{fuzzy clustering}.
 			
-			La maggior parte dei metodi di fuzzy clustering esistenti fa riferimento al \textit{Fuzzy C-Means}, la variante fuzzy del classico \textit{k-means}. L'algoritmo k-means, proposto nel 1967 da MacQueen, è uno degli algoritmi di apprendimento base utilizzato per risolvere problemi di clustering; lo scopo è quello di classificare un dataset di cardinalità $n$ in un certo numero $k$ di cluster $P_1,P_2,...,P_k$, definito a priori.
-			Si definiscono inizialmente $k$ \textit{centroidi}, uno per ogni cluster, a rappresentare i centri inziali dei $k$ cluster. Questi centroidi devono essere scelti in modo accurato, e preferibilmente inizialmente distanti gli uni dagli altri: la posizione dei centroidi iniziali influisce infatti sul risultato del clustering. Successivamente, si assegna ogni punto nel dataset al centroide a esso più vicino (utilizzando come funzione di similarità la norma); a questo punto si ricalcolano i $k$ nuovi centroidi, ottenuti come baricentro dei punti in un dato cluster. Si ripetono queste due operazioni di riassegnazione dei punti e correzione dei centroidi finché non si hanno più cambiamenti significativi, ovvero finché il clustering è stabile. Lo scopo di questo algoritmo è infatti quello di minimizzare una funzione obiettivo $J$, espressa come
+			La maggior parte dei metodi di fuzzy clustering esistenti fa riferimento al \textit{Fuzzy C-Means}, la variante fuzzy del classico \textit{k-means}. L'algoritmo k-means, proposto nel 1967 da MacQueen, è uno degli algoritmi di apprendimento base utilizzato per risolvere problemi di clustering; lo scopo è quello di classificare un dataset di cardinalità $N$ in un certo numero $c$ di cluster $P_1,P_2,...,P_c$, definito a priori.
+			Si definiscono inizialmente $c$ \textit{centroidi}, uno per ogni cluster, a rappresentare i centri inziali dei $c$ cluster. Questi centroidi devono essere scelti in modo accurato, e preferibilmente inizialmente distanti gli uni dagli altri: la posizione dei centroidi iniziali influisce infatti sul risultato del clustering. Successivamente, si assegna ogni punto nel dataset al centroide a esso più vicino (utilizzando come funzione di similarità la norma); a questo punto si ricalcolano i $c$ nuovi centroidi, ottenuti come baricentro dei punti in un dato cluster. Si ripetono queste due operazioni di riassegnazione dei punti e correzione dei centroidi finché non si hanno più cambiamenti significativi, ovvero finché il clustering è stabile. Lo scopo di questo algoritmo è infatti quello di minimizzare una funzione obiettivo $J$, espressa come
 			\[
-			J = \sum_{j=1}^{k}\sum_{x_i\in P_j}^{n}\norma{x_i^{(j)}-c_j}^2\text{,}
+			J = \sum_{i=1}^{c}\sum_{x_k\in P_i}\norma{x_k^{(i)}-v_i}^2\text{,}
 			\]
-			ovvero la somma dei quadrati delle distanze di ogni punto dal centro dei diversi cluster, dove $x_i^{(j)}$ è l'$i$-esimo elemento appartenente al $j$-esimo cluster e $c_j$ è il centroide del $j$-esimo cluster. 
+			ovvero la somma dei quadrati delle distanze di ogni punto dal centro dei diversi cluster, dove $x_k^{(i)}$ è il $k$-esimo elemento appartenente all'$i$-esimo cluster e $v_i$ è il centroide dell'$i$-esimo cluster. 
 			L'algoritmo k-means termina sempre, ma non trova necessariamente il clustering ottimo (quello che corrisponde al minimo globale della funzione obiettivo): il problema infatti è NP-hard, e l'algoritmo è molto sensibile alla posizione dei cluster iniziali. Per ridurre questo effetto è necessario ripetere più volte l'esecuzione dell'algoritmo.\\
 
 	\subsection{Fuzzy clustering}
 		I problemi di clustering possono avere applicazioni in svariati campi, come l'economia~\cite{bib:economy}, psicologia~\cite{bib:psychology}, medicina~\cite{bib:medicine, bib:medicine2}, biologia~\cite{bib:biology,bib:biology2}; ne è fatto in particolare un vasto utilizzo nel campo della bioinformatica, in cui il fuzzy clustering è preferito a quello classico, nel campo del marketing, in cui a esempio gli utenti possono essere suddivisi in cluster fuzzy sulla base di bisogni, preferenze e profili o ancora nell'analisi di immagini, in cui è usato in particolare per la segmentazione al fine di svolgere pattern recognition e object detection.
 		Nel fuzzy clustering infatti, in opposizione alle tecniche classiche di clustering come il \textit{k-means}, gli elementi di input possono appartenere a più di una partizione, con un certo valore di membership. La membership non rappresenta però una probabilità: la somma dei valori di membership assegnati a un elemento in relazione a classi opposte non deve perciò dare 1; la membership sarà più bassa se il punto si colloca sul limite esterno del cluster, e viceversa maggiore se l'elemento è vicino al centro del cluster.
 		
-		Il \textit{Fuzzy C-Means}, metodo alla base base del fuzzy clustering, si basa come spiegato in precedenza sul k-means e generalizza l'algoritmo in senso fuzzy: gli oggetti che si collocano sul confine di un dato cluster non sono forzati ad appartenere a un solo cluster, ma possono invece appartenere a diversi insiemi con una membership compresa tra 0 e 1, garantendo una prestazione migliore specialmente in presenza di rumore nei dati o di outlier~\cite{bib:kmvfcm}
+		Il \textit{Fuzzy C-Means}, metodo alla base base del fuzzy clustering, si basa come spiegato in precedenza sul k-means e generalizza l'algoritmo in senso fuzzy: gli oggetti che si collocano sul confine di un dato cluster non sono forzati ad appartenere a un solo cluster, ma possono invece appartenere a diversi insiemi con una membership compresa tra 0 e 1, garantendo una prestazione migliore specialmente in presenza di rumore nei dati o di outlier~\cite{bib:kmvfcm}.
 		Gli elementi saranno quindi assegnati a ogni cluster con diversi valori di appartenenza: punti più vicini al centro del cluster avranno membership maggiore, e viceversa punti lontani avranno membership minore.\\
-		Fissato un dato numero di cluster $c$, dove $2\leq c \le n$,  e selezionato un valore per il parametro $m$ (che controlla la \textit{fuzziness}, concetto che verrà approfondito in seguito), è necessario quindi inizializzare la \textit{partition matrix} $U$. La matrice $U=[u_{ik}]$ è una matrice $c\times N$ di numeri reali ($N$ è il numero di osservazioni in $\mathbb R^n$), e $u_{ik}=u_i(x_k)$. $u_{i}$ è la funzione caratteristica dell'insieme e mappa i valori di membership degli $x_k$ nel sottoinsieme fuzzy di $X$ ($0\leq u_{ic}\leq 1$), $x_k$ è il k-esimo feature vector, e
+		Fissato un dato numero di cluster $c$, dove $2\leq c \le N$,  e selezionato un valore per il parametro $m$ (che controlla la \textit{fuzziness}, concetto che verrà approfondito in seguito), è necessario quindi inizializzare la \textit{partition matrix} $U$. La matrice $U=[u_{ik}]$ è una matrice $c\times N$ di numeri reali ($N$ è il numero di osservazioni in $\mathbb R^n$), e vale $0\leq u_{ik}\leq 1$; $x_k$ è il $k$-esimo feature vector, e
 	
 		\[
-		u_{ik} > 0\text{ } \forall i\text{,}\\
+		\sum_{i=1}^{c}u_{ik} > 0\text{ } \forall i\text{,}\\
 		\]
 		\[
-		\sum_{j=1}^{N}u_{ik} = 1 \text{ }\forall k\text{.}
+		\sum_{i=1}^{c}u_{ik} = 1 \text{ }\forall k\text{.}
 		\]
 		
 		Si possono scegliere varie funzioni come metriche per misurare la similarità; la più nota è l'uso dei \textit{minimi quadrati generalizzati} (o Generalized Least Squares, GLS), definita come
 		\[
 			J_m(U, v)=\sum_{k=1}^{N}\sum_{i=1}^{c}u_{ik}^m\norma{x_k-v_i}^2_A\text{,}
 		\]
+		
 		dove:
 		\begin{itemize}
 			\item $X = {x_1, x_2, ..., x_N} \subset \mathbb{R}^n$ è l'insieme dei dati, 
 			\item $2 \leq c < n$ è il numero di cluster desiderati,
 			\item $1 \leq m <\infty$ è il parametro che esprime la fuzziness,
-			\item $U$ è la partizione fuzzy di $Y$,
+			\item $U$ è la partizione fuzzy di $X$,
 			\item $v = (v_1, v_2, ..., v_c)$ è il vettore dei centroidi,
 			\item $v_i = (v_{i1}, v_{i2}, ..., v_{in})$ è il centro del cluster $i$,
-			\item $A$ è una matrice positiva di pesi $n\times n$ (e $n$ è la dimensione dello spazio delle features),
-			\item $\norma{\textit{ }}_A$ è la norma indotta su $\mathbb{R}^n$,
-			
+			\item $\norma{\textit{ }}^2_A$ è la norma indotta su $\mathbb{R}^n$ da una matrice quadrata $A$ di pesi positivi, corrisponde alla distanza quadratica tra $x_k$ e $v_i$ ed è calcolata come
 		\end{itemize}
-		e la distanza quadratica tra $x_k$ e $v_i$ nella formula è calcolata come
 		\[
 			d^2_{ik} = \norma{x_k-v_i}^2_A = (x_k-v_i)^TA(x_k-v_i)\text{.}
 		\] 	
@@ -252,7 +250,7 @@
 		Per quanto riguarda invece la matrice $A$, questa controlla la forma che i cluster di $Y$ assumeranno; si possono usare a questo proposito diversi tipi di norme.
 		
 		Un clustering fuzzy ottimale è dunque definito da una coppia $(U, v)$ che minimizza $J_m$; possiamo descrivere quindi l'algoritmo FCM come segue.
-		Definita con $r=0,1, ...$ ogni iterazione dell'algoritmo, e fissati $c$, $m$, $A$ e $\norma{k}_A$, si definisce la matrice iniziale $U^{(0)}$. Successivamente è necessario calcolare a ogni passo il vettore dei $c$ centri, e poi una membership matrix aggiornata $U^{(t+1)}$. Si itera l'esecuzione dell'algoritmo finché l'errore commesso nell'assegnamento delle membership (ovvero la norma calcolata sulla differenza tra la matrice delle membership calcolata al tempo t e t+1) non scende sotto una soglia $\epsilon$~\cite{bib:fcm}.
+		Definita con $r=0,1, ...$ ogni iterazione dell'algoritmo, e fissati $c$, $m$ e $A$, si definisce la matrice iniziale $U^{(0)}$. Successivamente è necessario calcolare a ogni passo il vettore dei $c$ centri, e poi una partition matrix aggiornata $U^{(t+1)}$. Si itera l'esecuzione dell'algoritmo finché l'errore commesso nell'assegnamento delle membership (ovvero la norma calcolata sulla differenza tra la matrice delle membership calcolata al tempo t e t+1) non scende sotto una soglia $\epsilon$~\cite{bib:fcm}.
 		
 		Il Fuzzy C-Means si può quindi considerare l'algoritmo alla base del fuzzy clustering; a partire da questo si sono poi sviluppate una serie di varianti che trattano diverse forme di funzioni di appartenenza, che pongono un'attenzione particolare al rumore e agli outlier come RSFKM~\cite{bib:rsfkm} e GEPFCM~\cite{bib:gifpfcm}, algoritmi che risolvono il problema di stabilire a priori il numero di cluster e la sensibilità di FCM alla posizione dei centroidi iniziali, come in~\cite{bib:afkm} o ancora che utilizzano come funzioni di similarità tecniche diverse dalla distanza euclidea, come in KFCM~\cite{bib:kfcm}.
 		\\
@@ -283,13 +281,13 @@
 					&  &  & \\
 					\hline
 					\multirow{3}{4em}{Shadowed Set Induction} & & & \\
-					&  & 2018 & \cite{bib:ssi}\\
+					& SSI & 2018 & \cite{bib:ssi}\\
 					& & & \\	
 					\hline
 					\multirow{2}{4em}{Spectral Clustering}	& FKSC & 2018 & \cite{bib:fksc}\\ 
 					& SSC-PC & 2016 & \cite{bib:sscpc}\\ 
 					\hline
-					& PFCM & 1993 & \cite{bib:pfcm}\\
+					Possibilistic FCM & PFCM & 1993 & \cite{bib:pfcm}\\
 					\hline
 				\end{tabular}
 			\end{center}
@@ -299,16 +297,21 @@
 	\section{Support Vector Machine}
 	Le \textit{Support Vector Machine} (SVM), sviluppate da Vapnik nel 1995, sono una tecnica di apprendimento supervisionato utilizzato soprattutto per problemi di classificazione, regressione e individuazione di outlier; esse sono utilizzate per un ampio spettro di applicazioni, dal riconoscimento facciale \cite{bib:svmfr, bib:svmfr2} all'elaborazione di dati biologici per diagnosi mediche (come in ~\cite{bib:svmmed,bib:svmmed2}).
 	
-	Le SVM hanno come obiettivo quello di identificare un iperpiano ``ottimo" come soluzione del problema di apprendimento, cioè un iperpiano che separi due classi di elementi dell'insieme dei dati di input. L'iperpriano migliore è quello che massimizza il \textit{margine}, definito come la distanza tra i punti più vicini all'iperpiano e l'iperpiano stesso; anche punti lontani dal margine possono essere coinvolti nella determinazione dell'iperpiano. Se si considera uno spazio bidimensionale, ad esempio, un iperpiano è una retta che divide il piano in due semispazi. Per ottenere una migliore separazione tra le classi, i dati sono inizialmente trasformati in uno spazio a più dimensioni: da uno \textit{spazio delle features di input}, che ha tante dimensioni quante quelle delle features si passa ad uno \textit{spazio delle features}, a più dimensioni. I dati vengono quindi proiettati in uno spazio di dimensioni maggiori rispetto a quello di partenza, nel quale i dati siano linearmente separabili. In questo nuovo spazio (indotto da un \textit{kernel}), si cercherà l'iperpiano ottimale, come mostrato in Figura \ref{fig:hyp}. Nella ricerca dell'iperpiano ottimo è accettabile la classificazione errata di alcuni punti; la misura della tolleranza alla misclassificazione verrà approfondita in seguito.
+	Le SVM hanno come obiettivo quello di identificare un iperpiano ``ottimo" come soluzione del problema di apprendimento, cioè un iperpiano che separi due classi di elementi dell'insieme dei dati di input. L'iperpiano migliore è quello che massimizza il \textit{margine}, definito come la distanza tra i punti più vicini all'iperpiano e l'iperpiano stesso; anche punti lontani dal margine possono essere coinvolti nella determinazione dell'iperpiano. Se si considera uno spazio bidimensionale, ad esempio, un iperpiano è una retta che divide il piano in due semispazi. Se i punti iniziali definiti in uno \textit{spazio delle features di input} sono linearmente separabili tra loro, la soluzione al problema è semplice e consiste nella determinazione di un iperpiano della forma
+	\[
+		f(x) = w\cdot x +b\text{,}
+	\]
+	individuato direttamente nello spazio delle feature di input.
+	Se invece i dati non sono linearmente separabili, è necessaria una trasformazione dei dati stessi ad uno spazio a più dimensioni: da uno spazio delle features di input si passa ad uno \textit{spazio delle features}, a più dimensioni. I dati vengono quindi proiettati in uno spazio di dimensioni maggiori rispetto a quello di partenza, nel quale i dati siano linearmente separabili. In questo nuovo spazio (indotto da un \textit{kernel}), si cercherà l'iperpiano ottimale, come mostrato in Figura \ref{fig:hyp}. Nella ricerca dell'iperpiano ottimo è accettabile la classificazione errata di alcuni punti; la misura della tolleranza alla misclassificazione verrà approfondita in seguito.
 		\begin{figure}[h]
 		\centering
-		\subfloat[\emph{}]
+		\subfloat[\emph{}\label{fig:hyp:a}]
 		{\includegraphics[width=.48\textwidth]{svm2d.png}} \quad
-		\subfloat[\emph{}]
+		\subfloat[\emph{}\label{fig:hyp:b}]
 		{\includegraphics[width=.48\textwidth]{svm3d.png}} \quad
-		\subfloat[\emph{}]
+		\subfloat[\emph{}\label{fig:hyp:c}]
 		{\includegraphics[width=.48\textwidth]{svm3dhyp.png}} \quad
-		\subfloat[\emph{}]
+		\subfloat[\emph{}\label{fig:hyp:d}]
 		{\includegraphics[width=.48\textwidth]{svm3dto2d.png}} \quad
 		\caption{Passaggio dallo spazio dallo spazio delle feature di input allo spazio delle feature: spazio delle feature di input (a), utilizzo di un kernel per la trasformazione in uno spazio a più dimensioni (b), determinazione dell'iperpiano ottimo (c), trasformazione inversa per ritornare ad uno spazio con un numero di dimensioni pari a quelle delle feature di input(d)}
 		\label{fig:hyp}
