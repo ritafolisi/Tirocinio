@@ -26,14 +26,25 @@
 	\frontmatter
 	\chapter*{Ringraziamenti}
 	\addcontentsline{toc}{chapter}{Ringraziamenti}
-	Some text...
+	Prima di procedere con la descrizione del lavoro di tirocinio vorrei dedicare qualche riga a tutti coloro che mi hanno sostenuta lungo questo percorso.
+	Ringrazio i miei genitori, che mi hanno permesso di portare avanti il percorso universitario e che mi hanno sostenuto in ogni sua parte. Ringrazio mia sorella Ilaria, che ha compreso le difficoltà di questi tre anni e ha saputo alleggerirle, e ne ha festeggiato con me le soddisfazioni.
+	Ringrazio la mia relatrice e il mio correlatore, la professoressa Zanaboni e il professor Malchiodi, per il sostegno e la continua presenza durante questi mesi di tirocinio.
+	Grazie a Rita, che mi ha accompagnato in questo percorso di tirocinio e ne ha condiviso con me ogni momento: questi mesi sono stati più leggeri grazie al tuo sostegno!
+	Un grazie particolare ad Andrea e Elisa, compagni di viaggio in questi anni di università: mi avete spronata a fare meglio e a non lasciarmi abbattere dalle difficoltà incontrate, e con ,a vostra presenza avete.
 	\tableofcontents
 	\mainmatter
 	%\pagestyle{plain}
 	%\pagenumbering{arabic}
 	\chapter*{Introduzione}
 		{} \addcontentsline{toc}{chapter}{Introduzione}
+		Questo elaborato descrive il lavoro di tirocinio in cui mi sono occupata della ricerca, modifica e confronto di implementazioni di algoritmi per l'induzione di funzioni di membership di insiemi fuzzy. La logica e gli insiemi fuzzy sono vastamente diffusi nel campo dell'apprendimento automatico (e in particolare di quello supervisionato) in quanto modellano l'incertezza propria della realtà che ci circonda. Se nella logica classica un elemento può appartenere o no ad un dato insieme, gli insiemi fuzzy sono descritti da una funzione di membership che determina un grado di appartenenza di un oggetto all'insieme in questione.\\
+		Il problema dell'induzione della funzione di membership di un insieme fuzzy è complesso, anche a causa della mancanza di accordo sull'interpretazione della funzione stessa; il problema può essere approcciato in diversi modi: si sono approfonditi in questo elaborato i metodi riguardanti Fuzzy Clustering e Fuzzy Support Vector Machine.\\
+		Tra i diversi algoritmi individuati sono stati scelti il Fuzzy C-Means (algoritmo di clustering) e la Fuzzy Support Vector Machine for Class Imbalance Learning. A partire dal codice reperito in rete si sono quindi effettuate delle modifiche al fine di garantirne un funzionamento corretto e di migliorarne la leggibilità e le prestazioni. Si è infine svolta una valutazione sulle prestazioni degli algoritmi considerati, sui dataset Iris e Breast Cancer. Si è notato come l'algoritmo FCM ottiene prestazioni molto buone quando si lavora sulla membership alla classe setosa, che è linearmente separabile dalle altre, mentre ottiene prestazioni discrete sulla definizione della membership alle altre due classi così come sul dataset Breast Cancer. L'algoritmo FSVM-CIL ottiene invece prestazioni discrete su tutti i dataset, ed il suo funzionamento è oneroso in termini di tempo.
+		
+		L'elaborato è strutturato come segue: nel Capitolo~\ref{chap:1} si descrivono le basi dell'apprendimento automatico (nello specifico di quello supervisionato) e si danno le definizioni di vettore di input, vettore di output e di bias; successivamente viene spiegato il funzionamento generale di un algoritmo di apprendimento, vengono definite le metriche che saranno poi utilizzate negli esperimenti e le tecniche di cross validation e model selection. Viene inoltre introdotta la logica fuzzy e la sua estensione agli insiemi, e si inizia a delineare il problema dell'induzione della funzione di memberhisp. Nel Capitolo~\ref{chap:2} si introducono le macroclassi di algoritmi per l'induzione della funzione di membership: dopo una panoramica sul funzionamento generale degli algoritmi di clustering e support vector machine e dei corrispettivi fuzzy, si analizzano nel dettaglio il metodo FCM e l'algoritmo FSVM-CIL. Nel Capitolo~\ref{chap:3}, infine, si mostrano i dataset utilizzati negli esperimenti, le problematiche riscontrate nel codice reperito e le soluzioni individuate. Successivamente si illustrano i risultati, che vengono poi analizzati anche grazie all'uso di rappresentazioni grafiche.
+		
 	\chapter[Apprendimento supervisionato]{Apprendimento supervisionato e induzione di insiemi fuzzy}
+	\label{chap:1}
 		\section{Apprendimento supervisionato}
 		L'apprendimento automatico è una branca dell'intelligenza artificiale che studia algoritmi che utilizzano l'esperienza per migliorare la propria performance o per fare predizioni più accurate. In questo caso l'esperienza viene rappresentata attraverso una collezione di dati resi disponibili all'analisi(si può definire ogni elemento dell'insieme di dati come \textit{esempio}). Questi dati possono essere aumentati con delle \textit{etichette} (dette anche \textit{label}) impostate manualmente oppure venire estratti direttamente dall'ambiente: gli algoritmi avranno l'obiettivo di effettuare predizioni su dati non noti, sulla base della conoscenza acquisita.
 		L'apprendimento automatico si applica a svariati campi quali il riconoscimento vocale, la guida autonoma di veicoli, i motori di ricerca o la ricerca scientifica in campo medico. Alcune delle classi principali di problemi che si possono affrontare con delle tecniche di apprendimento automatico sono:
@@ -171,6 +182,7 @@
 		Nel campo dell'apprendimento automatico, quindi, le tecniche di induzione di funzioni di appartenenza producono modelli che trasformano variabili di input in gradi di appartenenza ad un insieme fuzzy. Si possono distinguere a questo proposito tecniche induttive o deduttive: l'uso di metodi deduttivi implica la definizione di funzioni di appartenenza da parte di esperti, ovvero sulla percezione umana (tecniche \textit{data-driven}). Le tecniche induttive, invece, prevedono la generazione delle funzioni di appartenenza sulla base dei dati (tecniche \textit{data-driven}). Si approfondiranno in seguito queste ultime, più affidabili in quanto slegate dalle diverse interpretazioni che esperti possono dare agli stessi attributi o variabili.
 	
 		\chapter[Induzione della funzione di membership]{Tecniche per l'induzione della funzione di membership}
+		\label{chap:2}
 		Determinare la funzione di membership a partire dai dati di training è uno dei problemi fondamentali legati all'applicazione della teoria dei fuzzy set. Non esistono però regole o linee guida che possano essere usate per scegliere l'appropriata tecnica di generazione, e il problema è reso più complesso dalla mancanza di accordo sulla definizione e interpretazione delle funzioni di membership: uno stesso concetto può infatti essere definito e quindi interpretato in modi diversi, portando alla determinazione di funzioni di appartenenza diverse tra loro. I diversi metodi presenti in letteratura spaziano da tecniche basate sulla percezione, cioè sul giudizio umano o di esperti, a tecniche euristiche, che usano forme di funzioni di membership predefinite, tecniche basate su istogrammi (che utilizzano appunto istogrammi per considerare la distribuzione delle features di input), trasformazione di distribuzioni di probabilità in distribuzioni di possibilità, tecniche basate su fuzzy nearest neighbour o su reti neurali (come approfondito in ~\cite{bib:rita}), su clustering o support vector machine (che approfondiremo meglio in seguito); l'intera rassegna è presentata in~\cite{bib:rassegna}.
 		
 		\section{Clustering}
@@ -204,7 +216,7 @@
 		I problemi di clustering possono avere applicazioni in svariati campi, come l'economia~\cite{bib:economy}, psicologia~\cite{bib:psychology}, medicina~\cite{bib:medicine, bib:medicine2}, biologia~\cite{bib:biology,bib:biology2}; ne è fatto in particolare un vasto utilizzo nel campo della bioinformatica, in cui il fuzzy clustering è preferito a quello classico, nel campo del marketing, in cui a esempio gli utenti possono essere suddivisi in cluster fuzzy sulla base di bisogni, preferenze e profili o ancora nell'analisi di immagini, in cui è usato in particolare per la segmentazione al fine di svolgere pattern recognition e object detection.
 		Nel fuzzy clustering infatti, in opposizione alle tecniche classiche di clustering come il \textit{k-means}, gli elementi di input possono appartenere a più di una partizione, con un certo valore di membership. La membership non rappresenta però una probabilità: la somma dei valori di membership assegnati a un elemento in relazione a classi opposte non deve perciò dare 1; la membership sarà più bassa se il punto si colloca sul limite esterno del cluster, e viceversa maggiore se l'elemento è vicino al centro del cluster.
 		
-		Il \textit{Fuzzy C-Means}, metodo alla base base del fuzzy clustering, si basa come spiegato in precedenza sul k-means e generalizza l'algoritmo in senso fuzzy: gli oggetti che si collocano sul confine di un dato cluster non sono forzati ad appartenere a un solo cluster, ma possono invece appartenere a diversi insiemi con una membership compresa tra 0 e 1, garantendo una prestazione migliore specialmente in presenza di rumore nei dati o di outlier~\cite{bib:kmvfcm}. 
+		Il \textit{Fuzzy C-Means}, metodo alla base base del fuzzy clustering, si basa come spiegato in precedenza sul k-means e generalizza l'algoritmo in senso fuzzy: gli oggetti che si collocano sul confine di un dato cluster non sono forzati ad appartenere a un solo cluster, ma possono invece appartenere a diversi insiemi con una membership compresa tra 0 e 1, garantendo una prestazione migliore specialmente in presenza di rumore nei dati o di outlier~\cite{bib:kmvfcm}
 		Gli elementi saranno quindi assegnati a ogni cluster con diversi valori di appartenenza: punti più vicini al centro del cluster avranno membership maggiore, e viceversa punti lontani avranno membership minore.\\
 		Fissato un dato numero di cluster $c$, dove $2\leq c \le n$,  e selezionato un valore per il parametro $m$ (che controlla la \textit{fuzziness}, concetto che verrà approfondito in seguito), è necessario quindi inizializzare la \textit{partition matrix} $U$. La matrice $U=[u_{ik}]$ è una matrice $c\times N$ di numeri reali ($N$ è il numero di osservazioni in $\mathbb R^n$), e $u_{ik}=u_i(x_k)$. $u_{i}$ è la funzione caratteristica dell'insieme e mappa i valori di membership degli $x_k$ nel sottoinsieme fuzzy di $X$ ($0\leq u_{ic}\leq 1$), $x_k$ è il k-esimo feature vector, e
 	
@@ -253,7 +265,7 @@
 					\hline
 					Categoria & Nome metodo & Anno di pubblicazione & Articolo\\
 					\hline
-					\multirow{10}{4em}{estensioni a FCM} 
+					\multirow{10}{4em}{Estensioni a FCM} 
 					& RSFKM & 2016 & \cite{bib:rsfkm}\\ 
 					& Agglomerative FCM & 2008 & \cite{bib:afkm}\\
 					& FKM con FIS & 2013 & \cite{bib:fkmfis}\\ 
@@ -270,7 +282,9 @@
 					& MSVC & 2016 & \cite{bib:msvc}\\ 
 					&  &  & \\
 					\hline
-					& Shadowed Set Induction & 2018 & \cite{bib:ssi} \\
+					\multirow{3}{4em}{Shadowed Set Induction} & & & \\
+					&  & 2018 & \cite{bib:ssi}\\
+					& & & \\	
 					\hline
 					\multirow{2}{4em}{Spectral Clustering}	& FKSC & 2018 & \cite{bib:fksc}\\ 
 					& SSC-PC & 2016 & \cite{bib:sscpc}\\ 
@@ -285,7 +299,7 @@
 	\section{Support Vector Machine}
 	Le \textit{Support Vector Machine} (SVM), sviluppate da Vapnik nel 1995, sono una tecnica di apprendimento supervisionato utilizzato soprattutto per problemi di classificazione, regressione e individuazione di outlier; esse sono utilizzate per un ampio spettro di applicazioni, dal riconoscimento facciale \cite{bib:svmfr, bib:svmfr2} all'elaborazione di dati biologici per diagnosi mediche (come in ~\cite{bib:svmmed,bib:svmmed2}).
 	
-	Le SVM hanno come obiettivo quello di identificare un iperpiano ``ottimo" come soluzione del problema di apprendimento, cioè un iperpiano che separi due classi di elementi dell'insieme dei dati di input. L'iperpriano migliore è quello che massimizza il \textit{margine}, definito come la distanza tra i punti più vicini all'iperpiano e l'iperpiano stesso; anche punti lontani dal margine possono essere coinvolti nella determinazione dell'iperpiano. Se si considera uno spazio bidimensionale, ad esempio, un iperpiano è una retta che divide il piano in due semispazi. Per ottenere una migliore separazione tra le classi, i dati sono inizialmente trasformati in uno spazio a più dimensioni: da uno $spazio delle features di input$, che ha tante dimensioni quante quelle delle features si passa ad uno $spazio delle features$, a più dimensioni. I dati vengono quindi proiettati in uno spazio di dimensioni maggiori rispetto a quello di partenza, nel quale i dati siano linearmente separabili. In questo nuovo spazio (indotto da un \textit{kernel}), si cercherà l'iperpiano ottimale, come mostrato in Figura \ref{fig:hyp}. Nella ricerca dell'iperpiano ottimo è accettabile la classificazione errata di alcuni punti; la misura della tolleranza alla misclassificazione verrà approfondita in seguito.
+	Le SVM hanno come obiettivo quello di identificare un iperpiano ``ottimo" come soluzione del problema di apprendimento, cioè un iperpiano che separi due classi di elementi dell'insieme dei dati di input. L'iperpriano migliore è quello che massimizza il \textit{margine}, definito come la distanza tra i punti più vicini all'iperpiano e l'iperpiano stesso; anche punti lontani dal margine possono essere coinvolti nella determinazione dell'iperpiano. Se si considera uno spazio bidimensionale, ad esempio, un iperpiano è una retta che divide il piano in due semispazi. Per ottenere una migliore separazione tra le classi, i dati sono inizialmente trasformati in uno spazio a più dimensioni: da uno \textit{spazio delle features di input}, che ha tante dimensioni quante quelle delle features si passa ad uno \textit{spazio delle features}, a più dimensioni. I dati vengono quindi proiettati in uno spazio di dimensioni maggiori rispetto a quello di partenza, nel quale i dati siano linearmente separabili. In questo nuovo spazio (indotto da un \textit{kernel}), si cercherà l'iperpiano ottimale, come mostrato in Figura \ref{fig:hyp}. Nella ricerca dell'iperpiano ottimo è accettabile la classificazione errata di alcuni punti; la misura della tolleranza alla misclassificazione verrà approfondita in seguito.
 		\begin{figure}[h]
 		\centering
 		\subfloat[\emph{}]
@@ -355,7 +369,7 @@
 
 	Consiederiamo in particolare le Fuzzy Support Vector Machine per il \textit{Class Imbalance Learning} (CIL~\cite{bib:cil}): questo algoritmo si specializza su apprendimento in caso di dataset nei quali una delle due classi è rappresentata con maggiore frequenza rispetto all'altra. In questo caso, con algoritmi tradizionali può accadere che l'apprendimento dia risultati molto accurati sulla predizione della classe maggiormente rappresentata, ma che commetta molti errori sull'altra classe (si consideri successivamente la classe positiva come classe rappresentata con minore frequenza, come nella maggior parte dei dataset reali).\newline
 	Tra i metodi CIL, ovvero quelli che si occupano di questo tipo di probelma, si possono distinguere metodi interni ed esterni: i \textit{metodi esterni} effettuano un preprocessing dei dati in modo da bilanciarli, ad esempio eliminando in modo casuale alcuni elementi della classe più rappresentata finchè un determinato rapporto tra il numero degli elementi in ogni classe viene raggiunto; un altro metodo esterno consiste invece nella duplicazione degli esempi appartenenti alla classe meno rappresentata, sempre al fine di bilanciare meglio le classi tra loro. I \textit{metodi interni}, invece, modificano l'algoritmo di apprendimento in modo da renderlo meno sensibile allo sbilanciamento tra classi.\newline 
-	L'algoritmo FSVM-CIL si pone l'obiettivo di risolvere sia il problema dello sbilanciamento tra classi sia quello della presenza di outlier e rumore nei dati. Come in ogni metodo di fuzzy SVM, i valori di membership (o \textit{pesi}) assegnati agli esempi di training sono differenziati in modo da riflttere la loro diversa importanza. Possiamo quindi assegnare valori di membership più elevati in corrispondenza di elementi della classe meno rappresentata, e viceversa valori di membership più bassi a esempi della classe più rappresentata. Il valore di membership assegnato dipende inoltre dall'importanza intra-classe dei diversi elementi del training set, in modo che l'effetto del rumore e degli outlier sia minore.\newline
+	L'algoritmo FSVM-CIL si pone l'obiettivo di risolvere sia il problema dello sbilanciamento tra classi sia quello della presenza di outlier e rumore nei dati. Come in ogni metodo di fuzzy SVM, i valori di membership (o \textit{pesi}) assegnati agli esempi di training sono differenziati in modo da riflettere la loro diversa importanza. Possiamo quindi assegnare valori di membership più elevati in corrispondenza di elementi della classe meno rappresentata, e viceversa valori di membership più bassi a esempi della classe più rappresentata. Il valore di membership assegnato dipende inoltre dall'importanza intra-classe dei diversi elementi del training set, in modo che l'effetto del rumore e degli outlier sia minore.\newline
 	Sia $m_i^+$ il valore della membership di un esempio $x_i^+$ appartente alla classe positiva (la meno rappresentata), e $m_i^-$ il valore di membership di un dato $x_i^-$ nella classe negativa. Definiamo queste funzioni di membership come:
 		\[
 			m_i^+ = f(x_i^+)r^+\text{,}
@@ -374,6 +388,7 @@
 	dove $d_i^{sph}=\norma{x_i-\bar{x}}^{\frac{1}{2}}$, e $\bar{x}$ è il centro della regione sferica, stimato dal centro dell'intero dataset negativo e positivo; $\beta$ e $\Delta$ sono due costanti definite a priori. Nel capitolo successivo si spiegherà in dettaglio il funzionamento di questo metodo e si mostreranno degli esperimenti eseguiti su vari dataset.	
 
 	\chapter{Implementazione ed esperimenti}
+	\label{chap:3}
 	\section{Dataset}
 	I dataset utilizzati durante il lavoro di tirocinio sono l'\textit{Iris Dataset}\footnote{https://archive.ics.uci.edu/ml/datasets/iris} e il \textit{Breast Cancer Dataset}\footnote{https://github.com/datasets/breast-cancer}.\\
 	Il dataset Iris è stato introdotto da Ronald Fisher nel 1936, e consiste in 150 istanze di Iris misurate da Edgar Anderson e classificate secondo tre specie: \textit{Iris setosa}, \textit{Iris virginica} e \textit{Iris versicolor}. Ogni elemento del dataset è definito da quattro features, la lunghezza e la larghezza del sepalo e la lunghezza e la larghezza del del petalo (misurate in centimetri) e da una label che indica la classe di appartenenza di quell'elemento; ogni classe è rappresentata da 50 istanze nel dataset. Nel dataset Iris la classe \textit{iris setosa} è linearmente separabile dalle altre, che non lo sono invece tra loro. Si può osservare un estratto del dataset in Tabella~\ref{tab:iris}
@@ -448,9 +463,19 @@
 	Per aumentare l'accuratezza del modello è stata poi introdotta nello script responsabile del funzionamento del FCM (\textit{fuzzy\_c.py}) la cross validation (su 5 fold, con seme casuale 1): a ogni iterazione vengono memorizzati l'accuratezza e l'RMSE sulle membership; si avranno come risultati finali una media dei dati raccolti per ognuna delle due metriche.
 	L'algoritmo analizzato utilizza nella fase di training dati di input senza etichetta: la label viene utilizzata solamente per controllare la bontà della predizione effettuata; ciò può talvolta influire sulle prestazioni dell'algoritmo, come approfondito nel paragrafo 3.4.
 	
-	Per controllare il buon funzionamento del codice scritto sono stati svolti unit test, che controllano l'ammissibilità dei valori restituiti per le metriche scelte, e che l'errore non superi una soglia. Il logging di tutte le operazioni ha permesso un controllo sui vari output degli esperimenti; gli esperimenti sono stati svolti più volte, utilizzando due o quattro feature (per quanto riguarda iris), i vari dataset a due classsi generati a partire da Iris e l'intero dataset Breast Cancer.
+	Per controllare il buon funzionamento del codice scritto sono stati svolti unit test, che controllano l'ammissibilità dei valori restituiti per le metriche scelte, e che l'errore non superi una soglia. Il logging di tutte le operazioni ha permesso un controllo sui vari output degli esperimenti; gli esperimenti sono stati svolti più volte, utilizzando due o quattro feature (per quanto riguarda iris), i vari dataset a due classi generati a partire da Iris e l'intero dataset Breast Cancer.
 	Per una migliore visualizzazione dei risultati, è stata realizzata una rappresentazione grafica con heatmap (Figura \ref{fig:hm}) e curve di livello, come in Figura \ref{fig:vis}. 
-	\begin{figure}[h]
+	\begin{figure}[h!]
+		\subfloat[\emph{}]
+		{\includegraphics[width=.31\textwidth]{setosahm.png}}\quad 
+		\subfloat[\emph{}]
+		{\includegraphics[width=.31\textwidth]{versicolorhm.png}}\quad
+		\subfloat[\emph{}]
+		{\includegraphics[width=.31\textwidth]{virginicahm.png}}\\
+		\caption{Heatmap corrispondenti ai tre dataset che considerano di volta in volta soltanto l'appartenenza o meno a una data classe (setosa, versicolor, virginica)}
+		\label{fig:hm}
+	\end{figure}
+	\begin{figure}
 		\centering
 		\subfloat[\emph{}]
 		{\includegraphics[width=.45\textwidth]{setosa.png}}\quad 
@@ -467,32 +492,23 @@
 		\caption{Il dataset iris (si consiederano le prime due features), modificato in modo da avere due classi che indichino di volta in volta se un'istanza appartiene a setosa oppure no (a), versicolor oppure no (c), virginica oppure no (e), e le curve di livello risultanti dalle predizioni effettuate dall'algoritmo, a cui vengono passati i tre dataset (b, d, f)}
 		\label{fig:vis}
 	\end{figure}
-	\begin{figure}[h]
-		\subfloat[\emph{}]
-		{\includegraphics[width=.31\textwidth]{setosahm.png}}\quad 
-		\subfloat[\emph{}]
-		{\includegraphics[width=.31\textwidth]{versicolorhm.png}}\quad
-		\subfloat[\emph{}]
-		{\includegraphics[width=.31\textwidth]{virginicahm.png}}\\
-		\caption{Heatmap corrispondenti ai tre dataset che considerano di volta in volta soltanto l'appartenenza o meno a una data classe (setosa, versicolor, virginica)}
-		\label{fig:hm}
-	\end{figure}
+
 	\section{Algoritmo basato su Fuzzy Support Vector Machine}
 	Tra gli algoritmi basati su Fuzzy Support Vector Machine è stato analizzato il Fuzzy SVM per Class Imbalance Learning; il codice è stato reperito in rete\footnote{https://github.com/adizz2407/Fuzzy-SVM}. L'algoritmo, implementato con l'uso di \textit{Jupyter Notebook}, non permetteva un'esecuzione automatizzata: questo primo problema è stato gestito con l'introduzione del file \textit{HYP\_SVM}, contenente la classe in cui le funzioni necessarie all'algoritmo sono definite e da uno script, necessario per eseguire l'algoritmo stesso. Anche nel caso del codice trovato per SVM-CIL, inoltre, si è notata un'eccessiva specializzazione sui dati che l'algoritmo era progettato per utilizzare: nel codice si sono identificati valori costanti non specificati, così come nomi di variabili non autoesplicativi; è stata quindi necessaria una modifica al fine di rendere il codice utilizzabile con qualsiasi dataset e di migliorarne la leggibilità. Come per il metodo descritto nel paragrafo 3.2, si è reso inoltre necessario utilizzare una cross validation, al fine di migliorare l'apprendimento dell'algoritmo. Un'altra fase cruciale è stata quella della selezione degli iperparametri $C$ e $sigma$, svolta utilizzando il metodo \textit{GridSearchCV} di \textit{sklearn}. Per $C$ la selezione avviene tra i valori $[1^{-2}, 1^{-1}, 1, 1^{+1}, 1^{+2}, 1^{+3}, 1^{+4}]$, mentre per $sigma$ tra $[9^{-2}, 9^{-1}, 9, 9^{+1}, 9^{+2}, 9^{+3}, 9^{+4}]$; si è utilizzato un kernel gaussiano. Per poter utilizzare \textit{GridSearchCV}, è stato necessario introdurre nuovi metodi richiesti (cioè \textit{score}, \textit{get\_params} e \textit{set\_params}). La fase di model selection costituisce quindi una cross validation annidata in un'altra più esterna, che invece suddivide training e test del modello.\\
-	\`E stato inoltre necessario, come per il precedente algoritmo, introdurre una funzione che calcolasse l'RMSE. Non è stato però possibile ricavare dal codice il valore delle membership predette, e quindi il valore dell'RMSE è stato calcolato sulla base della label predetta; per lo stesso motivo non è stato possibile realizzare grafici con curve di livello o heatmap. L'algoritmo presenta un tempo di esecuzione notevole, dovuto solo in parte alla fase di model selection; sono stati fatti esperimenti sui tre dataset ottenuti da Iris e sul dataset Breast Cancer. 
+	\`L'algoritmo presenta un tempo di esecuzione notevole, dovuto solo in parte alla fase di model selection; sono stati fatti esperimenti sui tre dataset ottenuti da Iris e sul dataset Breast Cancer.
+	 
 	\section{Risultati}
-		Di seguito si indicano i risultati degli esperimenti eseguiti su FCM (Tabella~\ref{tab:fcm}) e FSVM-CIL(Tabella~\ref{tab:fsvm}). In seguito sono illustrati gli stessi esperimenti eseguiti su Reti Neurali e Fuzzy k-Nearest Neighbour (approfonditi in~\cite{bib:rita}).
+		Di seguito si indicano i risultati degli esperimenti eseguiti su FCM (Tabella~\ref{tab:fcm}) e FSVM-CIL (Tabella~\ref{tab:fsvm}). In seguito in Tabella~\ref{tab:fknn} e Tabella~\ref{tab:fmm} sono illustrati gli stessi esperimenti eseguiti su Reti Neurali e Fuzzy k-Nearest Neighbour (approfonditi in~\cite{bib:rita}).
 		
-		Dai risultati ottenuti dagli esperimenti si nota come FCM ottiene buoni risultati sul dataset \textit{iris-setosa}, in quanto la classe è linearmente separabile dalle altre, mentre la performance peggiora sugli altri due dataset estratti da Iris. Considerando la performance sull'intero dataset Iris, si può notare che il valore di accuratezza è piuttosto basso, mentre quello dell'errore è piuttosto alto: ciò è dovuto al fatto che FCM durante la fase di training non considera le label, e assegna valori di membership agli elementi senza curarsi delle etichette originarie. Può quindi accadere che la classificazione avvenga correttamente, ma che la label assegnata ad un punto non corrisponda a quella presente nel dataset originale: ciò influisce sulla valutazione della performance.
+		Dai risultati ottenuti dagli esperimenti si nota come FCM ottiene buoni risultati sul dataset \textit{iris-setosa}, in quanto la classe è linearmente separabile dalle altre, mentre la performance peggiora sugli altri due dataset estratti da Iris.
 		
-		L'algoritmo SVM-CIL non può invece essere valutato sull'intero Iris, in quanto nel dataset sono presenti 3 classi mentre gli algoritmi basati su Support Vector Machine ne considerano due alla volta. L'algoritmo ottiene una performance discreta su tutti i dataset, e l'errore rilevato aumenta molto sui dataset \textit{Iris-versicolor} e \textit{Breast Cancer}. Nel calcolo dell'RMSE, in questo caso, si è considerato l'errore sulla classificazione, e non sulla predizione della membership (che non è stato possibile estrarre dal processo di predizione).
+		L'algoritmo FSVM-CIL ottiene una performance discreta su tutti i dataset, e l'errore rilevato aumenta molto sui dataset \textit{Iris-versicolor} e \textit{Breast Cancer}. Il valore dell'RMSE non è indicato in quanto l'implementazione trovata si limita ad indurre le membership e le usa per la classificazione, ma non permette di calcolare le membership in modo esplicito punto per punto.
+		
 		\begin{table}[h]
 		\caption{Risultati degli esperimenti eseguiti su FCM}
 		\begin{center}\begin{tabular}{ |c|c|c| } 
 				\hline
 				\textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
-				\hline
-				Iris Dataset & 59.33\% & 0.75\\
 				\hline
 				Iris-setosa & 98.0\% & 0.12\\
 				\hline
@@ -510,17 +526,15 @@
 			\caption{Risultati degli esperimenti eseguiti su FSVM-CIL}
 			\begin{center}\begin{tabular}{ |c|c|c| } 
 				\hline
-				Dataset & Accuratezza & RMSE\\
+				\textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
 				\hline
-				Iris Dataset& - & - \\
+				Iris-setosa & 80\% & -\\
 				\hline
-				Iris-setosa & 80\% & 0.69\\
+				Iris-versicolor & 66\% & -\\
 				\hline
-				Iris-versicolor & 66\% & 1.16\\
+				Iris-virginica & 84\% & -\\
 				\hline
-				Iris-virginica & 84\% & 0.74\\
-				\hline
-				Breast Cancer Dataset &  53.9\% & 1.36\\
+				Breast Cancer Dataset &  53.9\% & -\\
 				\hline									
 			\end{tabular}
 		\end{center}
@@ -530,9 +544,7 @@
 		\caption{Risultati degli esperimenti eseguiti su FKNN}
 		\begin{center}\begin{tabular}{ |c|c|c| } 
 				\hline
-				Dataset & Accuratezza & RMSE\\
-				\hline
-				Iris Dataset& 95\% & 0.21 \\
+				\textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
 				\hline
 				Iris-setosa & 99\% & 0.08 \\
 				\hline
@@ -546,13 +558,11 @@
 		\end{center}
 		\label{tab:fknn}  
 	\end{table}
-	\begin{table}[h]
+	\begin{table}[]
 		\caption{Risultati degli esperimenti eseguiti su Fuzzy min max}
 		\begin{center}\begin{tabular}{ |c|c|c| } 
 				\hline
-				Dataset & Accuratezza & RMSE\\
-				\hline
-				Iris Dataset& 93\% & 0.27 \\
+				\textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
 				\hline
 				Iris-setosa & 99\% & 0.64 \\
 				\hline
@@ -567,6 +577,10 @@
 		\label{tab:fmm}  
 	\end{table}
 	\chapter*{Conclusioni}
+	Il lavoro di tirocinio ha quindi riguardato l'approfondimento e il confronto di algoritmi per l'induzione della funzione di membership di insiemi fuzzy. Si sono analizzate nello specifico un'implementazione di Fuzzy C-Means e di Fuzzy Support Vector Machines for Class Imbalance Learning. Le implementazioni in questione sono state modificate al fine di migliorare le prestazioni degli algoritmi e la leggibilità del codice. Gli esperimenti hanno previsto una fase di cross validation e di model selection, e sono stati eseguiti sui dataset Iris e Breast Cancer; a partire da Iris sono stati generati tre dataset contenenti ciascuno due classi, da usare per indurre la funzione di membership della classe di volta in volta considerata. I risultati ottenuti sono stati molto buoni sulla classe \textit{iris-setosa} (linearmente separabile dalle altre), mentre la performance è sensibilmente diminuita sugli altri dataset. L'algoritmo FSVM-CIL ha mostrato performance generalmente più basse, ed un tempo di esecuzione notevole.
+	
+	Possibili estensioni di questo lavoro potrebbero essere la ricerca e implementazione di nuovi metodi (alcuni sono già citati in Tabella~\ref{tab:clustering} e in Tabella~\ref{tab:svm}) o l'uso di dataset di dimensioni maggiori, che permetterebbero di osservare comportamenti differenti degli algoritmi.
+	
 	\addcontentsline{toc}{chapter}{Conclusioni}
 	\bibliography{Bibliografia}{}
 

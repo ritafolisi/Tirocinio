@@ -94,6 +94,12 @@ Mehmet G\"{o}nen and Adam~A Margolin.
   Weinberger, editors, {\em Advances in Neural Information Processing Systems
   27}, pages 1305--1313. Curran Associates, Inc., 2014.
 
+\bibitem{bib:kmvfcm}
+Rimbun Siringoringo and Jamaluddin Jamaluddin.
+\newblock Initializing the fuzzy c-means cluster center with particle swarm
+  optimization for sentiment clustering.
+\newblock {\em Journal of Physics: Conference Series}, 1361, 11 2019.
+
 \bibitem{bib:fcm}
 J.~Bezdek, R.~Ehrlich, and W.~E. Full.
 \newblock Fcm: The fuzzy c-means clustering algorithm.
@@ -260,11 +266,6 @@ Wenjuan An and Mangui Liang.
   classification problems with outliers or noises.
 \newblock {\em Neurocomputing}, 110:101–110, 06 2013.
 
-\bibitem{bib:cil}
-Rukshan Batuwita and Vasile Palade.
-\newblock Fsvm-cil: Fuzzy support vector machines for class imbalance learning.
-\newblock {\em IEEE Transactions on Fuzzy Systems}, 18(3):558--571, 6 2010.
-
 \bibitem{bib:flst}
 Javad~Salimi Sartakhti, Homayun Afrabandpey, and Nasser Ghadiri.
 \newblock Fuzzy least squares twin support vector machines, 2015.
@@ -274,5 +275,10 @@ Bin-Bin Gao, Jianjun Wang, Yao Wang, and Chan-Yun Yang.
 \newblock Coordinate descent fuzzy twin support vector machine for
   classification.
 \newblock pages 7--12, 12 2015.
+
+\bibitem{bib:cil}
+Rukshan Batuwita and Vasile Palade.
+\newblock Fsvm-cil: Fuzzy support vector machines for class imbalance learning.
+\newblock {\em IEEE Transactions on Fuzzy Systems}, 18(3):558--571, 6 2010.
 
 \end{thebibliography}

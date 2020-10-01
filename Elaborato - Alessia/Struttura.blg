@@ -4,10 +4,9 @@ The top-level auxiliary file: Struttura.aux
 The style file: unsrt.bst
 Database file #1: Bibliografia.bib
 Warning--entry type for "bib:refcmfs" isn't style-file defined
---line 242 of file Bibliografia.bib
+--line 241 of file Bibliografia.bib
 Warning--entry type for "bib:rita" isn't style-file defined
---line 435 of file Bibliografia.bib
-Warning--I didn't find a database entry for "bib:kmvfcm"
+--line 434 of file Bibliografia.bib
 Warning--empty publisher in bib:fuzzy2
 Warning--empty booktitle in bib:medicine
 Warning--empty booktitle in bib:medicine2
@@ -16,45 +15,45 @@ Warning--empty booktitle in bib:fksc
 Warning--empty journal in bib:svmfr2
 Warning--empty booktitle in bib:multi
 Warning--empty booktitle in bib:cdt
-You've used 45 entries,
+You've used 46 entries,
             1791 wiz_defined-function locations,
-            716 strings with 11848 characters,
-and the built_in function-call counts, 10942 in all, are:
-= -- 947
-> -- 498
+            721 strings with 12041 characters,
+and the built_in function-call counts, 11095 in all, are:
+= -- 960
+> -- 506
 < -- 9
-+ -- 181
-- -- 136
-* -- 718
-:= -- 1683
-add.period$ -- 136
-call.type$ -- 45
-change.case$ -- 42
++ -- 184
+- -- 138
+* -- 726
+:= -- 1711
+add.period$ -- 139
+call.type$ -- 46
+change.case$ -- 43
 chr.to.int$ -- 0
-cite$ -- 53
-duplicate$ -- 511
-empty$ -- 1068
-format.name$ -- 136
-if$ -- 2512
+cite$ -- 54
+duplicate$ -- 519
+empty$ -- 1082
+format.name$ -- 138
+if$ -- 2545
 int.to.chr$ -- 0
-int.to.str$ -- 45
-missing$ -- 45
-newline$ -- 225
-num.names$ -- 49
-pop$ -- 150
+int.to.str$ -- 46
+missing$ -- 46
+newline$ -- 230
+num.names$ -- 50
+pop$ -- 151
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 282
+skip$ -- 287
 stack$ -- 0
 substring$ -- 700
-swap$ -- 141
+swap$ -- 142
 text.length$ -- 9
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 8
-while$ -- 84
-width$ -- 47
-write$ -- 481
-(There were 11 warnings)
+while$ -- 85
+width$ -- 48
+write$ -- 492
+(There were 10 warnings)
