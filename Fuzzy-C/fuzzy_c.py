@@ -39,7 +39,7 @@ def fcm_script(data):
 
 		#test
 		test_membership = model.fuzzy_predict(X_test , N_CLUSTER , centers, 2)
-		print(test_membership)
+
 		if(N_CLUSTER==2):
 			error.append(model.RMSE_membership(test_membership, y_test))
 

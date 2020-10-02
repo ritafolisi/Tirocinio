@@ -298,3 +298,74 @@ Prossimo esperimento
 30-Sep-20 11:31:44 - [0.7302967433402214, 0.31622776601683794, 0.7958224257542215, 0.752772652709081, 0.6831300510639732] = array delle RMSE_membership 
 
 30-Sep-20 11:33:47 - Questo esperimento lavora sul dataset: Dataset/iris_std.csv
+01-Oct-20 19:18:01 - Questo esperimento lavora sul dataset: Dataset/iris-setosa.csv
+01-Oct-20 19:18:01 - [0.8333333333333334, 0.6666666666666666, 0.7333333333333333, 0.6666666666666666, 0.7] = array delle accuratezze
+01-Oct-20 19:18:01 - [0.816496580927726, 0.816496580927726, 0.8563488385776752, 0.816496580927726, 0.8366600265340756] = array delle RMSE_membership 
+
+01-Oct-20 19:18:15 - Questo esperimento lavora sul dataset: Dataset/iris-setosa.csv
+01-Oct-20 19:18:15 - [0.9666666666666667, 1.0, 0.9666666666666667, 1.0, 0.9666666666666667] = array delle accuratezze
+01-Oct-20 19:18:15 - [0.15492971247297388, 0.0863649099029345, 0.16487717227448254, 0.06519993393753216, 0.14573313028571336] = array delle RMSE_membership 
+
+02-Oct-20 13:25:54 - Questo esperimento lavora sul dataset: Dataset/iris-setosa.csv
+02-Oct-20 13:25:55 - [0.9666666666666667, 1.0, 0.9666666666666667, 1.0, 0.9666666666666667] = array delle accuratezze
+02-Oct-20 13:25:55 - [0.15492971206674488, 0.08636490975250914, 0.16487717165909163, 0.06519993394158821, 0.14573313042452554] = array delle RMSE_membership 
+
+02-Oct-20 13:30:54 - Questo esperimento lavora con il metodo: fcm
+02-Oct-20 13:30:55 - Questo esperimento lavora sul dataset: Dataset/iris-setosa.csv
+02-Oct-20 13:30:55 - [0.9666666666666667, 1.0, 0.9666666666666667, 1.0, 0.9666666666666667] = array delle accuratezze
+02-Oct-20 13:30:55 - [0.15492971173935283, 0.08636490964982858, 0.16487717193188645, 0.0651999339157296, 0.14573313035545007] = array delle RMSE_membership 
+
+02-Oct-20 13:30:55 - 
+Prossimo esperimento
+
+02-Oct-20 13:35:22 - Questo esperimento lavora con il metodo: fcm
+02-Oct-20 13:35:23 - Questo esperimento lavora sul dataset: Dataset/iris-versicolor.csv
+02-Oct-20 13:35:23 - [0.5, 0.7, 0.7, 0.5333333333333333, 0.8] = array delle accuratezze
+02-Oct-20 13:35:23 - [0.6451428262452988, 0.5293593284647355, 0.5030617082682937, 0.6381824501950316, 0.42347941725259397] = array delle RMSE_membership 
+
+02-Oct-20 13:35:23 - 
+Prossimo esperimento
+
+02-Oct-20 13:35:29 - Questo esperimento lavora con il metodo: fcm
+02-Oct-20 13:35:29 - Questo esperimento lavora sul dataset: Dataset/iris-virginica.csv
+02-Oct-20 13:35:30 - [0.5333333333333333, 0.7, 0.7333333333333333, 0.6, 0.8666666666666667] = array delle accuratezze
+02-Oct-20 13:35:30 - [0.6074590658146135, 0.4625617253879633, 0.48083682306186254, 0.5611020372358927, 0.3445569151142186] = array delle RMSE_membership 
+
+02-Oct-20 13:35:30 - 
+Prossimo esperimento
+
+02-Oct-20 13:37:03 - Questo esperimento lavora con il metodo: fcm
+02-Oct-20 13:37:04 - Questo esperimento lavora sul dataset: Dataset/breast-std.csv
+02-Oct-20 13:37:04 - 
+Prossimo esperimento
+
+02-Oct-20 13:38:06 - Questo esperimento lavora con il metodo: fcm
+02-Oct-20 13:38:07 - Questo esperimento lavora sul dataset: Dataset/breast-std.csv
+02-Oct-20 13:38:07 - 
+Prossimo esperimento
+
+02-Oct-20 13:38:54 - Questo esperimento lavora con il metodo: fcm
+02-Oct-20 13:38:54 - Questo esperimento lavora sul dataset: Dataset/breast-std.csv
+02-Oct-20 13:38:55 - 
+Prossimo esperimento
+
+02-Oct-20 13:39:19 - Questo esperimento lavora con il metodo: fcm
+02-Oct-20 13:39:19 - Questo esperimento lavora sul dataset: Dataset/breast-std.csv
+02-Oct-20 13:39:30 - [0.616822429906542, 0.5233644859813084, 0.5700934579439252, 0.514018691588785, 0.5849056603773585] = array delle accuratezze
+02-Oct-20 13:39:30 - [0.5055428390393611, 0.5667697294877968, 0.5632989154806631, 0.5735601936288285, 0.529170967075668] = array delle RMSE_membership 
+
+02-Oct-20 13:39:30 - 
+Prossimo esperimento
+
+02-Oct-20 13:40:24 - Questo esperimento lavora con il metodo: fcm
+02-Oct-20 13:40:25 - Questo esperimento lavora sul dataset: Dataset/breast-std.csv
+02-Oct-20 13:40:36 - [0.616822429906542, 0.5233644859813084, 0.5700934579439252, 0.514018691588785, 0.5849056603773585] = array delle accuratezze
+02-Oct-20 13:40:36 - [0.5055428536727723, 0.5667697293566742, 0.5632989239552426, 0.5735601938781999, 0.5291709928113043] = array delle RMSE_membership 
+
+02-Oct-20 13:40:36 - 
+Prossimo esperimento
+
+02-Oct-20 13:44:08 - Questo esperimento lavora con il metodo: svm
+02-Oct-20 13:56:28 - 
+Prossimo esperimento
+

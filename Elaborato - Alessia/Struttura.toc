@@ -16,4 +16,4 @@
 \contentsline {section}{\numberline {3.2}Algoritmo basato su Fuzzy Clustering}{25}
 \contentsline {section}{\numberline {3.3}Algoritmo basato su Fuzzy Support Vector Machine}{28}
 \contentsline {section}{\numberline {3.4}Risultati}{28}
-\contentsline {chapter}{Conclusioni}{31}
+\contentsline {chapter}{Conclusioni}{30}

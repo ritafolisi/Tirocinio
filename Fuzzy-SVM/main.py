@@ -14,26 +14,15 @@ import math
 import itertools
 import pylab as pl
 import sys
+from datetime import datetime
 
 from HYP_SVM import *
-
-def hyp_svm(best_C, best_sigma):
-    skf = StratifiedKFold(n_splits=5, shuffle=False, random_state=5)
-    for train_index, test_index in skf.split(X, y):
-        X_train, X_test = X[train_index], X[test_index]
-        y_train, y_test = y[train_index], y[test_index]
-        best_model = HYP_SVM(C=best_C, kernel=gaussian_kernel, sigma=best_sigma)
-
-        best_model.fit(X_train, y_train)
-        best_model.score(X_test, y_test)
-
-    return best_model.score(X_test, y_test)
 
 if __name__=="__main__":
     data=sys.argv[1]
     dataset=pd.read_csv(data)
 
-    X = dataset.columns[1:3]
+    X = dataset.columns[1:]
     X = dataset[X]
     y = dataset.columns[0]
     y = dataset[y]
@@ -48,9 +37,13 @@ if __name__=="__main__":
     sigma = [9e-2, 9e-1, 9, 9e+1, 9e+2, 9e+3, 9e+4]
     parameters = {'C': C_vals, 'sigma': sigma}
     err = []
+    acc = []
+
     #metto shuffle a False, è richiesto nella classe di indicare la suddivisione nel training set di dati positivi e negativi
     skf = StratifiedKFold(n_splits=5, shuffle=False)
+    print(datetime.now())
     for train_index, validation_index in skf.split(X, y):
+
         X_train, X_validation = X[train_index], X[validation_index]
         y_train, y_validation = y[train_index], y[validation_index]
 
@@ -64,4 +57,7 @@ if __name__=="__main__":
         print("\nBest model", best_C, best_sigma)
         best_model.fit(X_train, y_train)
         err.append(best_model.score(X_validation, y_validation))
-    print(err)
+        acc.append(best_model.accuracy(X_validation, y_validation))
+    print(datetime.now())
+
+    print(np.mean(err), np.mean(acc))
