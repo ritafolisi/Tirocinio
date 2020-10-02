@@ -46,6 +46,13 @@
 	\pagenumbering{arabic}
 
 	\chapter*{Introduzione}
+In questo elaborato si descrive il tirocinio il cui focus è stata la ricerca, la modifica e il riuso di algoritmi per l'induzione della funzione di appartenenza su insiemi fuzzy. 
+
+Nell'ambito dell'apprendimento automatico, una classe di problemi che ha assunto grande rilevanza è la classificazione: dato un oggetto, ci si aspetta che la macchina riesca a predire la sua classe di appartenenza. Esistono vari approcci al problema, ognuno dei quali con le proprie punti di forza e punti di debolezza. In questo tirocinio ci si è occupati di insiemi fuzzy, dal momento che riescono a cogliere l'ambiguità caratterizzante il linguaggio naturale, consentendo una maggiore flessibilità e precisione nella classificazione stessa. Nell'ambito degli insiemi fuzzy, fondamentale è il concetto di funzione di appartenenza, che definisce il grado con cui un dato oggetto può appartenere ad una classe. Ricoprendo valori da 0 a 1, la funzione di appartenenza riesce così a sintetizzare anche la parziale appartenenza di un oggetto ad una data classe, superando il binarismo della logica classica. 
+
+In letteratura sono stati presentati molteplici modi per poter indurre la funzione di appartenenza. In questo tirocinio sono stati esaminati algoritmi basati sulle reti neurali e sul k-Nearest Neighbor, illustrandone inoltre le principali varianti. In particolare, è stato implementato un algoritmo per ogni famiglia: per le reti neurali ci si è soffermati sul Fuzzy min max Neural Network, mentre per il k-Nearest Neighbor è stato analizzato il Fuzzy k-Nearest Neighbor. Per entrambi gli algoritmi si è partiti da codice preesistente sulle quali sono state attuate modifiche per poter in seguito effettuare esperimenti e valutare le prestazioni. Gli algoritmi sono stati valutati sui dataset Iris e Breast-Cancer, rispondendo bene al problema illustrato. Il Fuzzy min max rileva un'accuratezza maggiore e impiega meno tempo a effettuare elaborazione sui dati e predizioni; il Fuzzy k-Nearest Neighbor fornisce un errore minore sui gradi di appartenenza. 
+
+L'elaborato è strutturato come segue: nel capitolo 1 sono stati spiegati i concetti di apprendimento automatico e logica fuzzy, illustrando il problema sul quale l'elaborato si concentra. Nel capitolo 2 si passano in rassegna i concetti di reti neurale e di k-Nearest Neighbor, per illustrarne il funzionamento e fornire una panoramica delle possibili varianti. Nel capitolo 3 viene infine descritta l'implementazione e si forniscono i risultati degli esperimenti effettuati, sottoforma di tabelle e grafici. 
 
 	\chapter{Apprendimento automatico e logica fuzzy}
 Nel seguente capitolo si passano in rassegna i concetti di apprendimento automatico e di logica fuzzy, illustrando come i due argomenti possano essere coniugati insieme. Nel Paragrafo 1.1 ci si soffermerà sull'apprendimento supervisionato, di cui i metodi proposti in seguito faranno parte. Nel Paragrafo 1.2 si riprenderanno i concetti relativi ai \textit {fuzzy set}, fino a illustrare cosa significa indurne la funzione di appartenenza. 
@@ -687,6 +694,10 @@ Infine, sono riportate in Tabella \ref{tab:fcm} e Tabella \ref{tab:fsvm} i risul
 
 
 	\chapter*{Conclusioni}
+
+In questo elaborato, ci si è focalizzati sulla ricerca, la modifica e il riuso di algoritmi per l'induzione della funzione di appartenenza su insiemi fuzzy. Sono stati spiegati i concetti di apprendimento automatico e di insiemi fuzzy, illustrando come possano essere coniugati insieme per gestire l'ambiguità del linguaggio naturale. In seguito, ci si è soffermati sul significato dell'induzione di una funzione di appartenenza, elencando le modalità con cui si può effettuare. Sono stati utilizzati algoritmi basati sulle reti neurali e sul k-Nearest Neighbor. In particolare, si sono viste le implementazioni del Fuzzy min max Neural Network e del k-Nearest Neighbor. Per entrambi gli algoritmi, partendo da codice preesistente, sono state aggiunte funzionalità e attuate modifiche per consentire la realizzazione di esperimenti. Al termine degli esperimenti, sono state raccolte le valutazioni delle prestazioni, espresse in tabelle e grafici. Sui dataset proposti, Iris e Breast-Cancer, Fuzzy min max ha rilevato un'accuratezza maggiore, impiegando meno tempo per effettuare elaborazione sui dati e predizioni. D'altra parte, Fuzzy k-Nearest Neighbor fornisce un errore minore sui gradi di appartenenza. 
+
+E`possibile sviluppare ulteriormente questo lavoro aggiungendo nuovi algoritmi, alla luce delle varianti proposte, di modo da risolvere i punti deboli riportati per ogni algoritmo. 
 
 
 \bibliographystyle{ieeetr}
