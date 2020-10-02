@@ -507,11 +507,11 @@
 				\hline
 				\textbf{Dataset} & \textbf{FCM} & \textbf{FSVM-CIL}\\
 				\hline
-				Iris-setosa & meno di 1s & circa 5 min\\
+				Iris-setosa & meno di 1s & circa 4 min\\
 				\hline
-				Iris-versicolor & meno di 1s & circa 5 min\\
+				Iris-versicolor & meno di 1s & circa 4 min\\
 				\hline
-				Iris-virginica & meno di 1s & circa 5 min\\
+				Iris-virginica & meno di 1s & circa 4 min\\
 				\hline
 				Breast Cancer Dataset &  12s & circo 50 min\\
 				\hline									
@@ -521,84 +521,47 @@
 	\end{table}
 	
 	\section{Risultati}
-		Di seguito si indicano i risultati degli esperimenti eseguiti su FCM (Tabella~\ref{tab:fcm}) e FSVM-CIL (Tabella~\ref{tab:fsvm}). In seguito in Tabella~\ref{tab:fknn} e Tabella~\ref{tab:fmm} sono illustrati gli stessi esperimenti eseguiti su Reti Neurali e Fuzzy k-Nearest Neighbour (approfonditi in~\cite{bib:rita}).
+		Di seguito si indicano i risultati degli esperimenti eseguiti su FCM e FSVM-CIL (Tabella~\ref{tab:res}). In seguito sono illustrati gli stessi esperimenti eseguiti su Reti Neurali e Fuzzy k-Nearest Neighbour (approfonditi in~\cite{bib:rita}).
 		
 		Dai risultati ottenuti dagli esperimenti si nota come FCM ottiene buoni risultati sul dataset \textit{iris-setosa}, in quanto la classe è linearmente separabile dalle altre, mentre la performance peggiora sugli altri due dataset estratti da Iris.
 		
 		L'algoritmo FSVM-CIL ottiene una performance discreta su tutti i dataset, e l'errore rilevato aumenta molto sui dataset \textit{Iris-versicolor} e \textit{Breast Cancer}. Il valore dell'RMSE non è indicato in quanto l'implementazione trovata si limita a indurre le membership e le usa per la classificazione, ma non permette di calcolarle in modo esplicito punto per punto.
 
 		\begin{table}[h]
-		\caption{Risultati degli esperimenti eseguiti su FCM}
-		\begin{center}\begin{tabular}{ |c|c|c| } 
+		\caption{Risultati degli esperimenti eseguiti su FCM, FSVM-CIL, FKNN, Fuzzy Min Max}
+		\begin{center}\begin{tabular}{ |c|c|c|c| } 
 				\hline
-				\textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
+				\textbf{Metodo} & \textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
 				\hline
-				Iris-setosa & 98.0\% & 0.12\\
+				\multirow{4}{4em}{Fuzzy C-Means} 
+				& Iris-setosa & 98.0\% & 0.12\\
+				&Iris-versicolor & 64.7\% & 0.55\\
+				&Iris-virginica & 68.7\% & 0.69\\
+				&Breast Cancer Dataset &  56.2\% & 0.54\\
 				\hline
-				Iris-versicolor & 64.7\% & 0.55\\
+				\multirow{4}{4em}{Fuzzy SVM for CIL}
+				&Iris-setosa & 80\% & -\\
+				&Iris-versicolor & 66\% & -\\
+				&Iris-virginica & 84\% & -\\
+				&Breast Cancer Dataset &  53.9\% & -\\	
+				\hline							
+				\multirow{4}{4em}{FKNN}
+				&Iris-setosa & 99\% & 0.08 \\
+				&Iris-versicolor & 76\% & 0.44 \\
+				&Iris-virginica & 75\% & 0.44 \\
+				&Breast Cancer Dataset & 62\% & 4.6 \\
 				\hline
-				Iris-virginica & 68.7\% & 0.69\\
-				\hline
-				Breast Cancer Dataset &  56.2\% & 0.54\\
-				\hline									
+				\multirow{4}{4em}{Fuzzy Min Max}
+				&Iris-setosa & 99\% & 0.64 \\
+				&Iris-versicolor & 76\% & 0.63 \\
+				&Iris-virginica & 78\% & 0.57 \\
+				&Breast Cancer Dataset & 71\%  & 0.84 \\
+				\hline           				
 			\end{tabular}
 		\end{center}
-		\label{tab:fcm}	
+		\label{tab:res}	
 		\end{table}
-		\begin{table}[h]
-			\caption{Risultati degli esperimenti eseguiti su FSVM-CIL}
-			\begin{center}\begin{tabular}{ |c|c|c| } 
-				\hline
-				\textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
-				\hline
-				Iris-setosa & 80\% & -\\
-				\hline
-				Iris-versicolor & 66\% & -\\
-				\hline
-				Iris-virginica & 84\% & -\\
-				\hline
-				Breast Cancer Dataset &  53.9\% & -\\
-				\hline									
-			\end{tabular}
-		\end{center}
-		\label{tab:fsvm}	
-		\end{table}
-	\begin{table}[h]
-		\caption{Risultati degli esperimenti eseguiti su FKNN}
-		\begin{center}\begin{tabular}{ |c|c|c| } 
-				\hline
-				\textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
-				\hline
-				Iris-setosa & 99\% & 0.08 \\
-				\hline
-				Iris-versicolor & 76\% & 0.44 \\
-				\hline
-				Iris-virginica & 75\% & 0.44 \\
-				\hline
-				Breast Cancer Dataset & 62\% & 4.6 \\
-				\hline                  
-			\end{tabular}
-		\end{center}
-		\label{tab:fknn}  
-	\end{table}
-	\begin{table}[h!]
-		\caption{Risultati degli esperimenti eseguiti su Fuzzy min max}
-		\begin{center}\begin{tabular}{ |c|c|c| } 
-				\hline
-				\textbf{Dataset} & \textbf{Accuratezza} & \textbf{RMSE}\\
-				\hline
-				Iris-setosa & 99\% & 0.64 \\
-				\hline
-				Iris-versicolor & 76\% & 0.63 \\
-				\hline
-				Iris-virginica & 78\% & 0.57 \\
-				\hline
-				Breast Cancer Dataset & 71\%  & 0.84 \\
-				\hline                  
-			\end{tabular}
-		\end{center}
-		\label{tab:fmm}  
-	\end{table}
+
 	\chapter*{Conclusioni}
 	Il lavoro di tirocinio ha riguardato l'approfondimento e il confronto di algoritmi per l'induzione della funzione di membership a insiemi fuzzy. Si sono analizzate nello specifico un'implementazione di Fuzzy C-Means e di Fuzzy Support Vector Machines for Class Imbalance Learning. Le implementazioni in questione sono state modificate al fine di migliorare le prestazioni degli algoritmi e la leggibilità del codice. Gli esperimenti hanno previsto una fase di cross-validation e di model selection, e sono stati eseguiti sui dataset Iris e Breast Cancer; a partire da Iris sono stati generati tre dataset contenenti ciascuno due classi, da usare per indurre la funzione di membership della classe di volta in volta considerata. I risultati ottenuti sono stati molto buoni sulla classe \textit{iris-setosa} (linearmente separabile dalle altre), mentre la performance è sensibilmente diminuita sugli altri dataset. L'algoritmo FSVM-CIL ha mostrato performance generalmente più basse, e un tempo di esecuzione notevole.
 	
