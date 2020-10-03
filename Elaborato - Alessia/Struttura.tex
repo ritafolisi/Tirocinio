@@ -26,10 +26,10 @@
 	\frontmatter
 	\chapter*{Ringraziamenti}
 	\addcontentsline{toc}{chapter}{Ringraziamenti}
-	Prima di procedere con la descrizione del lavoro di tirocinio vorrei dedicare qualche riga a tutti coloro che mi hanno sostenuta lungo questo percorso.
-	Ringrazio i miei genitori, che mi hanno permesso di portare avanti il percorso universitario e che mi hanno sostenuto in ogni momento. Ringrazio mia sorella Ilaria, che ha compreso le difficoltà di questi tre anni e ha saputo alleggerirle, e ne ha festeggiato con me le soddisfazioni.
-	Ringrazio la mia relatrice e il mio correlatore, la professoressa Zanaboni e il professor Malchiodi, per il sostegno e la continua presenza durante questi mesi di tirocinio.
-	Un sentito grazie a Rita, che mi ha accompagnato in questo percorso di tirocinio e ne ha condiviso con me ogni momento: lavorare con te è stato davvero un piacere!
+	Prima di procedere con la descrizione del lavoro di tirocinio vorrei dedicare qualche riga a tutti coloro che mi hanno sostenuta lungo questo percorso.\\
+	Ringrazio i miei genitori, che mi hanno permesso di portare avanti il percorso universitario e che mi hanno sostenuto in ogni momento. Ringrazio mia sorella Ilaria, che ha compreso le difficoltà di questi tre anni e ha saputo alleggerirle, e ne ha festeggiato con me le soddisfazioni.\\
+	Ringrazio la mia relatrice e il mio correlatore, la professoressa Zanaboni e il professor Malchiodi, per il sostegno e la continua presenza durante questi mesi di tirocinio.\\
+	Un sentito grazie a Rita, che mi ha accompagnato in questo percorso di tirocinio e ne ha condiviso con me ogni momento: lavorare con te è stato davvero un piacere!\\
 	Un ringraziamento particolare va ad Andrea e Elisa, compagni di viaggio in questi anni di università: mi avete spronata a fare meglio e a non lasciarmi abbattere dalle difficoltà incontrate, avete condiviso con me ogni giorno di questo percorso universitario: senza di voi non sarei arrivata fino a qui!
 	\tableofcontents
 	\mainmatter
@@ -37,9 +37,9 @@
 	%\pagenumbering{arabic}
 	\chapter*{Introduzione}
 		{} \addcontentsline{toc}{chapter}{Introduzione}
-		Questo elaborato descrive il lavoro di tirocinio in cui mi sono occupata della ricerca, modifica e confronto di implementazioni di algoritmi per l'induzione di funzioni di membership a insiemi fuzzy. La logica fuzzy e gli insiemi fuzzy sono vastamente diffusi nel campo dell'apprendimento automatico (e in particolare di quello supervisionato) in quanto modellano l'incertezza propria di gran parte realtà che ci circonda. Se nella logica classica un elemento può appartenere o no a un dato insieme, gli insiemi fuzzy sono descritti da una funzione di membership che determina un grado di appartenenza di un oggetto all'insieme in questione.\\
+		Questo elaborato descrive il lavoro di tirocinio che ho svolto presso l'Università degli Studi di Milano, in cui mi sono occupata della ricerca, modifica e confronto di implementazioni di algoritmi per l'induzione di funzioni di membership a insiemi fuzzy. La logica fuzzy e la teoria fuzzy sono vastamente diffuse nel campo dell'apprendimento automatico (e in particolare di quello supervisionato) in quanto modellano l'incertezza propria di gran parte realtà che ci circonda. Mentre nella logica classica un elemento può appartenere oppure no a un dato insieme, gli insiemi fuzzy sono descritti da una funzione di membership che determina il grado di appartenenza di un oggetto all'insieme in questione.\\
 		Il problema dell'induzione della funzione di membership a un insieme fuzzy è complesso, anche a causa della mancanza di accordo sull'interpretazione della funzione stessa; il problema può essere approcciato in diversi modi: si sono approfonditi in questo elaborato i metodi riguardanti Fuzzy Clustering e Fuzzy Support Vector Machine.\\
-		Tra i diversi algoritmi individuati sono stati scelti il Fuzzy C-Means (algoritmo di clustering) e la Fuzzy Support Vector Machine for Class Imbalance Learning. A partire dal codice reperito in rete si sono quindi effettuate delle modifiche al fine di garantirne un funzionamento corretto e di migliorarne la leggibilità e le prestazioni. Si è infine svolta una valutazione sulle prestazioni degli algoritmi considerati, sui dataset Iris e Breast Cancer. Si è notato come l'algoritmo FCM ottiene prestazioni molto buone quando si lavora sulla membership alla classe setosa, che è linearmente separabile dalle altre, mentre ottiene prestazioni discrete sulla definizione della membership alle altre due classi così come sul dataset Breast Cancer. L'algoritmo FSVM-CIL ottiene invece prestazioni discrete su tutti i dataset, e il suo funzionamento è oneroso in termini di tempo.
+		Tra i diversi algoritmi individuati sono stati scelti il Fuzzy C-Means (algoritmo di clustering) e la Fuzzy Support Vector Machine for Class Imbalance Learning. A partire dal codice reperito in rete lo si è modificato al fine di garantirne un funzionamento corretto e di migliorarne la leggibilità e le prestazioni. Si è infine svolta una valutazione sulle prestazioni degli algoritmi considerati, sui dataset Iris e Breast Cancer. Si è notato che l'algoritmo FCM ottiene prestazioni molto buone quando si lavora sulla membership alla classe setosa, che è linearmente separabile dalle altre, mentre ottiene prestazioni discrete sulla definizione della membership alle altre due classi, così come sul dataset Breast Cancer. L'algoritmo FSVM-CIL ottiene invece prestazioni discrete su entrambi i dataset, ma il suo funzionamento è oneroso in termini di tempo.
 		
 		L'elaborato è strutturato come segue: nel Capitolo~\ref{chap:1} si descrivono le basi dell'apprendimento automatico (nello specifico di quello supervisionato); successivamente viene spiegato il funzionamento generale di un algoritmo di apprendimento, vengono definite le metriche che saranno poi utilizzate negli esperimenti e le tecniche di cross-validation e model selection. Viene inoltre introdotta la logica fuzzy e la sua estensione agli insiemi, e si inizia a delineare il problema dell'induzione della funzione di memberhship. Nel Capitolo~\ref{chap:2} si introducono le macroclassi di algoritmi per l'induzione della funzione di membership: dopo una panoramica sul funzionamento generale degli algoritmi di clustering e support vector machine e dei corrispettivi fuzzy, si analizzano nel dettaglio il metodo FCM e l'algoritmo FSVM-CIL. Nel Capitolo~\ref{chap:3}, infine, si mostrano i dataset utilizzati negli esperimenti effettuati, le problematiche riscontrate nel codice reperito e le soluzioni individuate. Successivamente si illustrano i risultati ottenuti, che vengono poi analizzati anche grazie all'uso di rappresentazioni grafiche.
 		
@@ -393,7 +393,7 @@
 	\chapter{Implementazione ed esperimenti}
 	\label{chap:3}
 	\section{Dataset}
-	I dataset utilizzati durante il lavoro di tirocinio sono l'\textit{Iris Dataset}\footnote{https://archive.ics.uci.edu/ml/datasets/iris} e il \textit{Breast Cancer Dataset}\footnote{https://github.com/datasets/breast-cancer}.\\
+	I dataset utilizzati durante il lavoro di tirocinio sono l'\textit{Iris Dataset}\footnote{https://archive.ics.uci.edu/ml/datasets/iris} e il \textit{Breast Cancer Dataset}\footnote{https://www.openml.org/d/13}.\\
 	Il dataset Iris è stato introdotto da Ronald Fisher nel 1936, e descrive 150 esemplari di Iris misurati da Edgar Anderson e classificati secondo tre specie: \textit{Iris setosa}, \textit{Iris virginica} e \textit{Iris versicolor}. Ogni elemento del dataset è definito da quattro feature, la lunghezza e la larghezza del sepalo e la lunghezza e la larghezza del del petalo (misurate in centimetri) e da un'etichetta che indica la classe di appartenenza di quell'elemento; ogni classe è rappresentata da 50 istanze nel dataset. Nel dataset Iris la classe \textit{iris setosa} è linearmente separabile dalle altre, che non lo sono invece tra loro. Si può osservare un estratto del dataset in Tabella~\ref{tab:iris}.
 	
 	\begin{table}[h]
@@ -415,18 +415,18 @@
 		\label{tab:iris}
 	\end{table}
 
-	Il dataset Breast Cancer, invece, è stato creato da M.Zwitter e M.Soklic dell'Institute of Oncology University Medical Center Ljubljana, Yugoslavia, sulla base di dati raccolti da pazienti reali. In questo dataset si contano 286 istanze e 10 feature per ogni elemento; sono definite due classi che definiscono se la paziente ha avuto una recidiva (\textit{recurrence-events}) oppure no (\textit{no-recurrence-events}). I 10 attributi definiscono invece:
+	Il dataset Breast Cancer è stato creato da M. Zwitter e M. Soklic dell'Institute of Oncology University Medical Center Ljubljana, Yugoslavia, sulla base di dati raccolti da pazienti oncologici. In questo dataset si contano 286 istanze descritte da 10 feature; sono definite due classi che corrispondono al fatto che la paziente oncologica abbia avuto ricadute (\textit{recurrence-events}) oppure no (\textit{no-recurrence-events}). I 10 attributi riguardano invece:
 	\begin{itemize}
 		\item{la fascia d'età della paziente,}
-		\item{\textit{menopause}, che indica se la paziente sia o no in menopausa al momento della diagnosi,}
-		\item{il diametro maggiore (in mm) del tumore,}
+		\item{\textit{menopause}, che indica se la paziente era o no in menopausa al momento della diagnosi,}
+		\item{il diametro (in mm) del tumore,}
 		\item{il numero di linfonodi contenenti metastasi del tumore,}
 		\item{la presenza o meno di metastasi a linfonodi,}
 		\item{il grado di gravità del tumore,}
 		\item{la collocazione del tumore e il quadrante interessato,}
 		\item{l'utilizzo di radioterapia nella cura del tumore.}
 	\end{itemize}	
-	Nel dataset sono presenti dei valori mancanti; la distribuzione delle istanze sulle classi è molto differente da quella del dataset Iris: si contano 201 istanze di \textit{no-recurrence events} e 85 istanze di \textit{recurrence-events}. Un estratto del dataset è mostrato in Tabella~\ref{tab:breast}. Si è scelto di utilizzare quest'altro dataset per osservare il comportamento degli algoritmi considerati su un dataset di dimensioni maggiori e caratterizzato da un maggior numero di feature.
+	Nel dataset sono presenti alcuni valori mancanti; la distribuzione delle istanze sulle classi è molto differente da quella del dataset Iris: si contano 201 istanze di \textit{no-recurrence events} e 85 istanze di \textit{recurrence-events}. Un estratto del dataset è mostrato in Tabella~\ref{tab:breast}. Si è scelto di utilizzare quest'altro dataset per osservare il comportamento degli algoritmi considerati su un dataset di dimensioni maggiori e caratterizzato da un maggior numero di feature.
 	
 	\begin{table}[h]
 		\caption{Estratto del dataset Breast Cancer (per brevità sono stati tralasciati alcuni attributi)}
@@ -446,9 +446,10 @@
 		\label{tab:breast}
 	\end{table}
 	
-	Prima di essere utilizzati, entrambi i dataset hanno subito una fase di preprocessing: le feature descritte da valori categorici sono infatti state sostituite da feature a valori numerici (con l'utilizzo di appositi metodi di \textit{sklearn}), così come le classi espresse dalle etichette associate ai dati; nel caso del dataset Breast Cancer le feature espresse da un range di valori sono state sostituite con il punto medio dell'intervallo considerato. Sono state inoltre eliminate le istanze del dataset contenenti valori mancanti.\\
-	Il dataset Iris, invece, è stato inizialmente considerato come composto da due classi: una classe caratterizzata da label 1 (rappresentante di volta in volta ognuna delle tre classi possibili) e una associata alla label 0, contenente tutti gli elementi delle altre due classi non considerate. In questo modo si sono ottenuti tre diversi dataset a partire da iris, ognuno contenente due sole classi: considerando ad esempio la classe \textit{iris-setosa}, uno dei tre dataset avrà come istanze positive quelle appartenenti a questa classe e come istanze negative tutte le altre (ovvero quelle appartenenti a \textit{versicolor} e \textit{virginica}).  L'etichetta che rappresenta la classe di ogni elemento è stata inoltre posizionata come prima colonna del dataset, in modo da uniformare il modo in cui i vari dataset vengono presentati ai vari algoritmi considerati.
-	 
+	Prima di utilizzare i dataset, questi hanno subito una fase di preprocessing: le feature descritte da valori categorici sono state sostituite da feature a valori numerici (con l'utilizzo di appositi metodi di \textit{sklearn}), così come le classi espresse dalle etichette associate ai dati; nel caso del dataset Breast Cancer le feature espresse da un range di valori sono state sostituite con il punto medio dell'intervallo considerato. Sono state inoltre eliminate le istanze del dataset contenenti valori mancanti.\\
+	Il dataset Iris, invece, è stato inizialmente considerato come composto da due classi: una classe caratterizzata da label 1 (rappresentante di volta in volta ognuna delle tre classi possibili) e una associata alla label 0, contenente tutti gli elementi delle altre due classi non considerate. In questo modo si sono ottenuti tre diversi dataset a partire da Iris, ognuno contenente due sole classi: considerando ad esempio la classe \textit{iris-setosa}, uno dei tre dataset avrà come istanze positive quelle appartenenti a questa classe e come istanze negative tutte le altre (ovvero quelle appartenenti a \textit{versicolor} e \textit{virginica}).  
+	
+	\section{Il repository realizzato}
 	Nel repository pubblico annesso al lavoro di tirocinio\footnote{https://github.com/ritafolisi/Tirocinio, sotto licenza Creative Commons} si possono trovare:
 	\begin{itemize}
 		\item una cartella \textit{Dataset}, contenente i dataset utilizzati nelle varie versioni dovute alle modifiche effettuate su questi al fine del trattamento,
@@ -459,14 +460,19 @@
 		\item il file \textit{final\_script.py}, utilizzato per far eseguire automaticamente più algoritmi passandogli in input uno stesso dataset. 
 	\end{itemize}
 	
-
+	Per tutte le implementazioni degli algoritmi considerati, è stata necessaria una fase comune di preprocessing: il codice presentava infatti numerose criticità, legate sia a un'eccessiva specializzazione dell'implementazione rispetto al dataset su cui gli autori hanno valutato le prestazioni sia all'assenza di una classe che racchiudesse le varie funzioni.
+	La fase preliminare di modifica del codice, quindi, è consistita nella realizzazione di un adattatore, ovvero l'aggiunta di una parte di codice che permettesse di passare in input a tutti i metodi considerati dataset nello stesso formato (si sono considerati file \textit{.csv} in cui l'etichetta fosse posta nella prima colonna del dataset). 
+	Per aumentare l'accuratezza del modello è stata poi introdotta la cross-validation (su 5 fold, con seme del generatore pseudocasuale impostato a 1): a ogni iterazione sono stati memorizzati l'accuratezza e l'RMSE sulle membership (quest'ultima metrica non è stata utilizzata in FSVM-CIL, per ragioni approfondite nel Paragrafo 3.4); come risultato finale si è ottenuta una media dei dati raccolti per ognuna delle due metriche.
+	Il logging di tutte le operazioni ha permesso un controllo sui vari output degli esperimenti; gli esperimenti sono stati svolti più volte, utilizzando due o quattro feature (per quanto riguarda iris), i vari dataset a due classi generati a partire da Iris e l'intero dataset Breast Cancer.
+	
 	\section{Algoritmo basato su Fuzzy Clustering}
-	Nel lavoro di tirocinio è stato analizzato l'algoritmo \textit{Fuzzy-C-Means}, da codice reperito in rete\footnote{https://github.com/AnanyaKirti/Fuzzy-C.git}. Il codice considerato presentava numerose criticità, legate sia a un'eccessiva specificità del codice sui dati considerati come input sia all'assenza di una classe che racchiudesse le varie funzioni. La fase preliminare di modifica del codice, quindi, è consistita nella realizzazione di un'adattatore, ovvero l'aggiunta di una parte di codice che permettesse di passare in input a tutti i metodi considerati dataset nello stesso formato (si sono considerati file \textit{.csv} in cui l'etichetta fosse posta nella prima colonna del dataset). \`E stato poi necessario creare una classe (disponibile in \textit{FCM.py}) che contenesse tutte le funzioni per il trattamento dell'input, per la fase di training e test, e tutte le funzioni utili in queste fasi; è stato anche necessario creare un costruttore che inizializzasse i parametri definiti a priori, cioè il parametro di arresto $\epsilon$ e un massimo globale, e introdurre degli attributi di classe che permettessero di salvare un modello addestrato per poi usarlo per effettuare predizioni. Si è reso inoltre necessario suddividere la funzione responsabile del training e test sul dataset in due diverse funzioni che svolgessero in modo isolato i due compiti, per poter utilizzare le due funzioni in modo distinto nella cross-validation.\\
-	Come metriche per valutare la performance si sono considerati l'accuratezza e l'RMSE sulle membership; per ottenere quest'ultimo è stata necessaria un'ulteriore modifica del codice iniziale, che invece prevedeva il calcolo dell'accuratezza sulle predizioni e inglobava in una funzione il passaggio dalle membership predette a una classificazione netta.\\ 
-	Per aumentare l'accuratezza del modello è stata poi introdotta nello script responsabile del funzionamento del FCM (\textit{fuzzy\_c.py}) la cross-validation (su 5 fold, con seme del generatore pseudocasuale impostato a 1): a ogni iterazione sono stati memorizzati l'accuratezza e l'RMSE sulle membership; come risultato finale si è ottenuta una media dei dati raccolti per ognuna delle due metriche.
+	Nel lavoro di tirocinio è stato analizzato l'algoritmo \textit{Fuzzy-C-Means}, da codice reperito in rete\footnote{https://github.com/AnanyaKirti/Fuzzy-C.git}. Oltre alle modifiche già spiegate nep paragrafo precedente, si è reso necessario suddividere la funzione responsabile del training e test in due diverse funzioni che svolgessero in modo isolato i due compiti, per poter utilizzare le due funzioni in modo distinto nella cross-validation.\\
+	\`E stato poi necessario creare una classe (disponibile in \textit{FCM.py}) che contenesse tutte le funzioni per il trattamento dell'input, per la fase di training e test, e tutte le funzioni utili in queste fasi; è stato anche necessario creare un costruttore che inizializzasse i parametri definiti a priori, cioè il parametro di arresto $\epsilon$ e un massimo globale, e introdurre degli attributi di classe che permettessero di salvare un modello addestrato per poi usarlo per effettuare predizioni.
+	Come metriche per valutare la performance si sono considerati l'accuratezza e l'RMSE sulle membership; per ottenere quest'ultimo è stata necessaria un'ulteriore modifica del codice iniziale, che invece prevedeva il calcolo dell'accuratezza sulle predizioni e inglobava in una funzione il passaggio dalle membership predette a una classificazione netta.
+	
 	L'algoritmo analizzato utilizza nella fase di training dati di input senza etichetta: la label viene utilizzata solamente per controllare la bontà della predizione effettuata; ciò può talvolta influire sulle prestazioni dell'algoritmo, come approfondito nel Paragrafo 3.4.
 	
-	Per controllare il buon funzionamento del codice scritto sono stati svolti unit test, che controllano l'ammissibilità dei valori restituiti per le metriche scelte, oltre al fatto che l'errore non superi una soglia prefissata. Il logging di tutte le operazioni ha permesso un controllo sui vari output degli esperimenti; gli esperimenti sono stati svolti più volte, utilizzando due o quattro feature (per quanto riguarda iris), i vari dataset a due classi generati a partire da Iris e l'intero dataset Breast Cancer.
+	Per controllare il buon funzionamento del codice scritto sono stati svolti unit test, che controllano l'ammissibilità dei valori restituiti per le metriche scelte, oltre al fatto che l'errore non superi una soglia prefissata. 
 	Per una migliore visualizzazione dei risultati, è stata realizzata una rappresentazione grafica con heatmap (Figura \ref{fig:hm}) e curve di livello, come in Figura \ref{fig:vis}. 
 	\begin{figure}[h!]
 		\subfloat[\emph{}]
@@ -497,7 +503,7 @@
 	\end{figure}
 
 	\section{Algoritmo basato su Fuzzy Support Vector Machine}
-	Tra gli algoritmi basati su Fuzzy Support Vector Machine è stato analizzato il Fuzzy SVM per Class Imbalance Learning; il codice è stato reperito in rete\footnote{https://github.com/adizz2407/Fuzzy-SVM}. L'algoritmo, implementato con l'uso di \textit{Jupyter Notebook}, non permetteva un'esecuzione automatizzata: questo primo problema è stato gestito con l'introduzione del file \textit{HYP\_SVM}, contenente la classe in cui le funzioni necessarie all'algoritmo sono definite e da uno script, necessario per eseguire l'algoritmo stesso. Anche nel caso del codice trovato per SVM-CIL, inoltre, si è notata un'eccessiva specializzazione sui dati che l'algoritmo era progettato per utilizzare: nel codice si sono identificati valori costanti il cui significato non è reso esplicito, così come nomi di variabili non autoesplicativi; è stata quindi necessaria una modifica al fine di rendere il codice utilizzabile con qualsiasi dataset e di migliorarne la leggibilità. Come per il metodo descritto nel Paragrafo 3.2, si è reso inoltre necessario utilizzare una cross-validation, al fine di valutare in modo appropriato i risultati dell'algoritmo. Un'altra fase cruciale è stata quella della selezione degli iperparametri $C$ e $sigma$, svolta utilizzando il metodo \textit{GridSearchCV} di \textit{sklearn}. Per $C$ la selezione avviene tra i valori $[1^{-2}, 1^{-1}, 1, 1^{+1}, 1^{+2}, 1^{+3}, 1^{+4}]$, mentre per $sigma$ (si è utilizzato un kernel gaussiano) in $[9^{-2}, 9^{-1}, 9, 9^{+1}, 9^{+2}, 9^{+3}, 9^{+4}]$. Per poter utilizzare \textit{GridSearchCV}, è stato necessario introdurre nuovi metodi richiesti esplicitamente da \textit{sklearn} (cioè \textit{score}, \textit{get\_params} e \textit{set\_params}). La fase di model selection costituisce quindi una cross-validation annidata in un'altra più esterna, che invece suddivide training e test del modello.\\
+	Tra gli algoritmi basati su Fuzzy Support Vector Machine è stato analizzato il Fuzzy SVM per Class Imbalance Learning; il codice è stato reperito in rete\footnote{https://github.com/adizz2407/Fuzzy-SVM}. L'algoritmo, implementato con l'uso di \textit{Jupyter Notebook}, non permetteva un'esecuzione automatizzata: questo primo problema è stato gestito con l'introduzione del file \textit{HYP\_SVM}, contenente la classe in cui le funzioni necessarie all'algoritmo sono definite e da uno script, necessario per eseguire l'algoritmo stesso. Nel caso del codice trovato per SVM-CIL, inoltre, si sono identificati all'interno del codice valori costanti il cui significato non è reso esplicito, così come nomi di variabili non autoesplicativi; è stata quindi necessaria una modifica al fine di rendere il codice utilizzabile con qualsiasi dataset e di migliorarne la leggibilità.\\ Un'altra fase cruciale è stata quella della selezione degli iperparametri $C$ e $sigma$, svolta utilizzando il metodo \textit{GridSearchCV} di \textit{sklearn}. Per $C$ la selezione avviene tra i valori $[1^{-2}, 1^{-1}, 1, 1^{+1}, 1^{+2}, 1^{+3}, 1^{+4}]$, mentre per $sigma$ (si è utilizzato un kernel gaussiano) in $[9^{-2}, 9^{-1}, 9, 9^{+1}, 9^{+2}, 9^{+3}, 9^{+4}]$. Per poter utilizzare \textit{GridSearchCV}, è stato necessario introdurre nuovi metodi richiesti esplicitamente da \textit{sklearn} (cioè \textit{score}, \textit{get\_params} e \textit{set\_params}). La fase di model selection costituisce quindi una cross-validation annidata in un'altra più esterna, che invece suddivide training e test del modello.\\
 	L'algoritmo presenta un tempo di esecuzione notevole, dovuto solo in parte alla fase di model selection; sono stati fatti esperimenti sui tre dataset ottenuti da Iris e sul dataset Breast Cancer. In Tabella~\ref{tab:tempi} si possono osservare i tempi di esecuzione dei vari algoritmi sui vari dataset.
 	
 		
@@ -523,10 +529,10 @@
 	\section{Risultati}
 		Di seguito si indicano i risultati degli esperimenti eseguiti su FCM e FSVM-CIL (Tabella~\ref{tab:res}). In seguito sono illustrati gli stessi esperimenti eseguiti su Reti Neurali e Fuzzy k-Nearest Neighbour (approfonditi in~\cite{bib:rita}).
 		
-		Dai risultati ottenuti dagli esperimenti si nota come FCM ottiene buoni risultati sul dataset \textit{iris-setosa}, in quanto la classe è linearmente separabile dalle altre, mentre la performance peggiora sugli altri due dataset estratti da Iris.
+		Dai risultati ottenuti si nota che FCM ottiene buoni risultati sul dataset \textit{iris-setosa}, in quanto la classe è linearmente separabile dalle altre, mentre la performance peggiora sugli altri due dataset estratti da Iris. Sul dataset Breast Cancer la performance peggiora.
 		
 		L'algoritmo FSVM-CIL ottiene una performance discreta su tutti i dataset, e l'errore rilevato aumenta molto sui dataset \textit{Iris-versicolor} e \textit{Breast Cancer}. Il valore dell'RMSE non è indicato in quanto l'implementazione trovata si limita a indurre le membership e le usa per la classificazione, ma non permette di calcolarle in modo esplicito punto per punto.
-
+		DIRE CHE SVM CLASSIFICA MOLTO MOLTO BENE
 		\begin{table}[h]
 		\caption{Risultati degli esperimenti eseguiti su FCM, FSVM-CIL, FKNN, Fuzzy Min Max}
 		\begin{center}\begin{tabular}{ |c|c|c|c| } 
@@ -540,10 +546,10 @@
 				&Breast Cancer Dataset &  56.2\% & 0.54\\
 				\hline
 				\multirow{4}{4em}{Fuzzy SVM for CIL}
-				&Iris-setosa & 80\% & -\\
-				&Iris-versicolor & 66\% & -\\
-				&Iris-virginica & 84\% & -\\
-				&Breast Cancer Dataset &  53.9\% & -\\	
+				&Iris-setosa & 100\% & -\\
+				&Iris-versicolor & 94\% & -\\
+				&Iris-virginica & 96.7\% & -\\
+				&Breast Cancer Dataset &  70.8\% & -\\	
 				\hline							
 				\multirow{4}{4em}{FKNN}
 				&Iris-setosa & 99\% & 0.08 \\
@@ -563,7 +569,7 @@
 		\end{table}
 
 	\chapter*{Conclusioni}
-	Il lavoro di tirocinio ha riguardato l'approfondimento e il confronto di algoritmi per l'induzione della funzione di membership a insiemi fuzzy. Si sono analizzate nello specifico un'implementazione di Fuzzy C-Means e di Fuzzy Support Vector Machines for Class Imbalance Learning. Le implementazioni in questione sono state modificate al fine di migliorare le prestazioni degli algoritmi e la leggibilità del codice. Gli esperimenti hanno previsto una fase di cross-validation e di model selection, e sono stati eseguiti sui dataset Iris e Breast Cancer; a partire da Iris sono stati generati tre dataset contenenti ciascuno due classi, da usare per indurre la funzione di membership della classe di volta in volta considerata. I risultati ottenuti sono stati molto buoni sulla classe \textit{iris-setosa} (linearmente separabile dalle altre), mentre la performance è sensibilmente diminuita sugli altri dataset. L'algoritmo FSVM-CIL ha mostrato performance generalmente più basse, e un tempo di esecuzione notevole.
+	Il lavoro di tirocinio ha riguardato l'approfondimento e il confronto di algoritmi per l'induzione della funzione di membership che caratterizza un insiemi fuzzy. Si sono analizzate nello specifico un'implementazione di Fuzzy C-Means e di Fuzzy Support Vector Machines for Class Imbalance Learning. Le implementazioni in questione sono state modificate al fine di migliorare le prestazioni degli algoritmi e la leggibilità del codice. Gli esperimenti hanno previsto una fase di cross-validation e di model selection, e sono stati eseguiti sui dataset Iris e Breast Cancer; a partire da Iris sono stati generati tre dataset contenenti ciascuno due classi, da usare per indurre la funzione di membership della classe di volta in volta considerata. I risultati ottenuti sono stati molto buoni sulla classe \textit{iris-setosa} (linearmente separabile dalle altre), mentre la performance è sensibilmente diminuita sugli altri dataset. L'algoritmo FSVM-CIL ha mostrato performance generalmente più basse, e un tempo di esecuzione notevole.
 	
 	Possibili estensioni di questo lavoro potrebbero essere la ricerca e implementazione di nuovi metodi (alcuni sono già citati in Tabella~\ref{tab:clustering} e in Tabella~\ref{tab:svm}) o l'uso di dataset di dimensioni maggiori, che permetterebbero di osservare comportamenti differenti degli algoritmi.
 	

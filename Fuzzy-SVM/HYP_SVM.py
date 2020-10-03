@@ -13,16 +13,18 @@ from sklearn import svm
 import math
 import itertools
 from cvxopt import matrix
+from datetime import datetime
 from utils import *
 
+from cvxopt import matrix
 class HYP_SVM(BaseEstimator, RegressorMixin):
-    
+
     def __init__(self, kernel=gaussian_kernel, sigma=None, C=None):
         self.kernel = kernel
         self.C = C
         if self.C is not None: self.C = float(self.C)
         self.sigma = sigma
-        
+
     #geometric mean
     def gm(self, y_predict, y_test):
         print(y_predict)
@@ -36,22 +38,22 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
                 test_min=test_min+1
             else:
                 test_max=test_max+1
-        #print("y_test min",test_min)       
+        #print("y_test min",test_min)
         #print("y_test max",test_max)
         for i in range(0,len(y_predict)):
             if(y_predict[i]==1 and y_predict[i]==y_test[i]):
                 pred_min=pred_min+1
             elif(y_predict[i]==-1 and y_predict[i]==y_test[i]):
                 pred_max=pred_max+1
-        #print("y_pred min",pred_min)       
+        #print("y_pred min",pred_min)
         #print("y_pred max",pred_max)
         se=pred_min/test_min
         sp=pred_max/test_max
         #print(se,sp)
         gm=math.sqrt(se*sp)
-        print("GM",gm) 
+        print("GM",gm)
         return gm
-        
+
     def score(self, X, y):
         y_predict=self.predict(X)
         #gm=self.gm(y_predict, y)
@@ -60,17 +62,23 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
         mse=mean_squared_error(y, y_predict, squared=False)
         acc=correct/len(y_predict)
         print("Accuracy",correct/len(y_predict))
-        #print("Errore quadratico medio: ", mse)
+        print("Errore quadratico medio: ", mse)
         return acc
-          
+
+    def accuracy(self, X, y):
+        y_predict=self.predict(X)
+        correct = np.sum(y_predict == y)
+        acc=correct/len(y_predict)
+        return acc
+
     def get_params(self, deep=True):
-        return {"C": self.C, "sigma": self.sigma}        
-    
+        return {"C": self.C, "sigma": self.sigma}
+
     def set_params(self, **parameters):
         for parameter, value in parameters.items():
             setattr(self, parameter, value)
         return self
-    
+
     def m_func(self, X_train, y, decaying_func="linear"):
         n_samples, n_features = X_train.shape
         pos = len(y[y==1])
@@ -95,7 +103,7 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
         if self.C is None:
             G = cvxopt.matrix(np.diag(np.ones(n_samples) * -1))
             h = cvxopt.matrix(np.zeros(n_samples))
-            
+
         else:
             tmp1 = np.diag(np.ones(n_samples) * -1)
             tmp2 = np.identity(n_samples)
@@ -130,7 +138,7 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
         w_phi=0
         total=0
         for n in range(len(self.a_org)):
-            w_phi = self.a_org[n] * self.sv_yorg[n] * K1[n] 
+            w_phi = self.a_org[n] * self.sv_yorg[n] * K1[n]
         self.d_hyp=np.zeros(n_samples)
         for n in range(len(self.a_org)):
             self.d_hyp += self.sv_yorg[n]*(w_phi+b)
@@ -150,15 +158,15 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
         #print(self.m.shape)
         self.m=np.append(self.m,func[pos:n_samples]*r_max)
         #print(self.m.shape)
-        
+
  ##############################################################################
 
     #prendeva come argomento anche x_test, l'ho tolto, ho aggiunto K
     def fit(self, X_train, y, decaying_func="linear"):
-        
+
         self.m_func(X_train, y, decaying_func)
         self.kernel = gaussian_kernel
-        n_samples, n_features = X_train.shape 
+        n_samples, n_features = X_train.shape
 
         # Gram matrix
 
@@ -173,7 +181,7 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
         if self.C is None:
             G = cvxopt.matrix(np.diag(np.ones(n_samples) * -1))
             h = cvxopt.matrix(np.zeros(n_samples))
-            
+
         else:
             tmp1 = np.diag(np.ones(n_samples) * -1)
             tmp2 = np.identity(n_samples)
@@ -212,9 +220,9 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
                 self.w += self.a[n] * self.sv_y[n] * self.sv[n]
         else :
             self.w = None
-            
-        return self    
-        
+
+        return self
+
     def project(self, X):
         if self.w is None:
             return np.dot(X, self.w) + self.b
