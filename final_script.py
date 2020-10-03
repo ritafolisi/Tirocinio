@@ -10,10 +10,9 @@ import logging
 
 def main ():
     dataset = sys.argv[1]
-    col_label = sys.argv[2]
-    arg3 = sys.argv[3]
-    arg3 = arg3[1:-1]   # per togliere le parentesi
-    code = arg3.split(",")
+    arg2 = sys.argv[2]
+    arg2 = arg2[1:-1]   # per togliere le parentesi
+    code = arg2.split(",")
     dict_code = {'fknn' :  {'path' : 'FuzzyKNN', 'name' : 'fknn_script.py'},
     'svm' : {'path' : 'Fuzzy-SVM', 'name' : 'main.py'},
     'fcm' : {'path' : 'Fuzzy-C', 'name' : 'fuzzy_c.py'},
