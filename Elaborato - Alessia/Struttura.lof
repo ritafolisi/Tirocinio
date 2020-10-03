@@ -1,8 +1,0 @@
-\contentsline {figure}{\numberline {1}{\ignorespaces Relazione tra il numero di funzioni possibili e gli elementi del training set gi\IeC {\`a} esplorati in assenza e presenza di bias\relax }}{2}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\emph {}}}}{2}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\emph {}}}}{2}
-\contentsline {figure}{\numberline {2}{\ignorespaces n-fold cross validation\relax }}{4}
-\contentsline {figure}{\numberline {3}{\ignorespaces Grafico dell'errore di predizione di un classificatore in funzione della dimensione del training set\relax }}{4}
-\contentsline {figure}{\numberline {4}{\ignorespaces Forme di funzioni di membership comunemente usate\relax }}{5}
-\contentsline {figure}{\numberline {5}{\ignorespaces Esempio: funzioni di membership in riferimento alla superficie abitabile di un appartamento\relax }}{6}
-\contentsline {figure}{\numberline {6}{\ignorespaces Struttura di un FIS\relax }}{7}
