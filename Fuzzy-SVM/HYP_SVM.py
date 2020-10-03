@@ -60,13 +60,7 @@ class HYP_SVM(BaseEstimator, RegressorMixin):
         mse=mean_squared_error(y, y_predict, squared=False)
         acc=correct/len(y_predict)
         print("Accuracy",correct/len(y_predict))
-        print("Errore quadratico medio: ", mse)
-        return acc
-    
-    def accuracy(self, X, y):
-        y_predict=self.predict(X)
-        correct = np.sum(y_predict == y)
-        acc=correct/len(y_predict)
+        #print("Errore quadratico medio: ", mse)
         return acc
           
     def get_params(self, deep=True):

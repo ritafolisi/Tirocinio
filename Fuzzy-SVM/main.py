@@ -36,7 +36,7 @@ if __name__=="__main__":
     C_vals = [1e-2, 1e-1, 1, 1e+1, 1e+2, 1e+3, 1e+4]
     sigma = [9e-2, 9e-1, 9, 9e+1, 9e+2, 9e+3, 9e+4]
     parameters = {'C': C_vals, 'sigma': sigma}
-    err = []
+    #err = []
     acc = []
 
     #metto shuffle a False, è richiesto nella classe di indicare la suddivisione nel training set di dati positivi e negativi
@@ -56,8 +56,8 @@ if __name__=="__main__":
         best_model = HYP_SVM(C=best_C, kernel=gaussian_kernel, sigma=best_sigma)
         print("\nBest model", best_C, best_sigma)
         best_model.fit(X_train, y_train)
-        err.append(best_model.score(X_validation, y_validation))
-        acc.append(best_model.accuracy(X_validation, y_validation))
+        #err.append(best_model.score(X_validation, y_validation))
+        acc.append(best_model.score(X_validation, y_validation))
     print(datetime.now())
 
-    print(np.mean(err), np.mean(acc))
+    print(np.mean(acc))
