@@ -3,7 +3,7 @@ from subprocess import call
 import logging
 
 # Questo è lo script finale che esegue esperimenti su ogni metodo passato.
-# In ingresso: dataset, numero colonna da prendere come label, lista di metodi scritta così: [fknn,svm,...]
+# In ingresso: dataset, lista di metodi scritta così: [fknn,svm,...]
 
 
 #dataset sistemato!
@@ -16,7 +16,7 @@ def main ():
     dict_code = {'fknn' :  {'path' : 'FuzzyKNN', 'name' : 'fknn_script.py'},
     'svm' : {'path' : 'Fuzzy-SVM', 'name' : 'main.py'},
     'fcm' : {'path' : 'Fuzzy-C', 'name' : 'fuzzy_c.py'},
-    'gfmm' : {'path' : 'GFMM', 'name' : 'gfmm_script.py'}}
+    'gfmm' : {'path' : 'fuzzy-min-max', 'name' : 'fmm_script.py'}}
 
     for i in code:
         print("Calling " +  i)
