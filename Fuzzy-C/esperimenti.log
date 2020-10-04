@@ -1,123 +1,19 @@
-11-Sep-20 12:00:33 - Questo esperimento lavora sul dataset: iris-setosa.csv
-11-Sep-20 12:03:57 - [1.0, 0.9666666666666667, 1.0, 1.0, 1.0] = array delle accuratezze
-11-Sep-20 12:03:57 - [0.7970112138483373, 0.7959020040180825, 0.7973211659467385, 0.7967072862726936, 0.7958929733324701] = array delle RMSE_membership 
-
-11-Sep-20 17:07:55 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:08:53 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:10:10 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:10:30 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:10:40 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:11:23 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:12:00 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:12:40 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:13:01 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:13:01 - 77 = array delle accuratezze
-11-Sep-20 17:13:01 - 0.3172064449083929 = array delle RMSE_membership 
-
-11-Sep-20 17:14:17 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:14:38 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:14:38 - 77 = array delle accuratezze
-11-Sep-20 17:14:38 - 0.31720644574742857 = array delle RMSE_membership 
-
-11-Sep-20 17:15:09 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:15:09 - 77 = array delle accuratezze
-11-Sep-20 17:15:09 - 0.3172064447774013 = array delle RMSE_membership 
-
-11-Sep-20 17:15:19 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:15:19 - 77 = array delle accuratezze
-11-Sep-20 17:15:19 - 0.3172064449330133 = array delle RMSE_membership 
-
-11-Sep-20 17:15:31 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:15:31 - 77 = array delle accuratezze
-11-Sep-20 17:15:31 - 0.31720644476879994 = array delle RMSE_membership 
-
-11-Sep-20 17:15:54 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:15:54 - 77 = array delle accuratezze
-11-Sep-20 17:15:54 - 0.31720644483768096 = array delle RMSE_membership 
-
-11-Sep-20 17:17:22 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:17:22 - 77 = array delle accuratezze
-11-Sep-20 17:17:22 - 0.31720644479942955 = array delle RMSE_membership 
-
-11-Sep-20 17:17:46 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:17:46 - 77 = array delle accuratezze
-11-Sep-20 17:17:46 - 0.31720644485169286 = array delle RMSE_membership 
-
-11-Sep-20 17:18:17 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:18:18 - 77 = array delle accuratezze
-11-Sep-20 17:18:18 - 0.3172064457789372 = array delle RMSE_membership 
-
-11-Sep-20 17:18:32 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:18:32 - 77 = array delle accuratezze
-11-Sep-20 17:18:32 - 0.3172064456477248 = array delle RMSE_membership 
-
-11-Sep-20 17:18:45 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:18:45 - 77 = array delle accuratezze
-11-Sep-20 17:18:45 - 0.3172064448850507 = array delle RMSE_membership 
-
-11-Sep-20 17:19:28 - Questo esperimento lavora sul dataset: iris-setosa.csv
-11-Sep-20 17:19:28 - 77 = array delle accuratezze
-11-Sep-20 17:19:28 - 0.3517592376896793 = array delle RMSE_membership 
-
-11-Sep-20 17:19:51 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:19:52 - 77 = array delle accuratezze
-11-Sep-20 17:19:52 - 0.3172064449215543 = array delle RMSE_membership 
-
-11-Sep-20 17:24:17 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:24:47 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:24:47 - 77 = array delle accuratezze
-11-Sep-20 17:24:47 - 0.3172064457805113 = array delle RMSE_membership 
-
-11-Sep-20 17:24:55 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:24:55 - 27 = array delle accuratezze
-11-Sep-20 17:24:55 - 0.3172064457685114 = array delle RMSE_membership 
-
-11-Sep-20 17:25:46 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:25:46 - 3 = array delle accuratezze
-11-Sep-20 17:25:46 - 0.3172064448981111 = array delle RMSE_membership 
-
-11-Sep-20 17:28:07 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:28:07 - [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] = array delle accuratezze
-11-Sep-20 17:28:07 - 0.3172064448803765 = array delle RMSE_membership 
-
-11-Sep-20 17:29:58 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:30:08 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:30:08 - 27 = array delle accuratezze
-11-Sep-20 17:30:08 - 0.31720644480804233 = array delle RMSE_membership 
-
-11-Sep-20 17:30:22 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:30:22 - 27 = array delle accuratezze
-11-Sep-20 17:30:22 - 0.31720644477801463 = array delle RMSE_membership 
-
-11-Sep-20 17:33:30 - Questo esperimento lavora sul dataset: iris-virginica.csv
-11-Sep-20 17:33:31 - 0.7866666666666666 = array delle accuratezze
-11-Sep-20 17:33:31 - 0.41713613502916785 = array delle RMSE_membership 
-
-11-Sep-20 17:34:02 - Questo esperimento lavora sul dataset: iris-versicolor.csv
-11-Sep-20 17:34:03 - 0.6266666666666667 = array delle accuratezze
-11-Sep-20 17:34:03 - 0.5282286126106887 = array delle RMSE_membership 
-
-11-Sep-20 17:34:08 - Questo esperimento lavora sul dataset: iris-setosa.csv
-11-Sep-20 17:34:09 - 0.8400000000000001 = array delle accuratezze
-11-Sep-20 17:34:09 - 0.32313395362025477 = array delle RMSE_membership 
-
 11-Sep-20 17:35:04 - Questo esperimento lavora sul dataset: iris-setosa.csv
 11-Sep-20 17:35:04 - [0.7666666666666667, 0.9333333333333333, 0.8, 0.9, 0.8] = array delle accuratezze
-11-Sep-20 17:35:04 - [0.35305547987054997, 0.25755917467936873, 0.3378804594852117, 0.31541542259424565, 0.3517592391514544] = array delle RMSE_membership 
+11-Sep-20 17:35:04 - [0.35305547987054997, 0.25755917467936873, 0.3378804594852117, 0.31541542259424565, 0.3517592391514544] = array delle RMSE_membership
 
 11-Sep-20 17:37:04 - Questo esperimento lavora sul dataset: iris-setosa.csv
 11-Sep-20 17:37:04 - [0.7666666666666667, 0.9333333333333333, 0.8, 0.9, 0.8] = array delle accuratezze
-11-Sep-20 17:37:04 - [0.35305548003296505, 0.25755916812182517, 0.3378804585633192, 0.3154154155045357, 0.3517592386907785] = array delle RMSE_membership 
+11-Sep-20 17:37:04 - [0.35305548003296505, 0.25755916812182517, 0.3378804585633192, 0.3154154155045357, 0.3517592386907785] = array delle RMSE_membership
 
 28-Sep-20 22:29:01 - Questo esperimento lavora sul dataset: iris-setosa.csv
 28-Sep-20 22:29:01 - [0.9666666666666667, 1.0, 0.9666666666666667, 1.0, 0.9666666666666667] = array delle accuratezze
-28-Sep-20 22:29:01 - [0.15492971199879482, 0.08636490964908827, 0.16487717223585877, 0.06519993365952911, 0.14573313022952936] = array delle RMSE_membership 
+28-Sep-20 22:29:01 - [0.15492971199879482, 0.08636490964908827, 0.16487717223585877, 0.06519993365952911, 0.14573313022952936] = array delle RMSE_membership
 
 02-Oct-20 13:29:17 - Questo esperimento lavora sul dataset: iris-setosa.csv
 02-Oct-20 13:29:17 - [0.9666666666666667, 1.0, 0.9666666666666667, 1.0, 0.9666666666666667] = array delle accuratezze
-02-Oct-20 13:29:17 - [0.15492971095148683, 0.08636490994003579, 0.16487717225128243, 0.06519993394768761, 0.14573313011399444] = array delle RMSE_membership 
+02-Oct-20 13:29:17 - [0.15492971095148683, 0.08636490994003579, 0.16487717225128243, 0.06519993394768761, 0.14573313011399444] = array delle RMSE_membership
 
 02-Oct-20 13:29:20 - Questo esperimento lavora sul dataset: iris-setosa.csv
 02-Oct-20 13:29:20 - [0.9666666666666667, 1.0, 0.9666666666666667, 1.0, 0.9666666666666667] = array delle accuratezze
-02-Oct-20 13:29:20 - [0.1549297123496172, 0.08636490990095047, 0.16487717224264486, 0.06519993394788508, 0.14573313069494603] = array delle RMSE_membership 
-
+02-Oct-20 13:29:20 - [0.1549297123496172, 0.08636490990095047, 0.16487717224264486, 0.06519993394788508, 0.14573313069494603] = array delle RMSE_membership
