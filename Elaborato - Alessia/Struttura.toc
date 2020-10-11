@@ -1,0 +1,20 @@
+\babel@toc {italian}{}
+\babel@toc {italian}{}
+\contentsline {chapter}{Ringraziamenti}{i}
+\contentsline {chapter}{Introduzione}{1}
+\contentsline {chapter}{\numberline {1}Apprendimento supervisionato}{3}
+\contentsline {section}{\numberline {1.1}Apprendimento supervisionato}{3}
+\contentsline {section}{\numberline {1.2}Insiemi e logica fuzzy}{8}
+\contentsline {chapter}{\numberline {2}Induzione della funzione di membership}{12}
+\contentsline {section}{\numberline {2.1}Clustering}{12}
+\contentsline {subsection}{\numberline {2.1.1}Breve classificazione}{13}
+\contentsline {subsection}{\numberline {2.1.2}Fuzzy clustering}{15}
+\contentsline {section}{\numberline {2.2}Support Vector Machine}{17}
+\contentsline {section}{\numberline {2.3}Fuzzy Support Vector Machine}{19}
+\contentsline {chapter}{\numberline {3}Implementazione ed esperimenti}{23}
+\contentsline {section}{\numberline {3.1}Dataset}{23}
+\contentsline {section}{\numberline {3.2}Il repository realizzato}{25}
+\contentsline {section}{\numberline {3.3}Algoritmo basato su Fuzzy Clustering}{26}
+\contentsline {section}{\numberline {3.4}Algoritmo basato su Fuzzy Support Vector Machine}{28}
+\contentsline {section}{\numberline {3.5}Risultati}{28}
+\contentsline {chapter}{Conclusioni}{30}
